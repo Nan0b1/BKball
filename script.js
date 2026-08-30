@@ -60,6 +60,7 @@ function makeHole(coordonates, radius) {
     newHole.setAttribute("r", radius)
     newHole.setAttribute("id", coordonates)
     newHole.setAttribute("fill", "#000000")
+    newHole.classList.add("threed")
     document.getElementById("board").appendChild(newHole);
     
     holes.push(coordonates)

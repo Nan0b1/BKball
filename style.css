@@ -11,6 +11,10 @@ body {
     padding: auto;
 }
 
+.threed {
+    border: 0.5rem solid red;
+}
+
 /* Media Queries */
 
 @media (max-width: 640px) { 
