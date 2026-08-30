@@ -13,6 +13,7 @@ body {
 
 .threed {
     border: 0.5rem solid red;
+    stroke: #444;
 }
 
 /* Media Queries */
