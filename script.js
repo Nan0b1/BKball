@@ -52,10 +52,10 @@ function changeSegment(name) {
     console.log(name)
 }
 
-var holes = []
+let holes = []
 
 function boardHole(coordonates, radius) {
-    var newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    let newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     newHole.setAttribute("cx", coordonates[0])
     newHole.setAttribute("cy", coordonates[1])
     newHole.setAttribute("r", radius)
