@@ -55,26 +55,28 @@ let holes = []
 
 function makeHole(coordonates, radius) {
     let newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    newHole.setAttribute("cx", coordonates[0])
-    newHole.setAttribute("cy", coordonates[1])
-    newHole.setAttribute("r", radius)
-    newHole.setAttribute("id", coordonates)
-    newHole.setAttribute("fill", "#000000")
-    newHole.classList.add("threed")
+    newHole.setAttribute("cx", coordonates[0]);
+    newHole.setAttribute("cy", coordonates[1]);
+    newHole.setAttribute("r", radius);
+    newHole.setAttribute("id", coordonates);
+    newHole.setAttribute("fill", "#000000");
+    newHole.classList.add("threed");
     document.getElementById("board").appendChild(newHole);
     
-    holes.push(coordonates)
+    holes.push([coordonates,radius]);
 }
-makeHole([50,50],15)
-makeHole([10,50],5)
-makeHole([50,10],3)
-makeHole([30,25],5)
+makeHole([50,50],15);
+makeHole([10,50],5);
+makeHole([50,10],3);
+makeHole([30,25],5);
 
 function removeHoles(){
     for (let i = 0; i < holes.length; i++) {
-        document.getElementById(holes[i]).remove()}
+        console.log(holes[i].toString())
+        document.getElementById(holes[i].toString()).remove();
+    }
 }
-// removeHoles()
+removeHoles()
 
 
 function actualize() {
