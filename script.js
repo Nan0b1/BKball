@@ -21,32 +21,32 @@ function showKeyPress(evt) {
 
 
 document.addEventListener("keypress", showKeyPress);
-var circle = document.getElementById("myCircle");
+let circle = document.getElementById("myCircle");
 
 
 
 
-// https://mathworld.wolfram.com/Circle-CircleIntersection.html
+// https://mathworld.wolfram.com/Circle-CircleIntersection.html<
 // (0,0) (0,140) -> d=140
-var d = 140
+let d = 140
 // default lenght rope 100
-var R = 190 // gauche
-var r = 190 // droit
+let R = 190 // gauche
+let r = 190 // droit
 
 
 
-var x = 0
-var old_x = x
+let x = 0
+let old_x = x
 
-var y = 0
-var old_y = y
+let y = 0
+let old_y = y
 
 function changeSegment(name) {
-    var segment = document.getElementById(name + "1");
+    let segment = document.getElementById(name + "1");
     segment.setAttribute("values", old_x + ";" + x);
     segment.beginElement();
     
-    var segmenty = document.getElementById(name + "2");
+    let segmenty = document.getElementById(name + "2");
     segmenty.setAttribute("values", old_y + ";" + y);
     segmenty.beginElement();
     console.log(name)
@@ -77,7 +77,7 @@ function actualize() {
     x = ((d ** 2) - (r ** 2) + (R ** 2)) / (2 * d)
 
     old_y = y
-    var a = (1 / d) * ((-d + r - R) * (-d - r + R) * (-d + r + R) * (d + r + R)) ** (1 / 2)
+    let a = (1 / d) * ((-d + r - R) * (-d - r + R) * (-d + r + R) * (d + r + R)) ** (1 / 2)
     y = a / 2
 
     if (x < 5) {
@@ -133,7 +133,7 @@ function actualize() {
     var left = document.getElementById("left3");
     left.setAttribute("x1", x);
     left.setAttribute("y1", y);*/
-    var segment = document.getElementById("circleAnimate");
+    let segment = document.getElementById("circleAnimate");
     segment.setAttribute("from", old_x + " " + old_y);
     segment.setAttribute("to", x + " " + y);
     segment.beginElement();
