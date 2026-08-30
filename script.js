@@ -52,18 +52,26 @@ function changeSegment(name) {
     console.log(name)
 }
 
+var holes = []
+
 function boardHole(coordonates, radius) {
-    var newHole = document.createElement("circle");
+    var newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     newHole.setAttribute("cx", coordonates[0])
     newHole.setAttribute("cy", coordonates[1])
     newHole.setAttribute("r", radius)
+    newHole.setAttribute("id", coordonates)
     newHole.setAttribute("fill", "#000000")
-    var Board = document.getElementById("board");
-    Board.appendChild(newHole);
+    document.getElementById("board").appendChild(newHole);
+    
+    holes.push(coordonates)
 }
-
 boardHole([50,50],15)
 
+function removeHoles(){
+    for (let i = 0; i < holes.length; i++) {
+        document.getElementById(holes[i]).remove()}
+}
+removeHoles()
 function actualize() {
     old_x = x
     x = ((d ** 2) - (r ** 2) + (R ** 2)) / (2 * d)
