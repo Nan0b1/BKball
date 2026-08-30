@@ -51,7 +51,7 @@ function changeSegment(name) {
     segmenty.beginElement();
 }
 
-var holes = []
+let holes = []
 
 function makeHole(coordonates, radius) {
     let newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
