@@ -15,15 +15,6 @@ function showKeyPress(evt) {
 }
 
 
-function doThing() {
-    // test but not used
-    var segment = document.getElementById("circleAnimate");
-    segment.setAttribute("from", old_x + " " + old_y);
-    segmenty.setAttribute("to", x + " " + y);
-    segmenty.beginElement();
-}
-
-
 document.addEventListener("keypress", showKeyPress);
 var circle = document.getElementById("myCircle");
 
@@ -56,6 +47,18 @@ function changeSegment(name) {
     console.log(name)
 }
 
+function boardHole(coordonates, radius) {
+    var newHole = document.createElement("circle");
+    newHole.setAttribute("cx", coordonates[0])
+    newHole.setAttribute("cy", coordonates[1])
+    newHole.setAttribute("r", radius)
+    newHole.setAttribute("fill", "#000000")
+    var Board = document.getElementById("board");
+    Board.appendChild(newHole);
+}
+
+boardHole([50,50],15)
+
 function actualize() {
     old_x = x
     x = ((d ** 2) - (r ** 2) + (R ** 2)) / (2 * d)
@@ -70,8 +73,6 @@ function actualize() {
         x = 135
     }
 
-    // var circle = document.getElementById("circlexy");
-    // circle.setAttribute("values", "translate("+x+","+ y+")");
 
 
     /*
@@ -98,14 +99,6 @@ function actualize() {
     changeSegment("left2")
     changeSegment("left3")
 
-
-
-    function boardHole(coordonates, radius) {
-        var newAnimatex = document.createElement("animate");
-        var currentAnimatex = document.getElementById(name);
-        currentAnimatex.appendChild(newAnimatex);
-        newAnimatex.setAttribute("dur", " 0.2s")
-    }
 
     // var segment = document.getElementById("right11");
     // segment.setAttribute("x1", x);
