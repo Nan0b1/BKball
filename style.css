@@ -1,3 +1,7 @@
+body {
+    font-family: system-ui;
+}
+
 .flex_parent {
     display: flex;
 }
@@ -6,3 +10,11 @@
     flex: 1;
     padding: auto;
 }
+
+/* Media Queries */
+
+@media (max-width: 640px) { 
+    .flex_parent {
+        flex-direction: column;
+    }
+ }
