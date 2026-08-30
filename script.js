@@ -49,13 +49,12 @@ function changeSegment(name) {
     let segmenty = document.getElementById(name + "2");
     segmenty.setAttribute("values", old_y + ";" + y);
     segmenty.beginElement();
-    console.log(name)
 }
 
 var holes = []
 
-function boardHole(coordonates, radius) {
-    var newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+function makeHole(coordonates, radius) {
+    let newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     newHole.setAttribute("cx", coordonates[0])
     newHole.setAttribute("cy", coordonates[1])
     newHole.setAttribute("r", radius)
@@ -65,13 +64,18 @@ function boardHole(coordonates, radius) {
     
     holes.push(coordonates)
 }
-boardHole([50,50],15)
+makeHole([50,50],15)
+makeHole([10,50],5)
+makeHole([50,10],3)
+makeHole([30,25],5)
 
 function removeHoles(){
     for (let i = 0; i < holes.length; i++) {
         document.getElementById(holes[i]).remove()}
 }
-removeHoles()
+// removeHoles()
+
+
 function actualize() {
     old_x = x
     x = ((d ** 2) - (r ** 2) + (R ** 2)) / (2 * d)
@@ -82,28 +86,10 @@ function actualize() {
 
     if (x < 5) {
         x = 5
-    } else if (x > 135) {
+    } 
+    else if (x > 135) {
         x = 135
     }
-
-
-
-    /*
-    var newAnimatex = document.createElement("animate");
-    var currentAnimatex = document.getElementById(name);
-    currentAnimatex.appendChild(newAnimatex);
-    newAnimatex.setAttribute("dur", " 0.2s")
-    // newAnimatex.setAttribute("fill", "freeze")
-    newAnimatex.setAttribute("begin", "0s")
-    newAnimatex.setAttribute("attributeName", "x1")
-    newAnimatex.setAttribute("values", x)
-    var newAnimatey = document.createElement("animate", {attributeName:"y1", values:y, dur:" 0.2s", fill:"freeze"});
-    var currentAnimatey = document.getElementById(name);
-    currentAnimatey.appendChild(newAnimatey);
-    newAnimatey.setAttribute("dur", " 0.2s")
-    // newAnimatey.setAttribute("fill", "freeze")
-    newAnimatey.setAttribute("attributeName", "y1")
-    newAnimatey.setAttribute("values", y) */
 
     changeSegment("right1")
     changeSegment("right2")
@@ -112,32 +98,10 @@ function actualize() {
     changeSegment("left2")
     changeSegment("left3")
 
-
-    // var segment = document.getElementById("right11");
-    // segment.setAttribute("x1", x);
-    // var segment = document.getElementById("right12");
-    // segment.setAttribute("y1", y);
-    /*
-    var right = document.getElementById("right2");
-    right.setAttribute("x1", x);
-    right.setAttribute("y1", y);
-    var right = document.getElementById("right3");
-    right.setAttribute("x1", x);
-    right.setAttribute("y1", y);
-    var left = document.getElementById("left1");
-    left.setAttribute("x1", x);
-    left.setAttribute("y1", y);
-    var left = document.getElementById("left2");
-    left.setAttribute("x1", x);
-    left.setAttribute("y1", y);
-    var left = document.getElementById("left3");
-    left.setAttribute("x1", x);
-    left.setAttribute("y1", y);*/
     let segment = document.getElementById("circleAnimate");
     segment.setAttribute("from", old_x + " " + old_y);
     segment.setAttribute("to", x + " " + y);
     segment.beginElement();
-    // console.log('circle.setAttribute("transform", "translate('+x+','+ y+')")')
 
 
 }
