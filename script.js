@@ -61,14 +61,23 @@ function makeHole(coordonates, radius) {
     newHole.setAttribute("id", coordonates);
     newHole.setAttribute("fill", "#000000");
     newHole.classList.add("threed");
-    document.getElementById("board").appendChild(newHole);
+    document.getElementById("board").insertBefore(newHole, document.getElementById("left1"));
     
     holes.push([coordonates,radius]);
 }
-makeHole([50,50],15);
-makeHole([10,50],5);
-makeHole([50,10],3);
-makeHole([30,25],5);
+
+var levels = []
+var level0 = [[[50,50],15], [[10,50],5], [[50,10],3], [[30,25],5]]
+levels.push(level0)
+
+function makeLevel(levelID) {
+    for (let i = 0; i < levels[levelID].length; i++) {
+        makeHole(levels[levelID][i][0],levels[levelID][i][1])
+    }
+}
+
+makeLevel(0)
+
 
 function removeHoles(){
     for (let i = 0; i < holes.length; i++) {
@@ -76,7 +85,8 @@ function removeHoles(){
         document.getElementById(holes[i].toString()).remove();
     }
 }
-removeHoles()
+
+// removeHoles()
 
 
 function actualize() {
@@ -109,4 +119,5 @@ function actualize() {
 
 }
 
+actualize()
 actualize()
