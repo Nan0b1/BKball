@@ -1,19 +1,17 @@
 "use strict";
 
-function showKeyPress(evt) {
-    let char = String.fromCharCode(evt.charCode);
+function onKeyPress(evt) {
+    let char = String.fromCharCode(evt.charCode).toLowerCase();
 
-    if (char == "p") {
-        r = r + 2;
-    }
-    if (char == "o") {
-        r = r - 2;
-    }
-    if (char == "a") {
-        R = R + 2;
-    }
-    if (char == "z") {
-        R = R - 2;
+    switch (char) {
+        case "p":
+            r = r + 2;
+        case "o":
+            r = r - 2;
+        case "a":
+            R = R + 2;
+        case "z":
+            R = R - 2;                
     }
 
     actualize();
@@ -25,7 +23,7 @@ function collide (co1,co2,dist) {
     if (x2 + y2 <= dist**2) {}
 }
 
-document.addEventListener("keypress", showKeyPress);
+document.addEventListener("keypress", onKeyPress);
 let circle = document.getElementById("myCircle");
 const segmentsName = [
     "right1",
