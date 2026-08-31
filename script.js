@@ -22,12 +22,19 @@ function showKeyPress(evt) {
 function collide (co1,co2,dist) {
     x2 = (co1[0][0] - co2[0][0])**2;
     y2 = (co1[1][0] - co2[1][0])**2;
-    if (x2 + y2 <= dist**2)
+    if (x2 + y2 <= dist**2) {}
 }
 
 document.addEventListener("keypress", showKeyPress);
 let circle = document.getElementById("myCircle");
-
+const segmentsName = [
+    "right1",
+    "right2",
+    "right3",
+    "left1",
+    "left2",
+    "left3"
+];
 
 
 
@@ -109,12 +116,11 @@ function actualize() {
         x = 135;
     }
 
-    changeSegment("right1");
-    changeSegment("right2");
-    changeSegment("right3");
-    changeSegment("left1");
-    changeSegment("left2");
-    changeSegment("left3");
+    for (const currentSegment of segmentsName) {
+        console.log(currentSegment);
+        changeSegment(currentSegment);
+    }
+
 
     let segment = document.getElementById("circleAnimate");
     segment.setAttribute("from", old_x + " " + old_y);
