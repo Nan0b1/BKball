@@ -19,6 +19,11 @@ function showKeyPress(evt) {
     actualize();
 }
 
+function collide (co1,co2,dist) {
+    x2 = (co1[0][0] - co2[0][0])**2;
+    y2 = (co1[1][0] - co2[1][0])**2;
+    if (x2 + y2 <= dist**2)
+}
 
 document.addEventListener("keypress", showKeyPress);
 let circle = document.getElementById("myCircle");
