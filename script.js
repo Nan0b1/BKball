@@ -117,7 +117,6 @@ function actualize() {
     }
 
     for (const currentSegment of segmentsName) {
-        console.log(currentSegment);
         changeSegment(currentSegment);
     }
 
