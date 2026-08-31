@@ -38,10 +38,10 @@ const segmentsName = [
 
 
 
-// https://mathworld.wolfram.com/Circle-CircleIntersection.html<
+// https://mathworld.wolfram.com/Circle-CircleIntersection.html
 // (0,0) (0,140) -> d=140
 let d = 140;
-// default lenght rope 100
+// default length rope 100
 let R = 190; // gauche
 let r = 190; // droit
 
