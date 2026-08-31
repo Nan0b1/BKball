@@ -42,8 +42,8 @@ const segmentsName = [
 // (0,0) (0,140) -> d=140
 let d = 140;
 // default length rope 100
-let R = 190; // gauche
-let r = 190; // droit
+let R = 190; // left
+let r = 190; // right
 
 
 
