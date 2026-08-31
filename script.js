@@ -1,5 +1,13 @@
 "use strict";
 
+var actualLevel = 0
+
+
+
+var actualLevel = 0
+
+
+
 function onKeyPress(evt) {
     let char = String.fromCharCode(evt.charCode).toLowerCase();
 
@@ -13,14 +21,28 @@ function onKeyPress(evt) {
         case "z":
             R = R - 2;                
     }
-
+    if (checkHoles()){
+        console.log("HOLE")
+    }
     actualize();
 }
 
+function checkHoles(){
+    for (let i = 0; i < levels[actualLevel].length; i++) {
+        if (collide([x, y+12], levels[actualLevel][i][0],levels[actualLevel][i][1])) {
+            return true
+        }
+    }
+    return false
+}
+
 function collide (co1,co2,dist) {
-    x2 = (co1[0][0] - co2[0][0])**2;
-    y2 = (co1[1][0] - co2[1][0])**2;
-    if (x2 + y2 <= dist**2) {}
+    let x2 = (co1[0] - co2[0])**2;
+    let y2 = (co1[1] - co2[1])**2;
+    if (x2 + y2 <= dist**2) {
+        return true
+    }
+    return false
 }
 
 document.addEventListener("keypress", onKeyPress);
@@ -86,7 +108,8 @@ function makeLevel(levelID) {
     }
 }
 
-makeLevel(0)
+
+makeLevel(actualLevel)
 
 
 function removeHoles(){
