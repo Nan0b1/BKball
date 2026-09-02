@@ -4,23 +4,24 @@ var actualLevel = 0
 
 
 
-var actualLevel = 0
-
-
-
 function onKeyPress(evt) {
     let char = String.fromCharCode(evt.charCode).toLowerCase();
 
     switch (char) {
         case "p":
             r = r + 2;
+            break;
         case "o":
             r = r - 2;
+            break;
         case "a":
             R = R + 2;
+            break;
         case "z":
-            R = R - 2;                
+            R = R - 2;
+            break;
     }
+    console.log(r);
     if (checkHoles()){
         console.log("HOLE")
     }
@@ -60,18 +61,18 @@ const segmentsName = [
 
 // https://mathworld.wolfram.com/Circle-CircleIntersection.html
 // (0,0) (0,140) -> d=140
-let d = 140;
+var d = 140;
 // default length rope 100
-let R = 190; // left
-let r = 190; // right
+var R = 190; // left
+var r = 190; // right
 
 
 
-let x = 0;
-let old_x = x;
+var x = 0;
+var old_x = x;
 
-let y = 0;
-let old_y = y;
+var y = 0;
+var old_y = y;
 
 function changeSegment(name) {
     let segment = document.getElementById(name + "1");
@@ -123,6 +124,7 @@ function removeHoles(){
 
 
 function actualize() {
+    
     old_x = x;
     x = ((d ** 2) - (r ** 2) + (R ** 2)) / (2 * d);
 
@@ -146,7 +148,6 @@ function actualize() {
     segment.setAttribute("from", old_x + " " + old_y);
     segment.setAttribute("to", x + " " + y);
     segment.beginElement();
-
 
 }
 
