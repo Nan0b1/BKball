@@ -152,4 +152,4 @@ function actualize() {
 }
 
 actualize();
-actualize();
+actualize(); // preferable for accessibility: disable the first animation
