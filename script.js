@@ -121,7 +121,7 @@ function removeHoles(){
 }
 
 // removeHoles()
-
+var rotationRatio = 20 + (Math.random() - 0.5);
 
 function actualize() {
     
@@ -148,9 +148,14 @@ function actualize() {
     segment.setAttribute("from", old_x + " " + old_y);
     segment.setAttribute("to", x + " " + y);
     segment.beginElement();
+
+    
     let bk = document.getElementById("BKanimate");
-    bk.setAttribute("from", old_x/6.28319*40 +" 0 13");
-    bk.setAttribute("to", x/6.28319*40 +" 0 13");
+    bk.setAttribute("from", old_x/6.28319*Math.abs(rotationRatio) +" 0 13");
+
+    rotationRatio = rotationRatio + (Math.random() - 0.5)*1.8;
+
+    bk.setAttribute("to", x/6.28319*Math.abs(rotationRatio) +" 0 13");
     bk.beginElement();
 
 }
