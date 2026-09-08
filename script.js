@@ -7,25 +7,45 @@ var actualLevel = 0
 function onKeyPress(evt) {
     let char = String.fromCharCode(evt.charCode).toLowerCase();
 
-    switch (char) {
+    switch (char) { // 142 min value
         case "p":
             r = r + 2;
             break;
         case "o":
-            r = r - 2;
+            if (r+R > 142) {
+                console.log(r+R)
+                r = r - 2;
+            }
             break;
         case "a":
             R = R + 2;
             break;
         case "z":
-            R = R - 2;
+            if (r+R > 142) {
+                R = R - 2;
+            }
+            break;
+        case "n":
+            changeLevel(actualLevel+1);
+            break;
+        case "w":
+            changeLevel(actualLevel-1);
             break;
     }
-    console.log(r);
     if (checkHoles()){
-        console.log("HOLE")
+        desapear()
     }
     actualize();
+}
+
+function desapear () {
+    let bk = document.getElementById("BKanimate");
+    bk.setAttribute("from", old_x/6.28319*Math.abs(rotationRatio) +" 0 13");
+
+    rotationRatio = rotationRatio + 1110.8;
+
+    bk.setAttribute("to", x/6.28319*Math.abs(rotationRatio) +" 0 13");
+    bk.beginElement();
 }
 
 function checkHoles(){
@@ -84,40 +104,55 @@ function changeSegment(name) {
     segmenty.beginElement();
 }
 
-let holes = [];
+var holes = [];
 
 function makeHole(coordonates, radius) {
     let newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     newHole.setAttribute("cx", coordonates[0]);
     newHole.setAttribute("cy", coordonates[1]);
     newHole.setAttribute("r", radius);
-    newHole.setAttribute("id", coordonates);
+    newHole.setAttribute("id", coordonates.toString() +"," + radius.toString());
     newHole.setAttribute("fill", "#000000");
     newHole.classList.add("threed");
     document.getElementById("board").insertBefore(newHole, document.getElementById("left1"));
-    
-    holes.push([coordonates,radius]);
+    holes.push([coordonates, radius]);
 }
 
 var levels = [];
 var level0 = [[[50,50],15], [[10,50],5], [[50,10],3], [[30,25],5]];
+var level1 = [[[50,70],15], [[80,50],15], [[50,100],13], [[90,90],15]];
 levels.push(level0);
+levels.push(level1);
 
 function makeLevel(levelID) {
     for (let i = 0; i < levels[levelID].length; i++) {
-        makeHole(levels[levelID][i][0],levels[levelID][i][1]);
+        makeHole(levels[levelID][i][0], levels[levelID][i][1]);
     }
 }
 
+
+function changeLevel(levelTo) {
+    if (levels.length > levelTo && levelTo >= 0) {
+        actualLevel = levelTo;
+        changeScene(actualLevel)
+    }
+}
+
+function changeScene(levelTo) {
+    removeHoles()
+    actualLevel = levelTo
+    makeLevel(levelTo)
+    actualize()
+}
 
 makeLevel(actualLevel)
 
 
 function removeHoles(){
     for (let i = 0; i < holes.length; i++) {
-        console.log(holes[i].toString());
         document.getElementById(holes[i].toString()).remove();
     }
+    holes.length = 0 // reset without breaking refs
 }
 
 // removeHoles()
@@ -162,3 +197,4 @@ function actualize() {
 
 actualize();
 actualize(); // preferable for accessibility: disable the first animation
+// removeHoles()

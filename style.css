@@ -12,8 +12,8 @@ body {
 }
 
 .threed {
-    border: 0.5rem solid red;
-    stroke: #444;
+    /* border: 0.5rem inset red; */
+    stroke: linear-gradient(90deg, #444, #fff);
 }
 
 /* Media Queries */
