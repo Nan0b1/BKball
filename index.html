@@ -11,6 +11,16 @@
     <div class="flex_parent">
         <h1 class="flex_child">Hello</h1>
         <svg id="board" viewBox="0 0 140 200" style="background-color:rgb(209, 171, 45)" class="flex_child">
+            <defs>
+                <linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
+                <stop class="stop1" offset="0%" />
+                <stop class="stop2" offset="100%" />
+                </linearGradient>
+                <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" class="stopa" />
+                <stop offset="100%" class="stopb" />
+                </linearGradient>
+            </defs>
             <line id="left1" x2="5" y2="5" x1="0" y1="0" style="stroke:#dbbf54;stroke-width:2" >
                 <animate id="left11" attributeName="x1" values="0" dur=" 0.2s" fill="freeze"/>
                 <animate id="left12" attributeName="y1" values="0" dur=" 0.2s" fill="freeze"/>

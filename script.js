@@ -125,11 +125,11 @@ function makeHole(coordonates, radius, win) {
     newHole.setAttribute("r", radius);
     newHole.setAttribute("id", coordonates.toString() +"," + radius.toString());
     if (win) {
-        newHole.setAttribute("fill", "#2e532b");
+        newHole.setAttribute("fill", "url(#Gradient2)");
         newHole.classList.add("winHole");
     }
     else {
-        newHole.setAttribute("fill", "#000000");
+        newHole.setAttribute("fill", "url(#Gradient1)");
     }
     newHole.classList.add("threed");
 
@@ -138,8 +138,8 @@ function makeHole(coordonates, radius, win) {
 }
 
 var levels = [];
-var level0 = [[[50,50],15,true], [[10,50],5], [[50,10],3], [[30,25],5]];
-var level1 = [[[50,70],15], [[80,50],15], [[50,100],13], [[90,90],15]];
+var level0 = [[[50,50],15,true], [[80,70],10], [[105,70],10], [[130,70],10], [[80,95],10], [[80,120],10], [[100,90],10], [[115,105],10], [[130,120],10], [[145,135],10]];
+var level1 = [[[10,70],15], [[20,25],12, true], [[30,110],15], [[65,140],12], [[40,60],13], [[80,100],13], [[130,90],20], [[120,140],12]];
 levels.push(level0);
 levels.push(level1);
 
