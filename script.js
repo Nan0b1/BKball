@@ -12,18 +12,23 @@ function onKeyPress(evt) {
             r = r + 2;
             break;
         case "o":
-            if (r+R > 142) {
-                console.log(r+R)
+            if (r>6){
                 r = r - 2;
+                if (r+R <= 130) {
+                    R = R + 2;
+                }
             }
             break;
         case "a":
             R = R + 2;
             break;
         case "z":
-            if (r+R > 142) {
+            if (R>6){
                 R = R - 2;
-            }
+                if (r+R <= 130) {
+                    r = r + 2;
+                }
+            }  
             break;
         case "n":
             changeLevel(actualLevel+1);
@@ -34,6 +39,7 @@ function onKeyPress(evt) {
     }
     if (checkHoles()){
         desapear()
+        changeLevel(actualLevel+1*winState)
     }
     actualize();
 }
@@ -42,15 +48,21 @@ function desapear () {
     let bk = document.getElementById("BKanimate");
     bk.setAttribute("from", old_x/6.28319*Math.abs(rotationRatio) +" 0 13");
 
-    rotationRatio = rotationRatio + 1110.8;
+    rotationRatio = rotationRatio + 1110;
 
     bk.setAttribute("to", x/6.28319*Math.abs(rotationRatio) +" 0 13");
     bk.beginElement();
 }
 
+var winState = false
+
 function checkHoles(){
     for (let i = 0; i < levels[actualLevel].length; i++) {
         if (collide([x, y+12], levels[actualLevel][i][0],levels[actualLevel][i][1])) {
+            if(document.getElementById(holes[i].toString()).classList.contains("winHole")){
+                winState = true
+                console.log(67)
+            }
             return true
         }
     }
@@ -81,17 +93,17 @@ const segmentsName = [
 
 // https://mathworld.wolfram.com/Circle-CircleIntersection.html
 // (0,0) (0,140) -> d=140
-var d = 140;
+var d = 130;
 // default length rope 100
-var R = 190; // left
-var r = 190; // right
+var R = 185; // left
+var r = 185; // right
 
 
 
 var x = 0;
 var old_x = x;
 
-var y = 0;
+var y = 5;
 var old_y = y;
 
 function changeSegment(name) {
@@ -106,35 +118,48 @@ function changeSegment(name) {
 
 var holes = [];
 
-function makeHole(coordonates, radius) {
+function makeHole(coordonates, radius, win) {
     let newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     newHole.setAttribute("cx", coordonates[0]);
     newHole.setAttribute("cy", coordonates[1]);
     newHole.setAttribute("r", radius);
     newHole.setAttribute("id", coordonates.toString() +"," + radius.toString());
-    newHole.setAttribute("fill", "#000000");
+    if (win) {
+        newHole.setAttribute("fill", "#2e532b");
+        newHole.classList.add("winHole");
+    }
+    else {
+        newHole.setAttribute("fill", "#000000");
+    }
     newHole.classList.add("threed");
+
     document.getElementById("board").insertBefore(newHole, document.getElementById("left1"));
     holes.push([coordonates, radius]);
 }
 
 var levels = [];
-var level0 = [[[50,50],15], [[10,50],5], [[50,10],3], [[30,25],5]];
+var level0 = [[[50,50],15,true], [[10,50],5], [[50,10],3], [[30,25],5]];
 var level1 = [[[50,70],15], [[80,50],15], [[50,100],13], [[90,90],15]];
 levels.push(level0);
 levels.push(level1);
 
 function makeLevel(levelID) {
     for (let i = 0; i < levels[levelID].length; i++) {
-        makeHole(levels[levelID][i][0], levels[levelID][i][1]);
+        makeHole(levels[levelID][i][0], levels[levelID][i][1],(levels[levelID][i].length>2));
     }
 }
 
 
-function changeLevel(levelTo) {
+async function changeLevel(levelTo) {
     if (levels.length > levelTo && levelTo >= 0) {
+        await new Promise(r => setTimeout(r, 200));
+        R = 185;
+        r = 185;
+        actualize()
+        rotationRatio = 20 + (Math.random() - 0.5); //destroys animations so idk
         actualLevel = levelTo;
         changeScene(actualLevel)
+        winState = false
     }
 }
 
@@ -161,7 +186,7 @@ var rotationRatio = 20 + (Math.random() - 0.5);
 function actualize() {
     
     old_x = x;
-    x = ((d ** 2) - (r ** 2) + (R ** 2)) / (2 * d);
+    x = ((d ** 2) - (r ** 2) + (R ** 2)) / (2 * d) + 5;
 
     old_y = y
     let a = (1 / d) * ((-d + r - R) * (-d - r + R) * (-d + r + R) * (d + r + R)) ** (1 / 2);
