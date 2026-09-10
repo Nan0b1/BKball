@@ -10,13 +10,13 @@ var ropeDefault = 185
 // ####################### key handling #######################
 
 function onKeyPress(evt) {
-    let char = String.fromCharCode(evt.charCode).toLowerCase();
+    let char = evt.code;
 
     switch (char) {
-        case "p":
+        case "KeyP":
             r = r + 2;
             break;
-        case "o":
+        case "KeyO":
             if (r>6){
                 r = r - 2;
                 if (r+R <= 130) {
@@ -24,10 +24,10 @@ function onKeyPress(evt) {
                 }
             }
             break;
-        case "a":
+        case "KeyQ":
             R = R + 2;
             break;
-        case "z":
+        case "KeyW":
             if (R>6){
                 R = R - 2;
                 if (r+R <= 130) {
@@ -35,10 +35,10 @@ function onKeyPress(evt) {
                 }
             }  
             break;
-        case "n":
+        case "KeyZ":
             changeLevel(actualLevel+1);
             return;
-        case "w":
+        case "KeyN":
             changeLevel(actualLevel-1);
             return;
         case _:

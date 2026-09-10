@@ -11,6 +11,14 @@ body {
     padding: auto;
 }
 
+/* wings */
+
+.bigTitle {
+    text-align: center;
+}
+
+/* canvas */
+
 .threed {
     /* border: 0.5rem inset red; */
     stroke: #94872d;
@@ -23,9 +31,12 @@ body {
     .flex_parent {
         flex-direction: column;
     }
- }
+}
 
- #rect1 {
+
+/* gradients */
+
+#rect1 {
     fill: url("#Gradient1");
 }
 .stop1 {
