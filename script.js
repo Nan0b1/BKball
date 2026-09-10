@@ -35,10 +35,10 @@ function onKeyPress(evt) {
                 }
             }  
             break;
-        case "KeyZ":
+        case "KeyN":
             changeLevel(actualLevel+1);
             return;
-        case "KeyN":
+        case "KeyZ":
             changeLevel(actualLevel-1);
             return;
         case _:

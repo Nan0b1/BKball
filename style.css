@@ -1,3 +1,8 @@
+:root {
+  --radius: 4px;
+}
+
+
 body {
     font-family: system-ui;
 }
@@ -17,11 +22,22 @@ body {
     text-align: center;
 }
 
+.smolBox {
+    background-color: rgba(164, 117, 35, 1);
+    padding: 3%;
+    margin: 2%;
+    border-radius: var(--radius);
+}
+
 /* canvas */
+
+svg {
+    border-radius: var(--radius);
+}
 
 .threed {
     /* border: 0.5rem inset red; */
-    stroke: #94872d;
+    stroke: #7a6d62;
     stroke-opacity: 0.7;
 }
 
@@ -40,16 +56,16 @@ body {
     fill: url("#Gradient1");
 }
 .stop1 {
-    stop-color: #7a7b57;
+    stop-color: #85735e;
 }
 .stop2 {
-    stop-color: #35352e;
+    stop-color: #594d3f;
     /* stop-opacity: 0; */
 }
 .stopa {
-    stop-color: #298022;
+    stop-color: #008351;
 }
 .stopb {
-    stop-color: #1a611e;
+    stop-color: #005f3b;
     /* stop-opacity: 0; */
 }
