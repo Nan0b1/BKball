@@ -1,13 +1,18 @@
 "use strict";
 
 var actualLevel = 0
+var winState = false
+
+var holes = [];
+var ropeDefault = 185
 
 
+// ####################### key handling #######################
 
 function onKeyPress(evt) {
     let char = String.fromCharCode(evt.charCode).toLowerCase();
 
-    switch (char) { // 142 min value
+    switch (char) {
         case "p":
             r = r + 2;
             break;
@@ -32,29 +37,23 @@ function onKeyPress(evt) {
             break;
         case "n":
             changeLevel(actualLevel+1);
-            break;
+            return;
         case "w":
             changeLevel(actualLevel-1);
-            break;
+            return;
+        case _:
+            return;
     }
     if (checkHoles()){
-        desapear()
+        disappear()
         changeLevel(actualLevel+1*winState)
     }
     actualize();
 }
 
-function desapear () {
-    let bk = document.getElementById("BKanimate");
-    bk.setAttribute("from", old_x/6.28319*Math.abs(rotationRatio) +" 0 13");
 
-    rotationRatio = rotationRatio + 1110;
 
-    bk.setAttribute("to", x/6.28319*Math.abs(rotationRatio) +" 0 13");
-    bk.beginElement();
-}
-
-var winState = false
+// ####################### physics detections #######################
 
 function checkHoles(){
     for (let i = 0; i < levels[actualLevel].length; i++) {
@@ -78,9 +77,21 @@ function collide (co1,co2,dist) {
     return false
 }
 
-document.addEventListener("keypress", onKeyPress);
-let circle = document.getElementById("myCircle");
-const segmentsName = [
+
+
+// ####################### animations #######################
+
+function disappear () {
+    let bk = document.getElementById("BKanimate");
+    bk.setAttribute("from", old_x/6.28319*Math.abs(rotationRatio) +" 0 13");
+
+    rotationRatio = rotationRatio + 1110;
+
+    bk.setAttribute("to", x/6.28319*Math.abs(rotationRatio) +" 0 13");
+    bk.beginElement();
+}
+
+const segmentsName = [ // rope segments
     "right1",
     "right2",
     "right3",
@@ -89,24 +100,7 @@ const segmentsName = [
     "left3"
 ];
 
-
-
-// https://mathworld.wolfram.com/Circle-CircleIntersection.html
-// (0,0) (0,140) -> d=140
-var d = 130;
-// default length rope 100
-var R = 185; // left
-var r = 185; // right
-
-
-
-var x = 0;
-var old_x = x;
-
-var y = 5;
-var old_y = y;
-
-function changeSegment(name) {
+function updateSegment(name) {
     let segment = document.getElementById(name + "1");
     segment.setAttribute("values", old_x + ";" + x);
     segment.beginElement();
@@ -116,7 +110,19 @@ function changeSegment(name) {
     segmenty.beginElement();
 }
 
-var holes = [];
+
+
+// ####################### Level creation #######################
+
+var levels = [];
+var level0 = [[[50,50],15,true], [[80,70],10], [[105,70],10], [[130,70],10], [[80,95],10], [[80,120],10], [[100,90],10], [[115,105],10], [[130,120],10], [[145,135],10]];
+var level1 = [[[10,70],15], [[20,25],12, true], [[30,110],15], [[65,140],12], [[40,60],13], [[80,100],13], [[130,90],20], [[120,140],12]];
+levels.push(level0);
+levels.push(level1);
+
+var rotationRatio = 20 + (Math.random() - 0.5);
+
+/*  */
 
 function makeHole(coordonates, radius, win) {
     let newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -137,20 +143,27 @@ function makeHole(coordonates, radius, win) {
     holes.push([coordonates, radius]);
 }
 
-var levels = [];
-var level0 = [[[50,50],15,true], [[80,70],10], [[105,70],10], [[130,70],10], [[80,95],10], [[80,120],10], [[100,90],10], [[115,105],10], [[130,120],10], [[145,135],10]];
-var level1 = [[[10,70],15], [[20,25],12, true], [[30,110],15], [[65,140],12], [[40,60],13], [[80,100],13], [[130,90],20], [[120,140],12]];
-levels.push(level0);
-levels.push(level1);
-
 function makeLevel(levelID) {
     for (let i = 0; i < levels[levelID].length; i++) {
         makeHole(levels[levelID][i][0], levels[levelID][i][1],(levels[levelID][i].length>2));
     }
 }
 
+function removeHoles(){
+    for (let i = 0; i < holes.length; i++) {
+        document.getElementById(holes[i].toString()).remove();
+    }
+    holes.length = 0 // reset without breaking refs
+}
 
-async function changeLevel(levelTo) {
+function changeScene(levelTo) {
+    removeHoles()
+    actualLevel = levelTo
+    makeLevel(levelTo)
+    actualize()
+}
+
+async function changeLevel(levelTo) { //trust the async :) (it isn't engineered for that but no worries)
     if (levels.length > levelTo && levelTo >= 0) {
         await new Promise(r => setTimeout(r, 200));
         R = 185;
@@ -163,28 +176,23 @@ async function changeLevel(levelTo) {
     }
 }
 
-function changeScene(levelTo) {
-    removeHoles()
-    actualLevel = levelTo
-    makeLevel(levelTo)
-    actualize()
-}
 
-makeLevel(actualLevel)
+// ####################### Ball location triangulation #######################
+
+// https://mathworld.wolfram.com/Circle-CircleIntersection.html
+// (0,5) (0,135) => d=130
+var d = 130;
+
+var R = ropeDefault; // left
+var r = ropeDefault; // right
 
 
-function removeHoles(){
-    for (let i = 0; i < holes.length; i++) {
-        document.getElementById(holes[i].toString()).remove();
-    }
-    holes.length = 0 // reset without breaking refs
-}
+var x = 0;
+var old_x = x;
+var y = 5;
+var old_y = y;
 
-// removeHoles()
-var rotationRatio = 20 + (Math.random() - 0.5);
-
-function actualize() {
-    
+function ballTriangulation(){
     old_x = x;
     x = ((d ** 2) - (r ** 2) + (R ** 2)) / (2 * d) + 5;
 
@@ -198,11 +206,17 @@ function actualize() {
     else if (x > 135) {
         x = 135;
     }
+}
+
+// ####################### frames updates #######################
+
+function actualize() {
+
+    ballTriangulation()
 
     for (const currentSegment of segmentsName) {
-        changeSegment(currentSegment);
+        updateSegment(currentSegment);
     }
-
 
     let segment = document.getElementById("circleAnimate");
     segment.setAttribute("from", old_x + " " + old_y);
@@ -220,6 +234,10 @@ function actualize() {
 
 }
 
+
+makeLevel(actualLevel)
+
 actualize();
 actualize(); // preferable for accessibility: disable the first animation
-// removeHoles()
+
+document.addEventListener("keypress", onKeyPress);
