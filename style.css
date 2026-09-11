@@ -29,6 +29,19 @@ body {
     border-radius: var(--radius);
 }
 
+button {
+    width: 15%;
+    border: 0px; 
+    background-color: rgba(219, 191, 84,0);
+    border-radius: var(--radius);   
+}
+
+button:hover{
+    background-color: rgba(219, 191, 84,0.9);
+    transition: background-color 0.1s ease-in-out;
+}
+
+
 /* canvas */
 
 svg {
@@ -69,3 +82,4 @@ svg {
     stop-color: #005f3b;
     /* stop-opacity: 0; */
 }
+

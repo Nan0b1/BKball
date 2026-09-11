@@ -83,12 +83,14 @@ function onKeyPress(evt) {
     actualize();
 }
 
-// ####################### touch handling #######################
-let myElement = document.getElementById("board")
-myElement.addEventListener("touchstart", startTouch, false);
-myElement.addEventListener("touchmove", moveTouch, false);
- 
-// Swipe Up / Down / Left / Right
+// ####################### gestures handling #######################
+// modified from kirupa.com/html5/detecting_touch_swipe_gestures.htm
+
+let svgCanvas = document.getElementById("board")
+svgCanvas.addEventListener("touchstart", startTouch, false);
+svgCanvas.addEventListener("touchmove", moveTouch, false);
+
+
 var initialX = null;
 var initialY = null;
  
@@ -98,53 +100,53 @@ function startTouch(e) {
 };
  
 function moveTouch(e) {
-  if (initialX === null) {
-    return;
-  }
- 
-  if (initialY === null) {
-    return;
-  }
- 
-  var currentX = e.touches[0].clientX;
-  var currentY = e.touches[0].clientY;
- 
-  var diffX = initialX - currentX;
-  var diffY = initialY - currentY;
- 
-  if (Math.abs(diffX) > Math.abs(diffY)) {
-    // sliding horizontally
-    if (diffX > 0) {
-        // swiped left
-        console.log("swiped left");
-        changeLevel(actualLevel+1)
-    } else {
-        // swiped right
-        console.log("swiped right");
-        changeLevel(actualLevel-1);
-    }  
-  } else {
-    // sliding vertically
-    if (diffY > 0) {
-        // swiped up
-        console.log("swiped up");
-        if (initialX > window.screen.width/2) {
-            pullLeft(2)
-        } 
-        else {
-            pullRight(2);
-        }
+    if (initialX === null) {
+        return;
     }
-    else {
-        // swiped down
-        console.log("swiped down");
-        console.log(initialX)
-        if (initialX > window.screen.width/2) {
-            pullLeft(-2)
-        } 
-        else {
-            pullRight(-2);
+    
+    if (initialY === null) {
+        return;
+    }
+    
+    var currentX = e.touches[0].clientX;
+    var currentY = e.touches[0].clientY;
+    
+    var diffX = initialX - currentX;
+    var diffY = initialY - currentY;
+    
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        // sliding horizontally
+
+        if (diffX > 0) {
+            // swiped left
+            changeLevel(actualLevel+1)
+        } else {
+            // swiped right
+            changeLevel(actualLevel-1);
+        }  
+
+    } else {
+        // sliding vertically
+        if (diffY > 0) {
+            // swiped up
+            console.log("swiped up");
+            if (initialX > window.screen.width/2) {
+                pullLeft(2)
+            } 
+            else {
+                pullRight(2);
+            }
         }
+        else {
+            // swiped down
+            console.log("swiped down");
+            console.log(initialX)
+            if (initialX > window.screen.width/2) {
+                pullLeft(-2)
+            } 
+            else {
+                pullRight(-2);
+            }
         }
     }
   
@@ -338,6 +340,35 @@ function actualize() {
     bk.beginElement();
 
 }
+
+function makeLvlTable () {
+    let lvlTable = document.getElementById("LvlTable")
+    for (let i = 0; i < Math.floor(levels.length/6)+1 ; i++) {
+        let node = document.createElement("tr");
+        lvlTable.appendChild(node)
+        if (i == Math.floor(levels.length/6)) {
+            for (let j = 0; j < levels.length % 6 ; j++){
+                let button = document.createElement("button");
+                button.setAttribute("onclick", "changeLevel("+(6*i+j)+")");
+                let textnode = document.createTextNode(6*i+j+1)
+                button.appendChild(textnode)
+                node.appendChild(button);
+
+            }
+        }
+        else {
+            for (let j = 0; j < 6 ; j++){
+                let button = document.createElement("button");
+                button.setAttribute("onclick", "changeLevel("+(6*i+j)+")");
+                let textnode = document.createTextNode(6*i+j+1)
+                button.appendChild(textnode)
+                node.appendChild(button);
+            }
+        }
+    }
+}
+
+makeLvlTable()
 
 
 makeLevel(actualLevel)
