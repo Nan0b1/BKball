@@ -66,7 +66,7 @@ function onKeyPress(evt) {
     actualize();
 }
 
-// 
+// ####################### touch handling #######################
 
 myElement.addEventListener("touchstart", startTouch, false);
 myElement.addEventListener("touchmove", moveTouch, false);
@@ -98,20 +98,50 @@ function moveTouch(e) {
   if (Math.abs(diffX) > Math.abs(diffY)) {
     // sliding horizontally
     if (diffX > 0) {
-      // swiped left
-      console.log("swiped left");
+        // swiped left
+        console.log("swiped left");
+        changeLevel(actualLevel+1)
     } else {
-      // swiped right
-      console.log("swiped right");
+        // swiped right
+        console.log("swiped right");
+        changeLevel(actualLevel-1);
     }  
   } else {
     // sliding vertically
     if (diffY > 0) {
-      // swiped up
-      console.log("swiped up");
-    } else {
+        // swiped up
+        console.log("swiped up");
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            // sliding horizontally
+            if (diffX > 0) {
+                if (R>6){
+                R = R - 2;
+                if (r+R <= 130) {
+                    r = r + 2;
+                }
+            }  
+            } 
+            else {
+                r = r + 2;
+            }  
+        }
+    } 
+    else {
       // swiped down
       console.log("swiped down");
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+            // sliding horizontally
+            if (r>6){
+                r = r - 2;
+                if (r+R <= 130) {
+                    R = R + 2;
+                }
+            }
+            } 
+            else {
+                R = R + 2;
+            }  
+        }
     }  
   }
  
