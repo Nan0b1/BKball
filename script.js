@@ -23,32 +23,49 @@ if (typeof(Storage) !== "undefined") {
 
 
 // ####################### key handling #######################
+function pullLeft(nbr) {
+    if (nbr > 0) {
+        r = r + 2;
+    }
+    else{
+        if (r>6){
+                r = r - 2;
+                if (r+R <= 130) {
+                    R = R + 2;
+                }
+            }
+    }
+}
+
+function pullRight(nbr) {
+    if (nbr > 0) {
+        R = R + 2;
+    }
+    else{
+        if (R>6){
+                R = R - 2;
+                if (r+R <= 130) {
+                    r = r + 2;
+                }
+            }
+    }
+}
 
 function onKeyPress(evt) {
     let char = evt.code;
 
     switch (char) {
         case "KeyP":
-            r = r + 2;
+            pullLeft(2);
             break;
         case "KeyO":
-            if (r>6){
-                r = r - 2;
-                if (r+R <= 130) {
-                    R = R + 2;
-                }
-            }
+            pullLeft(-2);
             break;
         case "KeyQ":
-            R = R + 2;
+            pullRight(2);
             break;
         case "KeyW":
-            if (R>6){
-                R = R - 2;
-                if (r+R <= 130) {
-                    r = r + 2;
-                }
-            }  
+            pullRight(-2);
             break;
         case "KeyN":
             changeLevel(actualLevel+1);
@@ -67,7 +84,7 @@ function onKeyPress(evt) {
 }
 
 // ####################### touch handling #######################
-
+let myElement = document.getElementById("board")
 myElement.addEventListener("touchstart", startTouch, false);
 myElement.addEventListener("touchmove", moveTouch, false);
  
@@ -111,44 +128,32 @@ function moveTouch(e) {
     if (diffY > 0) {
         // swiped up
         console.log("swiped up");
-        if (Math.abs(diffX) > Math.abs(diffY)) {
-            // sliding horizontally
-            if (diffX > 0) {
-                if (R>6){
-                R = R - 2;
-                if (r+R <= 130) {
-                    r = r + 2;
-                }
-            }  
-            } 
-            else {
-                r = r + 2;
-            }  
+        if (initialX > window.screen.width/2) {
+            pullLeft(2)
+        } 
+        else {
+            pullRight(2);
         }
-    } 
+    }
     else {
-      // swiped down
-      console.log("swiped down");
-      if (Math.abs(diffX) > Math.abs(diffY)) {
-            // sliding horizontally
-            if (r>6){
-                r = r - 2;
-                if (r+R <= 130) {
-                    R = R + 2;
-                }
-            }
-            } 
-            else {
-                R = R + 2;
-            }  
+        // swiped down
+        console.log("swiped down");
+        console.log(initialX)
+        if (initialX > window.screen.width/2) {
+            pullLeft(-2)
+        } 
+        else {
+            pullRight(-2);
         }
-    }  
-  }
+        }
+    }
+  
  
   initialX = null;
   initialY = null;
    
   e.preventDefault();
+  actualize();
 };
 
 // ####################### physics detections #######################
