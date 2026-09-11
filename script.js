@@ -1,10 +1,25 @@
 "use strict";
 
-var actualLevel = 0
 var winState = false
 
 var holes = [];
 var ropeDefault = 185
+
+
+var actualLevel = 0
+
+if (typeof(Storage) !== "undefined") {
+    console.log(localStorage.getItem("Level"))
+  if (localStorage.getItem("Level") !== "null") {
+    actualLevel = localStorage.getItem("Level")
+  }
+} else {
+  console.log("Sorry, no Web storage so you'll be reset each time!");
+}
+
+
+
+
 
 
 // ####################### key handling #######################
@@ -51,7 +66,60 @@ function onKeyPress(evt) {
     actualize();
 }
 
+// 
 
+myElement.addEventListener("touchstart", startTouch, false);
+myElement.addEventListener("touchmove", moveTouch, false);
+ 
+// Swipe Up / Down / Left / Right
+var initialX = null;
+var initialY = null;
+ 
+function startTouch(e) {
+  initialX = e.touches[0].clientX;
+  initialY = e.touches[0].clientY;
+};
+ 
+function moveTouch(e) {
+  if (initialX === null) {
+    return;
+  }
+ 
+  if (initialY === null) {
+    return;
+  }
+ 
+  var currentX = e.touches[0].clientX;
+  var currentY = e.touches[0].clientY;
+ 
+  var diffX = initialX - currentX;
+  var diffY = initialY - currentY;
+ 
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    // sliding horizontally
+    if (diffX > 0) {
+      // swiped left
+      console.log("swiped left");
+    } else {
+      // swiped right
+      console.log("swiped right");
+    }  
+  } else {
+    // sliding vertically
+    if (diffY > 0) {
+      // swiped up
+      console.log("swiped up");
+    } else {
+      // swiped down
+      console.log("swiped down");
+    }  
+  }
+ 
+  initialX = null;
+  initialY = null;
+   
+  e.preventDefault();
+};
 
 // ####################### physics detections #######################
 
@@ -60,7 +128,6 @@ function checkHoles(){
         if (collide([x, y+12], levels[actualLevel][i][0],levels[actualLevel][i][1])) {
             if(document.getElementById(holes[i].toString()).classList.contains("winHole")){
                 winState = true
-                console.log(67)
             }
             return true
         }
@@ -117,8 +184,10 @@ function updateSegment(name) {
 var levels = [];
 var level0 = [[[50,50],15,true], [[80,70],10], [[105,70],10], [[130,70],10], [[80,95],10], [[80,120],10], [[100,90],10], [[115,105],10], [[130,120],10], [[145,135],10]];
 var level1 = [[[10,70],15], [[20,25],12, true], [[30,110],15], [[65,140],12], [[40,60],13], [[80,100],13], [[130,90],20], [[120,140],12]];
+var levelFinal = [[[50,50],15,true], [[90,50],15,true], [[15,110],11], [[30,127],11], [[51.5,133],11]]
 levels.push(level0);
 levels.push(level1);
+levels.push(levelFinal);
 
 var rotationRatio = 20 + (Math.random() - 0.5);
 
@@ -173,6 +242,7 @@ async function changeLevel(levelTo) { //trust the async :) (it isn't engineered 
         actualLevel = levelTo;
         changeScene(actualLevel)
         winState = false
+        localStorage.setItem("Level", levelTo);
     }
 }
 
