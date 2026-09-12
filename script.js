@@ -353,7 +353,10 @@ function actualize() {
     let bk = document.getElementById("BKanimate");
     bk.setAttribute("from", old_x/6.28319*Math.abs(rotationRatio) +" 0 13");
 
-    rotationRatio = rotationRatio + (Math.random() - 0.5)*1.8;
+    
+    if (leftLoss+rightLoss==0 || old_y != y){
+        rotationRatio = rotationRatio + (Math.random() - 0.5)*1.8;
+    }
 
     bk.setAttribute("to", x/6.28319*Math.abs(rotationRatio) +" 0 13");
     bk.beginElement();
