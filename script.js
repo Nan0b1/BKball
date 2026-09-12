@@ -10,7 +10,7 @@ var actualLevel = 0
 
 if (typeof(Storage) !== "undefined") {
     console.log(localStorage.getItem("Level"))
-  if (localStorage.getItem("Level") !== "null") {
+  if (localStorage.getItem("Level") !== null) {
     actualLevel = localStorage.getItem("Level")
   }
 } else {
@@ -25,13 +25,13 @@ if (typeof(Storage) !== "undefined") {
 // ####################### key handling #######################
 function pullLeft(nbr) {
     if (nbr > 0) {
-        r = r + 2;
+        r = r + nbr;
     }
     else{
-        if (r>6){
+        if (r>4+nbr){
                 r = r - 2;
-                if (r+R <= 130) {
-                    R = R + 2;
+                if (r+R <= 128+nbr) {
+                    R = R + nbr;
                 }
             }
     }
@@ -39,13 +39,13 @@ function pullLeft(nbr) {
 
 function pullRight(nbr) {
     if (nbr > 0) {
-        R = R + 2;
+        R = R + nbr;
     }
     else{
-        if (R>6){
+        if (R>4+nbr){
                 R = R - 2;
-                if (r+R <= 130) {
-                    r = r + 2;
+                if (r+R <= 128+nbr) {
+                    r = r + nbr;
                 }
             }
     }
@@ -114,7 +114,7 @@ function moveTouch(e) {
     var diffX = initialX - currentX;
     var diffY = initialY - currentY;
     
-    if (Math.abs(diffX) > Math.abs(diffY)) {
+    if (Math.abs(diffX)/2 > Math.abs(diffY)) { // /2 to not accidently change
         // sliding horizontally
 
         if (diffX > 0) {
@@ -131,10 +131,10 @@ function moveTouch(e) {
             // swiped up
             console.log("swiped up");
             if (initialX > window.screen.width/2) {
-                pullLeft(2)
+                pullLeft(4)
             } 
             else {
-                pullRight(2);
+                pullRight(4);
             }
         }
         else {
@@ -142,10 +142,10 @@ function moveTouch(e) {
             console.log("swiped down");
             console.log(initialX)
             if (initialX > window.screen.width/2) {
-                pullLeft(-2)
+                pullLeft(-4)
             } 
             else {
-                pullRight(-2);
+                pullRight(-4);
             }
         }
     }
