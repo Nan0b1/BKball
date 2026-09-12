@@ -234,7 +234,6 @@ levels.push(levelFinal);
 
 var rotationRatio = 20 + (Math.random() - 0.5);
 
-/*  */
 
 function makeHole(coordonates, radius, win) {
     let newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
