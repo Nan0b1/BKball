@@ -1,1 +1,3 @@
-levels:Niveaux
+levels~Niveaux
+lang-select~Sélection de languages:
+desc~Dans ce jeu, vous allez devoir mettre la balle la balle dans le trou vert en tirant sur les cordes :)<n>Pas de cordes dans ton clavier ? Utilise les prochains controles !

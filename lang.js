@@ -11,7 +11,7 @@ async function load_lang(lang) {
 
     const lines = data.split("\n");
     for (const line of lines) {
-        let temp = line.split(":");
+        let temp = line.split("~");
         let key = temp[0];
         let value = temp[1];
         l_map.set(key, value);
@@ -28,12 +28,12 @@ function updateLoc() {
 }
 
 function updateElLoc(el) {
-    console.log(el.innerHTML);
     let loc = l_map.get(el.dataset.loc);
     if (loc == undefined) {
         el.innerHTML = `{{ LOC ERROR, TRIED ${el.dataset.loc} }}`
+        return;
     }
-    loc.replace("<n>", "\n");
+    loc = loc.replace("<n>", "\n<br />");
     el.innerHTML = loc;
 }
 

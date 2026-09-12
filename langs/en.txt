@@ -1,1 +1,3 @@
-levels:Levels
+levels~Levels
+lang-select~Languages selection:
+desc~In this game you will have to make the ball go into the green circle by pulling on the ropes :)<n>There isn't ropes in your keyboard? Use the next controls!
