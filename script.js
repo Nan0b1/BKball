@@ -9,7 +9,6 @@ var ropeDefault = 185
 var actualLevel = 0
 
 if (typeof(Storage) !== "undefined") {
-    console.log(localStorage.getItem("Level"))
   if (localStorage.getItem("Level") !== null) {
     actualLevel = localStorage.getItem("Level")
   }
@@ -309,9 +308,11 @@ function ballTriangulation(){
 
     if (x < 5) {
         x = 5;
+        y = R;
     } 
     else if (x > 135) {
         x = 135;
+        y = r;
     }
 }
 

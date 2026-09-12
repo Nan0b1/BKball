@@ -7,6 +7,9 @@ The historical french game "Monte la boule" inspired this project, so you may al
 
 you can go on [BKball's official website](https://bkball.rf.gd), it supports every modern solution: computers, phones, tablets, and even smart fridges (not tested)
 
+
+## controls
+
 The controls are very simple and independent of the keyboard you ue :)
 |platform       |controls   |
 |---------------|-----------|
@@ -14,5 +17,14 @@ The controls are very simple and independent of the keyboard you ue :)
 |phone/tablet | Swipe up and down the side you want to pull the rope and swipe right and left to change levels|
 
 
-## controls
-AZ - OP
+## Run it locally?
+
+This project only uses native html, css and javascript, so you can just download the files and open them on your localhost :D
+
+
+## developpement state
+Actually not finished, but it won't take this much time I just have to add more things for now.
+
+### Contributing?
+If you find some bugs or want to add things feel free to ask :)
+Thanks to Some Minecraft Modder who helped me at the beginning (and for the ; in the js)
