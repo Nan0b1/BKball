@@ -4,6 +4,10 @@ var winState = false
 
 var holes = [];
 var ropeDefault = 185
+var leftLoss = 0
+var oldleftLoss = 0
+var rightLoss = 0
+var oldrightLoss = 0
 
 
 var actualLevel = 0
@@ -28,23 +32,27 @@ function pullLeft(nbr) {
     }
     else{
         if (r>4+nbr){
-                r = r - 2;
-                if (r+R <= 128+nbr) {
-                    R = R + nbr;
+                r = r + nbr;
+                if (r+R <= 130) {
+                    console.log(r+R)
+                    R = R +Math.abs(nbr);
+                    console.log(r+R)
                 }
             }
+        }
     }
-}
-
-function pullRight(nbr) {
-    if (nbr > 0) {
-        R = R + nbr;
-    }
-    else{
-        if (R>4+nbr){
-                R = R - 2;
-                if (r+R <= 128+nbr) {
-                    r = r + nbr;
+    
+    function pullRight(nbr) {
+        if (nbr > 0) {
+            R = R + nbr;
+        }
+        else{
+            if (R>4+nbr){
+                R = R + nbr;
+                if (r+R <= 130) {
+                    console.log(r+R)
+                    r = r + Math.abs(nbr);
+                    console.log(r+R)
                 }
             }
     }
@@ -128,7 +136,6 @@ function moveTouch(e) {
         // sliding vertically
         if (diffY > 0) {
             // swiped up
-            console.log("swiped up");
             if (initialX > window.screen.width/2) {
                 pullLeft(4)
             } 
@@ -138,8 +145,6 @@ function moveTouch(e) {
         }
         else {
             // swiped down
-            console.log("swiped down");
-            console.log(initialX)
             if (initialX > window.screen.width/2) {
                 pullLeft(-4)
             } 
@@ -195,21 +200,19 @@ function disappear () {
 }
 
 const segmentsName = [ // rope segments
-    "right1",
-    "right2",
-    "right3",
-    "left1",
-    "left2",
-    "left3"
+    "segment1",
+    "segment2",
+    "segment3",
 ];
 
 function updateSegment(name) {
     let segment = document.getElementById(name + "1");
-    segment.setAttribute("values", old_x + ";" + x);
+    segment.setAttribute("values", "M"+old_x+" "+old_y+" q "+(5-old_x)+" "+(5-old_y+oldrightLoss)+" "+(5-old_x)+" "+(5-old_y)+";M "+x+" "+y+" q "+(5-x)+" "+(5-y+rightLoss)+" "+(5-x)+" "+(5-y));
     segment.beginElement();
+
     
     let segmenty = document.getElementById(name + "2");
-    segmenty.setAttribute("values", old_y + ";" + y);
+    segmenty.setAttribute("values", "M"+old_x+" "+old_y+" q "+(135-old_x)+" "+(5-old_y+oldleftLoss)+" "+(135-old_x)+" "+(5-old_y)+";M "+x+" "+y+" q "+(135-x)+" "+(5-y+leftLoss)+" "+(135-x)+" "+(5-y));
     segmenty.beginElement();
 }
 
@@ -273,6 +276,8 @@ async function changeLevel(levelTo) { //trust the async :) (it isn't engineered 
         await new Promise(r => setTimeout(r, 200));
         R = 185;
         r = 185;
+        leftLoss = 0
+        rightLoss = 0
         actualize()
         rotationRatio = 20 + (Math.random() - 0.5); //destroys animations so idk
         actualLevel = levelTo;
@@ -304,16 +309,29 @@ function ballTriangulation(){
 
     old_y = y
     let a = (1 / d) * ((-d + r - R) * (-d - r + R) * (-d + r + R) * (d + r + R)) ** (1 / 2);
-    y = a / 2;
+    y = a / 2 +5;
 
     if (x < 5) {
+        oldleftLoss = leftLoss
+        leftLoss = Math.abs(x - 5)
         x = 5;
         y = R;
     } 
     else if (x > 135) {
+        oldrightLoss = rightLoss
+        rightLoss = Math.abs(x - 135)
         x = 135;
         y = r;
     }
+    else {
+        oldleftLoss = leftLoss
+        oldrightLoss = rightLoss
+    }
+    // if (r+R <= 130 || isNaN(y) || isNaN(x)) {
+    //     R += 1
+    //     r += 1
+    //     ballTriangulation()
+    // }
 }
 
 // ####################### frames updates #######################
