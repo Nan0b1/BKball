@@ -80,8 +80,7 @@ function onKeyPress(evt) {
         case "KeyZ":
             changeLevel(actualLevel-1);
             return;
-        case _:
-            return;
+        default: return;
     }
     if (checkHoles()){
         disappear()
