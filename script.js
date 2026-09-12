@@ -152,6 +152,10 @@ function moveTouch(e) {
                 pullRight(-4);
             }
         }
+        if (checkHoles()){
+        disappear()
+        changeLevel(actualLevel+1*winState)
+        }
     }
   
  
