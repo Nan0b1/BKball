@@ -400,7 +400,7 @@ function addCircle(level, circlex, circley, radius) {
 
 function clickCircle(level, circleID) {
     if (levels[level][circleID].length > 2) {
-        //deletecircle
+        levels[level][circleID].splice(2, 1)
     }
 }
 
