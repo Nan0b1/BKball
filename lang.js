@@ -1,6 +1,7 @@
 "use strict";
 
-let lang = "en";
+const default_lang = "en"
+let lang = default_lang;
 const l_map = new Map();
 
 
@@ -29,13 +30,22 @@ function updateLoc() {
 function updateElLoc(el) {
     console.log(el.innerHTML);
     let loc = l_map.get(el.dataset.loc);
+    if (loc == undefined) {
+        el.innerHTML = `{{ LOC ERROR, TRIED ${el.dataset.loc} }}`
+    }
+    loc.replace("<n>", "\n");
     el.innerHTML = loc;
 }
 
 async function init() {
-    await load_lang("fr");
+    await load_lang(default_lang);
     updateLoc();
 }
 
 
 init();
+const lang_selector = document.querySelector("#lang-select")
+lang_selector.addEventListener("change", async () => {
+    await load_lang(lang_selector.options[lang_selector.selectedIndex].value);
+    updateLoc();
+})
