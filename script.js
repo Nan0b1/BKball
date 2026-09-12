@@ -14,14 +14,11 @@ var actualLevel = 0
 
 if (typeof(Storage) !== "undefined") {
   if (localStorage.getItem("Level") !== null) {
-    actualLevel = localStorage.getItem("Level")
+    actualLevel = parseInt(localStorage.getItem("Level"))
   }
 } else {
   console.log("Sorry, no Web storage so you'll be reset each time!");
 }
-
-
-
 
 
 
@@ -37,16 +34,16 @@ function pullLeft(nbr) {
                     console.log(r+R)
                     R = R +Math.abs(nbr);
                     console.log(r+R)
-                }
             }
         }
     }
+}
     
-    function pullRight(nbr) {
-        if (nbr > 0) {
-            R = R + nbr;
-        }
-        else{
+function pullRight(nbr) {
+    if (nbr > 0) {
+        R = R + nbr;
+    }
+    else{
             if (R>4+nbr){
                 R = R + nbr;
                 if (r+R <= 130) {
@@ -80,7 +77,8 @@ function onKeyPress(evt) {
         case "KeyZ":
             changeLevel(actualLevel-1);
             return;
-        default: return;
+        default:
+            return;
     }
     if (checkHoles()){
         disappear()
@@ -254,6 +252,7 @@ function makeHole(coordonates, radius, win) {
 }
 
 function makeLevel(levelID) {
+    console.log(levels)
     for (let i = 0; i < levels[levelID].length; i++) {
         makeHole(levels[levelID][i][0], levels[levelID][i][1],(levels[levelID][i].length>2));
     }
