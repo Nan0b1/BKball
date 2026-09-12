@@ -391,6 +391,19 @@ function makeLvlTable () {
     }
 }
 
+
+// ####################### Level edition #######################
+
+function addCircle(level, circlex, circley, radius) {
+    levels[level].push([circlex,circley,radius])
+}
+
+function clickCircle(level, circleID) {
+    if (levels[level][circleID].length > 2) {
+        //deletecircle
+    }
+}
+
 makeLvlTable()
 
 
