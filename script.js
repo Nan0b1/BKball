@@ -399,10 +399,23 @@ function addCircle(level, circlex, circley, radius) {
 }
 
 function clickCircle(level, circleID) {
-    if (levels[level][circleID].length > 2) {
+    if (levels[level][circleID].length == 2) { // if circle not already green
+        levels[level][circleID].push(true)
+    } 
+    else if (levels[level][circleID].length > 2) { // if circle already in green state delete
         levels[level][circleID].splice(2, 1)
     }
 }
+
+function printMousePos(event) {
+    console.log("clientX: " + event.clientX +" - clientY: " + event.clientY);
+    let dims = document.getElementById("board").getBoundingClientRect();
+    let clickx = (event.clientX - dims["x"])/(dims["x"]-dims["right"])*-140;
+    let clicky = (event.clientY - dims["y"])/(dims["y"]-dims["height"])*-200;
+    console.log(clicky)
+}
+
+document.getElementById("board").addEventListener("click", printMousePos);
 
 makeLvlTable()
 
