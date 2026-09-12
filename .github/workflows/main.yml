@@ -13,4 +13,4 @@ jobs:
       with:
         server: ftpupload.net
         username: if0_42892393
-        password: ${{ secrets.ftp_password }}
+        password: ${{ ftp_password }}
