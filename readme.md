@@ -8,7 +8,8 @@ The historical french game "Monte la boule" inspired this project, so you may al
 you can go on [BKball's official website](https://bkball.rf.gd), it supports every modern solution: computers, phones, tablets, and even smart fridges (not tested)
 
 The controls are very simple and independent of the keyboard you ue :)
-|--------------|-----------|
+|platform       |controls   |
+|---------------|-----------|
 |computer|The 2 top left/right keys are there to push or pull the rope and the bottoms corners are to change levels|
 |phone/tablet | Swipe up and down the side you want to pull the rope and swipe right and left to change levels|
 
