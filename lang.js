@@ -4,33 +4,38 @@ let lang = "en";
 const l_map = new Map();
 
 
-function load_lang(lang) {
-    fetch(`/langs/${lang}.txt`)
-    .then(response => response.text())
-    .then((data) => {
-        const lines = data.split("\n");
-        for (const line of lines) {
-            let temp = line.split(":");
-            let key = temp[0];
-            let value = temp[1];
-            l_map.set(key, value);
-        }
-    })
+async function load_lang(lang) {
+    const response = await fetch(`/langs/${lang}.txt`)
+    const data = await response.text();
 
+    const lines = data.split("\n");
+    for (const line of lines) {
+        let temp = line.split(":");
+        let key = temp[0];
+        let value = temp[1];
+        l_map.set(key, value);
+    }
 }
 
 function updateLoc() {
     let els = document.querySelectorAll(".loc");
     
     for (const el of els) {
-        el.innerHTML = "a";
+        updateElLoc(el);
     }
 
 }
 
 function updateElLoc(el) {
-
+    console.log(el.innerHTML);
+    let loc = l_map.get(el.dataset.loc);
+    el.innerHTML = loc;
 }
 
-load_lang("en")
-updateLoc();
+async function init() {
+    await load_lang("fr");
+    updateLoc();
+}
+
+
+init();
