@@ -48,8 +48,7 @@ function updateElLoc(el) {
 async function init() {
     await load_lang(lang);
     updateLoc();
-    const $select = document.querySelector("#lang-select");
-    $select.value = lang
+    document.querySelector("#lang-select").value = lang;
 }
 
 
