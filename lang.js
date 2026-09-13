@@ -38,7 +38,7 @@ function updateLoc() {
 function updateElLoc(el) {
     let loc = l_map.get(el.dataset.loc);
     if (loc == undefined) {
-        el.innerHTML = `{{ LOC ERROR, TRIED ${el.dataset.loc} }}`
+        el.innerHTML = `Bkpad <3`
         return;
     }
     loc = loc.replace("<n>", "\n<br />");

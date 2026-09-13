@@ -415,7 +415,7 @@ function toggleEdition(){
 
 function addCircle(level, circlex, circley, radius) {
     makeHole([circlex, circley],radius,false)
-    navigator.clipboard.writeText(levels[actualLevel.toString()])
+    // navigator.clipboard.writeText(levels[actualLevel.toString()])
 }
 
 function clickCircle(level, circleID) {
