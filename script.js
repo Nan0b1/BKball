@@ -395,6 +395,24 @@ function makeLvlTable () {
 
 // ####################### Level edition #######################
 
+var tutoGame = document.getElementById("tutoGame");
+var tutoEditor = document.getElementById("tutoEditor");
+
+function toggleEdition(){
+    if (editionMode == false){
+        tutoGame.setAttribute("style", "display:none;");
+        tutoEditor.setAttribute("style", "");
+        editionMode = true
+        document.getElementById("toggleButton").textContent="Game";
+    }
+    else if (editionMode == true){
+        tutoGame.setAttribute("style", "");
+        tutoEditor.setAttribute("style", "display:none;");
+        editionMode = false
+        document.getElementById("toggleButton").textContent="Editor";
+    }
+}
+
 function addCircle(level, circlex, circley, radius) {
     makeHole([circlex, circley],radius,false)
     navigator.clipboard.writeText(levels[actualLevel.toString()])
@@ -418,9 +436,10 @@ function clickCircle(level, circleID) {
 
 function touch(mouseX,mouseY) {
     // returns the first hole visible touched, else return false
-    for (let i = holes.length-1; i > 0; i--) {
+    console.log(holes);
+    for (let i = holes.length-1; i >= 0; i--) {
         if (collide([mouseX, mouseY], holes[i][0],holes[i][1])){
-            return i
+            return i;
         }
     }
     return false
@@ -432,7 +451,7 @@ function boardClic(event) {
     let clicy = (event.clientY - dims["y"])/(dims["y"]-dims["height"])*-200;
     let touched = touch(clicx,clicy)
     if (editionMode) {
-        if (touched == false){
+        if (touched === false){
             let rad = prompt("diameter")/2
             addCircle(actualLevel, clicx,clicy, rad)
         }

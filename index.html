@@ -11,18 +11,27 @@
 <body style="background-color:#c0892a">
     <div class="flex_parent">
         <!-- Left wing -->
-        <div class="flex_child">
+        <div class="flex_child" >
             <h1 class="bigTitle">BKball</h1>
-            <div class="smolBox">
+            <div id="tutoGame" class="smolBox">
                 <span class="loc" data-loc="desc">
                     In this game you will have to make the ball go into the green circle by pulling on the ropes :) <br>
                     There isn't ropes in your keyboard ? Use the next controls !
                 </span>
-                <img src="https://i.imgur.com/3hpesEu.png" alt="keyboard: press the corner keys of the keyboard" referrerpolicy="no-referrer" width="80%" style="margin-left: 10%;margin-right: 10%;">
+                <img src="https://i.imgur.com/3hpesEu.png" alt="keyboard: press the corner keys of the keyboard" referrerpolicy="no-referrer" width="70%" style="margin-left: 15%;margin-right: 15%;">
                 <div style="padding-left: 10%;">
                     <img class="flex_child" src="https://i.imgur.com/XJYHihk.png" alt="keyboard: press the corner keys of the keyboard" referrerpolicy="no-referrer" width="45%" style="margin: auto;">
-                    <img class="flex_child" src="https://i.imgur.com/Y5OxpTw.png" alt="phone: swipe!" referrerpolicy="no-referrer" width="45%" style="margin: auto;"> <!-- might change the image lol -->
+                    <img class="flex_child" src="https://i.imgur.com/Y5OxpTw.png" alt="phone: swipe!" referrerpolicy="no-referrer" width="40%" style="margin: auto;">
                 </div>
+            </div>
+            <div id="tutoEditor" class="smolBox" style="display: none;">
+                <span class="">
+                    <strong> Welcome in the editor!<br></strong>
+                    To add a new circle: Click somewhere on he board and enter the diameter in the popup
+                    To make a green circle click onto a gray circle
+                    To delete a hole click one time on the green circle or 2 times on the gray circle !
+                </span>
+                <img src="https://i.imgur.com/7YVcXPg.png" alt="Pointer: you just need to click :)" referrerpolicy="no-referrer" width="20%" style="margin-left: 40%;margin-right: 40%;">
             </div>
         </div>
 
@@ -127,7 +136,7 @@
                 <div class="flex_parent_smol" style="padding-top: 10%;padding-bottom: 1.5%;">
                     <!-- <div class="flex_parent_smol">
                     </div> -->
-                    <button class="flex_child" onclick="">Editor</button>
+                    <button id="toggleButton" class="flex_child" onclick="toggleEdition()">Editor</button> <!-- Don't trad this one plz :3-->
                     <!-- <label class="flex_child" for="lang-select" class="loc" data-loc="lang-select">Languages selection</label> -->
                     <select class="flex_child" id="lang-select" >
                         <option value="en">English</option>
