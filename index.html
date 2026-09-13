@@ -19,7 +19,7 @@
                     There isn't ropes in your keyboard ? Use the next controls !
                 </span>
                 <img src="https://i.imgur.com/3hpesEu.png" alt="keyboard: press the corner keys of the keyboard" referrerpolicy="no-referrer" width="80%" style="margin-left: 10%;margin-right: 10%;">
-                <div class="flex_parent_smol" style="padding-left: 10%;">
+                <div style="padding-left: 10%;">
                     <img class="flex_child" src="https://i.imgur.com/XJYHihk.png" alt="keyboard: press the corner keys of the keyboard" referrerpolicy="no-referrer" width="45%" style="margin: auto;">
                     <img class="flex_child" src="https://i.imgur.com/Y5OxpTw.png" alt="phone: swipe!" referrerpolicy="no-referrer" width="45%" style="margin: auto;"> <!-- might change the image lol -->
                 </div>
@@ -119,18 +119,22 @@
         </svg>
         <!-- right wing -->
         <div class="flex_child">
-            <label for="lang-select" class="loc" data-loc="lang-select">Languages selection</label>
-            <select id="lang-select">
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-              </select>
-              
+            
             <h1 class="bigTitle loc" data-loc="levels">Levels</h1>
-            <table id="LvlTable" class="smolBox" style="width: 80%;margin: 10%;">
-            </table>
-            <!-- <div class="flex_parent_smol">
-                <button class="flex_child" onclick="">Editor</button>
-            </div> -->
+            <div class="smolBox">
+                <table id="LvlTable" class="smolBox" style="width: 80%;margin-left: 10%;margin-right: 10%;margin-top: 5%;margin-bottom: 5%;">
+                </table>
+                <div class="flex_parent_smol" style="padding-top: 10%;padding-bottom: 1.5%;">
+                    <!-- <div class="flex_parent_smol">
+                    </div> -->
+                    <button class="flex_child" onclick="">Editor</button>
+                    <!-- <label class="flex_child" for="lang-select" class="loc" data-loc="lang-select">Languages selection</label> -->
+                    <select class="flex_child" id="lang-select" >
+                        <option value="en">English</option>
+                        <option value="fr">Français</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 </body>

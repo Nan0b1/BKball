@@ -11,12 +11,17 @@ body {
     display: flex;
 }
 
-.flex_parent_smmol {
+.flex_parent_smol {
     display: flex;
 }
 
 .flex_child {
     flex: 1;
+    padding: auto;
+}
+
+.flex_child_big {
+    flex: 2;
     padding: auto;
 }
 
@@ -40,12 +45,26 @@ button {
     border-radius: var(--radius);   
 }
 
-button:hover{
+button:hover, select:hover{
     background-color: rgba(219, 191, 84,0.9);
     transition: background-color 0.1s ease-in-out;
 }
 
-
+select {
+  /* appearance: initial; */
+  text-align: center;
+  border-radius: var(--radius);
+  background-color: transparent;
+  border: none;
+  /* padding: 0 1em 0 0; */
+  /* margin: 0; */
+  /* width: 100%; */
+  /* font-family: inherit;
+  font-size: inherit; */
+  cursor: inherit;
+  padding: 0.15rem;
+  /* line-height: inherit; */
+}
 
 /* canvas */
 

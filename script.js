@@ -9,6 +9,8 @@ var oldleftLoss = 0
 var rightLoss = 0
 var oldrightLoss = 0
 
+var editionMode = true
+
 
 var actualLevel = 0
 
@@ -396,6 +398,9 @@ function makeLvlTable () {
 
 function addCircle(level, circlex, circley, radius) {
     levels[level].push([circlex,circley,radius])
+    console.log([circlex, circley],radius,false)
+    makeHole([circlex, circley],radius,false)
+    navigator.clipboard.writeText(levels[actualLevel.toString()])
 }
 
 function clickCircle(level, circleID) {
@@ -407,15 +412,23 @@ function clickCircle(level, circleID) {
     }
 }
 
-function printMousePos(event) {
+function boardClic(event) {
     console.log("clientX: " + event.clientX +" - clientY: " + event.clientY);
     let dims = document.getElementById("board").getBoundingClientRect();
-    let clickx = (event.clientX - dims["x"])/(dims["x"]-dims["right"])*-140;
-    let clicky = (event.clientY - dims["y"])/(dims["y"]-dims["height"])*-200;
-    console.log(clicky)
+    let clicx = (event.clientX - dims["x"])/(dims["x"]-dims["right"])*-140;
+    let clicy = (event.clientY - dims["y"])/(dims["y"]-dims["height"])*-200;
+    
+    if (editionMode) {
+        let rad = prompt("diameter")/2
+        addCircle(actualLevel, clicx,clicy, rad)
+
+    }
+
 }
 
-document.getElementById("board").addEventListener("click", printMousePos);
+
+
+// document.getElementById("board").addEventListener("click", boardClic);
 
 makeLvlTable()
 

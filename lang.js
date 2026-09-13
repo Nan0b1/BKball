@@ -4,6 +4,14 @@ const default_lang = "en"
 let lang = default_lang;
 const l_map = new Map();
 
+if (typeof(Storage) !== "undefined") {
+  if (localStorage.getItem("Lang") !== null) {
+    lang = localStorage.getItem("Lang")
+  }
+} else {
+  console.log("Sorry, no Web storage so you'll be reset each time!");
+}
+
 
 async function load_lang(lang) {
     const response = await fetch(`/langs/${lang}.txt`)
@@ -38,14 +46,17 @@ function updateElLoc(el) {
 }
 
 async function init() {
-    await load_lang(default_lang);
+    await load_lang(lang);
     updateLoc();
+    const $select = document.querySelector("#lang-select");
+    $select.value = lang
 }
 
 
 init();
-const lang_selector = document.querySelector("#lang-select")
+const lang_selector = document.querySelector("#lang-select");
 lang_selector.addEventListener("change", async () => {
     await load_lang(lang_selector.options[lang_selector.selectedIndex].value);
     updateLoc();
+    localStorage.setItem("Lang", lang_selector.options[lang_selector.selectedIndex].value);
 })
