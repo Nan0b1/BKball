@@ -9,7 +9,7 @@ var oldleftLoss = 0
 var rightLoss = 0
 var oldrightLoss = 0
 
-var editionMode = true
+var editionMode = false
 
 
 var actualLevel = 0
@@ -33,9 +33,7 @@ function pullLeft(nbr) {
         if (r>4+nbr){
                 r = r + nbr;
                 if (r+R <= 130) {
-                    console.log(r+R)
                     R = R +Math.abs(nbr);
-                    console.log(r+R)
             }
         }
     }
@@ -49,9 +47,7 @@ function pullRight(nbr) {
             if (R>4+nbr){
                 R = R + nbr;
                 if (r+R <= 130) {
-                    console.log(r+R)
                     r = r + Math.abs(nbr);
-                    console.log(r+R)
                 }
             }
     }
@@ -239,22 +235,25 @@ function makeHole(coordonates, radius, win) {
     newHole.setAttribute("cx", coordonates[0]);
     newHole.setAttribute("cy", coordonates[1]);
     newHole.setAttribute("r", radius);
-    newHole.setAttribute("id", coordonates.toString() +"," + radius.toString());
+    let textWin = ""
+    if (win==true){
+        textWin = ",true"
+    }
+    newHole.setAttribute("id", coordonates.toString() +"," + radius.toString()+textWin);
     if (win) {
         newHole.setAttribute("fill", "url(#Gradient2)");
         newHole.classList.add("winHole");
+        holes.push([coordonates, radius,true]);
     }
     else {
         newHole.setAttribute("fill", "url(#Gradient1)");
+        holes.push([coordonates, radius]);
     }
     newHole.classList.add("threed");
-
     document.getElementById("board").insertBefore(newHole, document.getElementById("left1"));
-    holes.push([coordonates, radius]);
 }
 
 function makeLevel(levelID) {
-    console.log(levels)
     for (let i = 0; i < levels[levelID].length; i++) {
         makeHole(levels[levelID][i][0], levels[levelID][i][1],(levels[levelID][i].length>2));
     }
@@ -397,30 +396,52 @@ function makeLvlTable () {
 // ####################### Level edition #######################
 
 function addCircle(level, circlex, circley, radius) {
-    levels[level].push([circlex,circley,radius])
-    console.log([circlex, circley],radius,false)
+    holes.push([[circlex,circley],radius])
     makeHole([circlex, circley],radius,false)
     navigator.clipboard.writeText(levels[actualLevel.toString()])
 }
 
 function clickCircle(level, circleID) {
-    if (levels[level][circleID].length == 2) { // if circle not already green
-        levels[level][circleID].push(true)
+    if (holes[circleID].length == 2) { // if circle not already green
+        console.log(holes[circleID]);
+        let newHole = document.getElementById(holes[circleID].toString());
+        console.log(holes[circleID]);
+        newHole.setAttribute("fill", "url(#Gradient2)");
+        newHole.classList.add("winHole");
+        holes[circleID].push(true)
+        newHole.setAttribute("id", holes[circleID].toString());
     } 
-    else if (levels[level][circleID].length > 2) { // if circle already in green state delete
-        levels[level][circleID].splice(2, 1)
+    else if (holes[circleID].length > 2) { // if circle already in green state delete
+        document.getElementById(holes[circleID].toString()).remove();
+        console.log(holes.length)
+        holes.splice(circleID)
+        console.log(holes.length)
     }
+}
+
+function touch(mouseX,mouseY) {
+    // returns the first hole visible touched, else return false
+    for (let i = holes.length-1; i > 0; i--) {
+        if (collide([mouseX, mouseY], holes[i][0],holes[i][1])){
+            return i
+        }
+    }
+    return false
 }
 
 function boardClic(event) {
-    console.log("clientX: " + event.clientX +" - clientY: " + event.clientY);
     let dims = document.getElementById("board").getBoundingClientRect();
     let clicx = (event.clientX - dims["x"])/(dims["x"]-dims["right"])*-140;
     let clicy = (event.clientY - dims["y"])/(dims["y"]-dims["height"])*-200;
-    
+    let touched = touch(clicx,clicy)
     if (editionMode) {
-        let rad = prompt("diameter")/2
-        addCircle(actualLevel, clicx,clicy, rad)
+        if (touched == false){
+            let rad = prompt("diameter")/2
+            addCircle(actualLevel, clicx,clicy, rad)
+        }
+        else {
+            clickCircle(actualLevel,touched)
+        }
 
     }
 
@@ -428,7 +449,7 @@ function boardClic(event) {
 
 
 
-// document.getElementById("board").addEventListener("click", boardClic);
+document.getElementById("board").addEventListener("click", boardClic);
 
 makeLvlTable()
 
