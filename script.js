@@ -396,16 +396,13 @@ function makeLvlTable () {
 // ####################### Level edition #######################
 
 function addCircle(level, circlex, circley, radius) {
-    holes.push([[circlex,circley],radius])
     makeHole([circlex, circley],radius,false)
     navigator.clipboard.writeText(levels[actualLevel.toString()])
 }
 
 function clickCircle(level, circleID) {
     if (holes[circleID].length == 2) { // if circle not already green
-        console.log(holes[circleID]);
         let newHole = document.getElementById(holes[circleID].toString());
-        console.log(holes[circleID]);
         newHole.setAttribute("fill", "url(#Gradient2)");
         newHole.classList.add("winHole");
         holes[circleID].push(true)
@@ -414,7 +411,7 @@ function clickCircle(level, circleID) {
     else if (holes[circleID].length > 2) { // if circle already in green state delete
         document.getElementById(holes[circleID].toString()).remove();
         console.log(holes.length)
-        holes.splice(circleID)
+        holes.splice(circleID,1)
         console.log(holes.length)
     }
 }
