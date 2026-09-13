@@ -16,7 +16,8 @@ var actualLevel = 0
 
 if (typeof(Storage) !== "undefined") {
   if (localStorage.getItem("Level") !== null) {
-    actualLevel = parseInt(localStorage.getItem("Level"))
+    actualLevel = parseInt(localStorage.getItem("Level"));
+    
   }
 } else {
   console.log("Sorry, no Web storage so you'll be reset each time!");
@@ -222,10 +223,15 @@ function updateSegment(name) {
 var levels = [];
 var level0 = [[[50,50],15,true], [[80,70],10], [[105,70],10], [[130,70],10], [[80,95],10], [[80,120],10], [[100,90],10], [[115,105],10], [[130,120],10], [[145,135],10]];
 var level1 = [[[10,70],15], [[20,25],12, true], [[30,110],15], [[65,140],12], [[40,60],13], [[80,100],13], [[130,90],20], [[120,140],12]];
-var levelFinal = [[[50,50],15,true], [[90,50],15,true], [[15,110],11], [[30,127],11], [[51.5,133],11]]
+var levelFinal = [[[50,50],15,true],[[90,50],15,true],[[15,110],11],[[30,127],11],[[51.5,133],11],[[69,118],11],[[87,132],11],[[109,127],11],[[125,111],11]]
 levels.push(level0);
 levels.push(level1);
 levels.push(levelFinal);
+
+
+if (actualLevel > levels.length-1){
+    actualLevel = levels.length-1
+}
 
 var rotationRatio = 20 + (Math.random() - 0.5);
 
@@ -403,20 +409,24 @@ function toggleEdition(){
         tutoGame.setAttribute("style", "display:none;");
         tutoEditor.setAttribute("style", "");
         editionMode = true
+        document.getElementById("copyButton").setAttribute("style", "")
         document.getElementById("toggleButton").textContent="Game";
     }
     else if (editionMode == true){
         tutoGame.setAttribute("style", "");
         tutoEditor.setAttribute("style", "display:none;");
         editionMode = false
+        document.getElementById("copyButton").setAttribute("style", "display:none;")
         document.getElementById("toggleButton").textContent="Editor";
     }
 }
 
 function addCircle(level, circlex, circley, radius) {
     makeHole([circlex, circley],radius,false)
-    // navigator.clipboard.writeText(levels[actualLevel.toString()])
+    //navigator.clipboard.writeText(JSON.stringify(levels[actualLevel.toString()]))
 }
+
+
 
 function clickCircle(level, circleID) {
     if (holes[circleID].length == 2) { // if circle not already green
@@ -428,15 +438,12 @@ function clickCircle(level, circleID) {
     } 
     else if (holes[circleID].length > 2) { // if circle already in green state delete
         document.getElementById(holes[circleID].toString()).remove();
-        console.log(holes.length)
         holes.splice(circleID,1)
-        console.log(holes.length)
     }
 }
 
 function touch(mouseX,mouseY) {
     // returns the first hole visible touched, else return false
-    console.log(holes);
     for (let i = holes.length-1; i >= 0; i--) {
         if (collide([mouseX, mouseY], holes[i][0],holes[i][1])){
             return i;
@@ -453,7 +460,7 @@ function boardClic(event) {
     if (editionMode) {
         if (touched === false){
             let rad = prompt("diameter")/2
-            addCircle(actualLevel, clicx,clicy, rad)
+            addCircle(actualLevel, Math.floor(clicx),Math.floor(clicy), rad)
         }
         else {
             clickCircle(actualLevel,touched)
@@ -463,6 +470,12 @@ function boardClic(event) {
 
 }
 
+function importLevel() {
+    levels.push(JSON.parse(prompt("level code:")))
+    const lvlTable = document.getElementById("LvlTable")
+    lvlTable.innerHTML = '';
+    makeLvlTable()
+}
 
 
 document.getElementById("board").addEventListener("click", boardClic);
