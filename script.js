@@ -117,7 +117,7 @@ function moveTouch(e) {
     var diffX = initialX - currentX;
     var diffY = initialY - currentY;
     
-    if (Math.abs(diffX)/2 > Math.abs(diffY)) { // /2 to not accidently change
+    if (false) { // /2 to not accidently change
         // sliding horizontally
 
         if (diffX > 0) {
