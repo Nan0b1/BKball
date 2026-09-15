@@ -57,18 +57,6 @@
             <path fill="transparent" id="left3" d="M 0 0 q 5 5 5 5" style="stroke:#dbbf54;stroke-width:2.3;stroke-dasharray:3">
                 <animate id="segment31" attributeName="d" values="M 0 0 q 5 5 5 5" dur=" 0.2s" fill="freeze"/>
             </path>
-            <!-- <line id="left1" x2="5" y2="5" x1="0" y1="0" style="stroke:#dbbf54;stroke-width:2" >
-                <animate id="left11" attributeName="x1" values="0" dur=" 0.2s" fill="freeze"/>
-                <animate id="left12" attributeName="y1" values="0" dur=" 0.2s" fill="freeze"/>
-            </line> 
-            <line id="left2" x2="5" y2="5" x1="0" y1="0" style="stroke:#dbbf54;stroke-width:2.5;stroke-dasharray:4" >
-                <animate id="left21" attributeName="x1" values="0" dur=" 0.2s" fill="freeze"/>
-                <animate id="left22" attributeName="y1" values="0" dur=" 0.2s" fill="freeze"/>
-            </line>
-            <line id="left3" x2="5" y2="5" x1="0" y1="0" style="stroke:#dbbf54;stroke-width:2.3;stroke-dasharray:3" >
-                <animate id="left31" attributeName="x1" values="0" dur=" 0.2s" fill="freeze"/>
-                <animate id="left32" attributeName="y1" values="0" dur=" 0.2s" fill="freeze"/>
-            </line> -->
             <path fill="transparent" id="right1" d="M 0 0 q 135 5 135 5" style="stroke:#dbbf54;stroke-width:2">
                 <animate id="segment12" attributeName="d" values="M 0 0 q 135 5 135 5" dur=" 0.2s" fill="freeze"/>
             </path>
@@ -78,18 +66,6 @@
             <path fill="transparent" id="right3" d="M 0 0 q 135 5 135 5" style="stroke:#dbbf54;stroke-width:2.3;stroke-dasharray:3">
                 <animate id="segment32" attributeName="d" values="M 0 0 q 135 5 135 5" dur=" 0.2s" fill="freeze"/>
             </path>
-            <!-- <line id="right1" x2="135" y2="5"1x2="0" y1="0" style="stroke:#dbbf54;stroke-width:2" >
-                <animate id="right11" attributeName="x1" values="0" dur=" 0.2s" fill="freeze"/>
-                <animate id="right12" attributeName="y1" values="0" dur=" 0.2s" fill="freeze"/>
-            </line>
-            <line id="right2" x2="135" y2="5"1x2="0" y1="0" style="stroke:#dbbf54;stroke-width:2.5;stroke-dasharray:4" >
-                <animate id="right21" attributeName="x1" values="0" dur=" 0.2s" fill="freeze"/>
-                <animate id="right22" attributeName="y1" values="0" dur=" 0.2s" fill="freeze"/>
-            </line>
-            <line id="right3" x2="135" y2="5"1x2="0" y1="0" style="stroke:#dbbf54;stroke-width:2.3;stroke-dasharray:3" >
-                <animate id="right31" attributeName="x1" values="0" dur=" 0.2s" fill="freeze"/>
-                <animate id="right32" attributeName="y1" values="0" dur=" 0.2s" fill="freeze"/>
-            </line> -->
             <circle cx="-4" cy="5" r="10" fill="#000000"/>
             <circle cx="144" cy="5" r="10" fill="#000000"/>
 
@@ -135,8 +111,7 @@
                 <table id="LvlTable" class="smolBox" style="width: 80%;margin-left: 10%;margin-right: 10%;margin-top: 5%;margin-bottom: 5%;">
                 </table>
                 <div class="flex_parent_smol" style="padding-top: 10%;padding-bottom: 1.5%;">
-                    <!-- <div class="flex_parent_smol">
-                    </div> -->
+                    
                     <button id="toggleButton" class="flex_child" onclick="toggleEdition()">Editor</button> <!-- Don't trad this one plz :3-->
                     <button id="copyButton" class="flex_child loc" data-loc="copyButton" onclick="navigator.clipboard.writeText(JSON.stringify(holes))" style="display: none;">copy</button> 
                     <button id="importButton" class="flex_child loc" data-loc="importButton" onclick="importLevel()">import</button>
@@ -151,3 +126,4 @@
     </div>
 </body>
 </html>
+

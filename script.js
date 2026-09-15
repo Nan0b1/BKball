@@ -26,6 +26,10 @@ if (typeof(Storage) !== "undefined") {
 
 
 // ####################### key handling #######################
+/**
+ * modify the left rope value safely
+ * @param {number} nbr 
+ */
 function pullLeft(nbr) {
     if (nbr > 0) {
         r = r + nbr;
@@ -39,7 +43,11 @@ function pullLeft(nbr) {
         }
     }
 }
-    
+
+/**
+ * modify the right rope value safely
+ * @param {number} nbr 
+ */
 function pullRight(nbr) {
     if (nbr > 0) {
         R = R + nbr;
@@ -54,6 +62,10 @@ function pullRight(nbr) {
     }
 }
 
+/**
+ * Handle keyboards / BKpad inputs
+ * @param {*} evt 
+ */
 function onKeyPress(evt) {
     let char = evt.code;
 
@@ -101,7 +113,11 @@ function startTouch(e) {
   initialX = e.touches[0].clientX;
   initialY = e.touches[0].clientY;
 };
- 
+
+/**
+ * Handles gestures imputs
+ * @param {*} e 
+ */
 function moveTouch(e) {
     if (initialX === null) {
         return;
@@ -117,7 +133,7 @@ function moveTouch(e) {
     var diffX = initialX - currentX;
     var diffY = initialY - currentY;
     
-    if (false) { // /2 to not accidently change
+    if (false) { // desactivated because of not beign great
         // sliding horizontally
 
         if (diffX > 0) {
@@ -133,19 +149,19 @@ function moveTouch(e) {
         if (diffY > 0) {
             // swiped up
             if (initialX > window.screen.width/2) {
-                pullLeft(4)
+                pullLeft(8)
             } 
             else {
-                pullRight(4);
+                pullRight(8);
             }
         }
         else {
             // swiped down
             if (initialX > window.screen.width/2) {
-                pullLeft(-4)
+                pullLeft(-8)
             } 
             else {
-                pullRight(-4);
+                pullRight(-8);
             }
         }
         if (checkHoles()){
@@ -164,6 +180,10 @@ function moveTouch(e) {
 
 // ####################### physics detections #######################
 
+/**
+ * Check if the ball is in a hole, and if in a wining hole set winState to true
+ * @returns true if in a hole, else false
+ */
 function checkHoles(){
     for (let i = 0; i < levels[actualLevel].length; i++) {
         if (collide([x, y+12], levels[actualLevel][i][0],levels[actualLevel][i][1])) {
@@ -176,6 +196,13 @@ function checkHoles(){
     return false
 }
 
+/**
+ * Check if 2 points are less than dist distance
+ * @param {Array} co1 
+ * @param {Array} co2 
+ * @param {number} dist 
+ * @returns true if they are less than dist far, else false
+ */
 function collide (co1,co2,dist) {
     let x2 = (co1[0] - co2[0])**2;
     let y2 = (co1[1] - co2[1])**2;
@@ -189,6 +216,9 @@ function collide (co1,co2,dist) {
 
 // ####################### animations #######################
 
+/**
+ * Make the falling animation for the ball
+ */
 function disappear () {
     let bk = document.getElementById("BKanimate");
     bk.setAttribute("from", old_x/6.28319*Math.abs(rotationRatio) +" 0 13");
@@ -205,6 +235,10 @@ const segmentsName = [ // rope segments
     "segment3",
 ];
 
+/**
+ * Update segmennt's locations with an animation
+ * @param {string} name 
+ */
 function updateSegment(name) {
     let segment = document.getElementById(name + "1");
     segment.setAttribute("values", "M"+old_x+" "+old_y+" q "+(5-old_x)+" "+(5-old_y+oldrightLoss)+" "+(5-old_x)+" "+(5-old_y)+";M "+x+" "+y+" q "+(5-x)+" "+(5-y+rightLoss)+" "+(5-x)+" "+(5-y));
@@ -235,7 +269,12 @@ if (actualLevel > levels.length-1){
 
 var rotationRatio = 20 + (Math.random() - 0.5);
 
-
+/**
+ * make a new hole in the board with his proprieties
+ * @param {Array} coordonates 
+ * @param {number} radius 
+ * @param {boolean} win 
+ */
 function makeHole(coordonates, radius, win) {
     let newHole = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     newHole.setAttribute("cx", coordonates[0]);
@@ -259,12 +298,19 @@ function makeHole(coordonates, radius, win) {
     document.getElementById("board").insertBefore(newHole, document.getElementById("left1"));
 }
 
+/**
+ * set all the new holes in the board
+ * @param {number} levelID 
+ */
 function makeLevel(levelID) {
     for (let i = 0; i < levels[levelID].length; i++) {
         makeHole(levels[levelID][i][0], levels[levelID][i][1],(levels[levelID][i].length>2));
     }
 }
 
+/**
+ * remove all the holes present in the board
+ */
 function removeHoles(){
     for (let i = 0; i < holes.length; i++) {
         document.getElementById(holes[i].toString()).remove();
@@ -272,6 +318,10 @@ function removeHoles(){
     holes.length = 0 // reset without breaking refs
 }
 
+/**
+ * One simple function to change level while erasing the old presence from the screen
+ * @param {number} levelTo 
+ */
 function changeScene(levelTo) {
     removeHoles()
     actualLevel = levelTo
@@ -279,6 +329,10 @@ function changeScene(levelTo) {
     actualize()
 }
 
+/**
+ * One simple function to do all the changes before and after the scene change
+ * @param {number} levelTo 
+ */
 async function changeLevel(levelTo) { //trust the async :) (it isn't engineered for that but no worries)
     if (levels.length > levelTo && levelTo >= 0) {
         await new Promise(r => setTimeout(r, 200));
@@ -311,6 +365,9 @@ var old_x = x;
 var y = 5;
 var old_y = y;
 
+/**
+ * Calculate where the ball sould be based off the ropes lenght and collisions with walls
+ */
 function ballTriangulation(){
     old_x = x;
     x = ((d ** 2) - (r ** 2) + (R ** 2)) / (2 * d) + 5;
@@ -335,15 +392,13 @@ function ballTriangulation(){
         oldleftLoss = leftLoss
         oldrightLoss = rightLoss
     }
-    // if (r+R <= 130 || isNaN(y) || isNaN(x)) {
-    //     R += 1
-    //     r += 1
-    //     ballTriangulation()
-    // }
 }
 
 // ####################### frames updates #######################
 
+/**
+ * update the board visually
+ */
 function actualize() {
 
     ballTriangulation()
@@ -371,6 +426,9 @@ function actualize() {
 
 }
 
+/**
+ * Set the table selector in his container
+ */
 function makeLvlTable () {
     let lvlTable = document.getElementById("LvlTable")
     for (let i = 0; i < Math.floor(levels.length/6)+1 ; i++) {
@@ -404,6 +462,9 @@ function makeLvlTable () {
 var tutoGame = document.getElementById("tutoGame");
 var tutoEditor = document.getElementById("tutoEditor");
 
+/**
+ * Toggle edition mode and visual changes
+ */
 function toggleEdition(){
     if (editionMode == false){
         tutoGame.setAttribute("style", "display:none;");
@@ -421,13 +482,23 @@ function toggleEdition(){
     }
 }
 
+/**
+ * 
+ * @param {number} level 
+ * @param {number} circlex 
+ * @param {number} circley 
+ * @param {number} radius 
+ */
 function addCircle(level, circlex, circley, radius) {
     makeHole([circlex, circley],radius,false)
-    //navigator.clipboard.writeText(JSON.stringify(levels[actualLevel.toString()]))
 }
 
 
-
+/**
+ * Change clicked the gole status
+ * @param {number} level 
+ * @param {number} circleID 
+ */
 function clickCircle(level, circleID) {
     if (holes[circleID].length == 2) { // if circle not already green
         let newHole = document.getElementById(holes[circleID].toString());
@@ -442,8 +513,13 @@ function clickCircle(level, circleID) {
     }
 }
 
+/**
+ * returns the first hole visible touched, else return false
+ * @param {number} mouseX 
+ * @param {number} mouseY 
+ * @returns number or bool
+ */
 function touch(mouseX,mouseY) {
-    // returns the first hole visible touched, else return false
     for (let i = holes.length-1; i >= 0; i--) {
         if (collide([mouseX, mouseY], holes[i][0],holes[i][1])){
             return i;
@@ -452,6 +528,10 @@ function touch(mouseX,mouseY) {
     return false
 }
 
+/**
+ * Calculates where does the click happend inside of the board then do the action needed
+ * @param {*} event 
+ */
 function boardClic(event) {
     let dims = document.getElementById("board").getBoundingClientRect();
     let clicx = (event.clientX - dims["x"])/(dims["x"]-dims["right"])*-140;
@@ -470,6 +550,9 @@ function boardClic(event) {
 
 }
 
+/**
+ * ask the user to import a level
+ */
 function importLevel() {
     levels.push(JSON.parse(prompt("level code:")))
     const lvlTable = document.getElementById("LvlTable")
