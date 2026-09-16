@@ -1,6 +1,6 @@
 levels~Niveaux
 lang-select~Sélection de languages:
-descGame~Dans ce jeu, vous allez devoir mettre la balle la balle dans le trou vert en tirant sur les cordes :)<n>Pas de cordes dans ton clavier ? Utilise les prochains controles !
-descEditor~Pour ajouter un nouveau cercle cliquez sur le mur et entrez le diamètre :)<n>Pour créer un cercle vert cliquez sur un cercle gris!<n>Pour supprimer un cercle cliquer une fois sur un cercle vert ou deux sur un gris :D
+descGame~Dans ce jeu, vous allez devoir mettre la balle la balle dans le trou vert en tirant sur les cordes :)<n>Pas de cordes dans ton clavier ? <br> Utilise les prochains controles !
+descEditor~Pour ajouter un nouveau cercle cliquez sur le mur et entrez le diamètre :) <n>Pour créer un cercle vert cliquez sur un cercle gris!<n>Pour supprimer un cercle cliquer une fois sur un cercle vert ou deux sur un gris :D
 copyButton~Copier
 importButton~Importer

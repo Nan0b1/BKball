@@ -108,13 +108,13 @@
             
             <h1 class="bigTitle loc" data-loc="levels">Levels</h1>
             <div class="smolBox">
-                <table id="LvlTable" class="smolBox" style="width: 80%;margin-left: 10%;margin-right: 10%;margin-top: 5%;margin-bottom: 5%;">
+                <table id="LvlTable" class="smolBox gameModeD" style="width: 80%;margin-left: 10%;margin-right: 10%;margin-top: 5%;margin-bottom: 5%;">
                 </table>
                 <div class="flex_parent_smol" style="padding-top: 10%;padding-bottom: 1.5%;">
                     
-                    <button id="toggleButton" class="flex_child" onclick="toggleEdition()">Editor</button> <!-- Don't trad this one plz :3-->
+                    <button id="toggleButton" class="flex_child" onclick="toggleEdition()">Editor</button> <!-- Don't trad this one plz :3 (js changes it - not traduced btw)-->
                     <button id="copyButton" class="flex_child loc" data-loc="copyButton" onclick="navigator.clipboard.writeText(JSON.stringify(holes))" style="display: none;">copy</button> 
-                    <button id="importButton" class="flex_child loc" data-loc="importButton" onclick="importLevel()">import</button>
+                    <button id="importButton" class="flex_child loc gameMode" data-loc="importButton" onclick="importLevel()">import</button>
                     <!-- <label class="flex_child" for="lang-select" class="loc" data-loc="lang-select">Languages selection</label> -->
                     <select class="flex_child" id="lang-select" >
                         <option value="en">English</option>

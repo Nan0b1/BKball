@@ -3,22 +3,22 @@
 var winState = false
 
 var holes = [];
-var ropeDefault = 185
-var leftLoss = 0
-var oldleftLoss = 0
-var rightLoss = 0
-var oldrightLoss = 0
+var ropeDefault = 185;
+var leftLoss = 0;
+var oldleftLoss = 0;
+var rightLoss = 0;
+var oldrightLoss = 0;
 
-var editionMode = false
+var editionMode = false;
 
 
-var actualLevel = 0
+var actualLevel = 0;
 
 if (typeof(Storage) !== "undefined") {
-  if (localStorage.getItem("Level") !== null) {
-    actualLevel = parseInt(localStorage.getItem("Level"));
-    
-  }
+    if (localStorage.getItem("Level") !== null) {
+        actualLevel = parseInt(localStorage.getItem("Level"));
+        
+    }
 } else {
   console.log("Sorry, no Web storage so you'll be reset each time!");
 }
@@ -36,9 +36,9 @@ function pullLeft(nbr) {
     }
     else{
         if (r>4+nbr){
-                r = r + nbr;
-                if (r+R <= 130) {
-                    R = R +Math.abs(nbr);
+            r = r + nbr;
+            if (r+R <= 130) {
+                R = R +Math.abs(nbr);
             }
         }
     }
@@ -53,12 +53,12 @@ function pullRight(nbr) {
         R = R + nbr;
     }
     else{
-            if (R>4+nbr){
-                R = R + nbr;
-                if (r+R <= 130) {
-                    r = r + Math.abs(nbr);
-                }
+        if (R>4+nbr){
+            R = R + nbr;
+            if (r+R <= 130) {
+                r = r + Math.abs(nbr);
             }
+        }
     }
 }
 
@@ -92,8 +92,8 @@ function onKeyPress(evt) {
             return;
     }
     if (checkHoles()){
-        disappear()
-        changeLevel(actualLevel+1*winState)
+        disappear();
+        changeLevel(actualLevel+1*winState);
     }
     actualize();
 }
@@ -101,17 +101,17 @@ function onKeyPress(evt) {
 // ####################### gestures handling #######################
 // modified from kirupa.com/html5/detecting_touch_swipe_gestures.htm
 
-let svgCanvas = document.getElementById("board")
+let svgCanvas = document.getElementById("board");
 svgCanvas.addEventListener("touchstart", startTouch, false);
 svgCanvas.addEventListener("touchmove", moveTouch, false);
 
 
 var initialX = null;
 var initialY = null;
- 
+
 function startTouch(e) {
-  initialX = e.touches[0].clientX;
-  initialY = e.touches[0].clientY;
+    initialX = e.touches[0].clientX;
+    initialY = e.touches[0].clientY;
 };
 
 /**
@@ -149,7 +149,7 @@ function moveTouch(e) {
         if (diffY > 0) {
             // swiped up
             if (initialX > window.screen.width/2) {
-                pullLeft(8)
+                pullLeft(8);
             } 
             else {
                 pullRight(8);
@@ -158,7 +158,7 @@ function moveTouch(e) {
         else {
             // swiped down
             if (initialX > window.screen.width/2) {
-                pullLeft(-8)
+                pullLeft(-8);
             } 
             else {
                 pullRight(-8);
@@ -188,12 +188,12 @@ function checkHoles(){
     for (let i = 0; i < levels[actualLevel].length; i++) {
         if (collide([x, y+12], levels[actualLevel][i][0],levels[actualLevel][i][1])) {
             if(document.getElementById(holes[i].toString()).classList.contains("winHole")){
-                winState = true
+                winState = true;
             }
-            return true
+            return true;
         }
     }
-    return false
+    return false;
 }
 
 /**
@@ -207,9 +207,9 @@ function collide (co1,co2,dist) {
     let x2 = (co1[0] - co2[0])**2;
     let y2 = (co1[1] - co2[1])**2;
     if (x2 + y2 <= dist**2) {
-        return true
+        return true;
     }
-    return false
+    return false;
 }
 
 
@@ -254,6 +254,7 @@ function updateSegment(name) {
 
 // ####################### Level creation #######################
 
+// levels hosts all the other levels
 var levels = [];
 var level0 = [[[50,50],15,true], [[80,70],10], [[105,70],10], [[130,70],10], [[80,95],10], [[80,120],10], [[100,90],10], [[115,105],10], [[130,120],10], [[145,135],10]];
 var level1 = [[[10,70],15], [[20,25],12, true], [[30,110],15], [[65,140],12], [[40,60],13], [[80,100],13], [[130,90],20], [[120,140],12]];
@@ -264,7 +265,7 @@ levels.push(levelFinal);
 
 
 if (actualLevel > levels.length-1){
-    actualLevel = levels.length-1
+    actualLevel = levels.length-1;
 }
 
 var rotationRatio = 20 + (Math.random() - 0.5);
@@ -280,9 +281,9 @@ function makeHole(coordonates, radius, win) {
     newHole.setAttribute("cx", coordonates[0]);
     newHole.setAttribute("cy", coordonates[1]);
     newHole.setAttribute("r", radius);
-    let textWin = ""
+    let textWin = "";
     if (win==true){
-        textWin = ",true"
+        textWin = ",true";
     }
     newHole.setAttribute("id", coordonates.toString() +"," + radius.toString()+textWin);
     if (win) {
@@ -323,10 +324,10 @@ function removeHoles(){
  * @param {number} levelTo 
  */
 function changeScene(levelTo) {
-    removeHoles()
-    actualLevel = levelTo
-    makeLevel(levelTo)
-    actualize()
+    removeHoles();
+    actualLevel = levelTo;
+    makeLevel(levelTo);
+    actualize();
 }
 
 /**
@@ -338,13 +339,13 @@ async function changeLevel(levelTo) { //trust the async :) (it isn't engineered 
         await new Promise(r => setTimeout(r, 200));
         R = 185;
         r = 185;
-        leftLoss = 0
-        rightLoss = 0
-        actualize()
+        leftLoss = 0;
+        rightLoss = 0;
+        actualize();
         rotationRatio = 20 + (Math.random() - 0.5); //destroys animations so idk
         actualLevel = levelTo;
-        changeScene(actualLevel)
-        winState = false
+        changeScene(actualLevel);
+        winState = false;
         localStorage.setItem("Level", levelTo);
     }
 }
@@ -377,20 +378,20 @@ function ballTriangulation(){
     y = a / 2 +5;
 
     if (x < 5) {
-        oldleftLoss = leftLoss
+        oldleftLoss = leftLoss;
         leftLoss = Math.abs(x - 5)
         x = 5;
         y = R;
     } 
     else if (x > 135) {
-        oldrightLoss = rightLoss
+        oldrightLoss = rightLoss;
         rightLoss = Math.abs(x - 135)
         x = 135;
         y = r;
     }
     else {
-        oldleftLoss = leftLoss
-        oldrightLoss = rightLoss
+        oldleftLoss = leftLoss;
+        oldrightLoss = rightLoss;
     }
 }
 
@@ -401,7 +402,7 @@ function ballTriangulation(){
  */
 function actualize() {
 
-    ballTriangulation()
+    ballTriangulation();
 
     for (const currentSegment of segmentsName) {
         updateSegment(currentSegment);
@@ -430,16 +431,16 @@ function actualize() {
  * Set the table selector in his container
  */
 function makeLvlTable () {
-    let lvlTable = document.getElementById("LvlTable")
+    let lvlTable = document.getElementById("LvlTable");
     for (let i = 0; i < Math.floor(levels.length/6)+1 ; i++) {
         let node = document.createElement("tr");
-        lvlTable.appendChild(node)
+        lvlTable.appendChild(node);
         if (i == Math.floor(levels.length/6)) {
             for (let j = 0; j < levels.length % 6 ; j++){
                 let button = document.createElement("button");
                 button.setAttribute("onclick", "changeLevel("+(6*i+j)+")");
-                let textnode = document.createTextNode(6*i+j+1)
-                button.appendChild(textnode)
+                let textnode = document.createTextNode(6*i+j+1);
+                button.appendChild(textnode);
                 node.appendChild(button);
 
             }
@@ -448,8 +449,8 @@ function makeLvlTable () {
             for (let j = 0; j < 6 ; j++){
                 let button = document.createElement("button");
                 button.setAttribute("onclick", "changeLevel("+(6*i+j)+")");
-                let textnode = document.createTextNode(6*i+j+1)
-                button.appendChild(textnode)
+                let textnode = document.createTextNode(6*i+j+1);
+                button.appendChild(textnode);
                 node.appendChild(button);
             }
         }
@@ -462,6 +463,28 @@ function makeLvlTable () {
 var tutoGame = document.getElementById("tutoGame");
 var tutoEditor = document.getElementById("tutoEditor");
 
+//gameModeD
+
+/**
+ * set a css class parameter, don't forget the dot :D
+ * @param {string} style 
+ * @param {string} param 
+ * @param {*} value 
+ */
+function setClassParam(style, param, value){
+    const stylesheet = document.styleSheets[0];
+    let elementRules;
+
+    // looping through all its rules and getting your rule
+    for(let i = 0; i < stylesheet.cssRules.length; i++) {
+    if(stylesheet.cssRules[i].selectorText === style) {
+        elementRules = stylesheet.cssRules[i];
+    }
+    }
+    // modifying the rule in the stylesheet
+    elementRules.style.setProperty(param, value);
+}
+
 /**
  * Toggle edition mode and visual changes
  */
@@ -469,28 +492,32 @@ function toggleEdition(){
     if (editionMode == false){
         tutoGame.setAttribute("style", "display:none;");
         tutoEditor.setAttribute("style", "");
-        editionMode = true
-        document.getElementById("copyButton").setAttribute("style", "")
+        editionMode = true;
+        document.getElementById("copyButton").setAttribute("style", "");
         document.getElementById("toggleButton").textContent="Game";
+        setClassParam(".gameMode","display","none");
+        setClassParam(".gameModeD","visibility","hidden");
     }
     else if (editionMode == true){
         tutoGame.setAttribute("style", "");
         tutoEditor.setAttribute("style", "display:none;");
-        editionMode = false
-        document.getElementById("copyButton").setAttribute("style", "display:none;")
+        editionMode = false;
+        document.getElementById("copyButton").setAttribute("style", "display:none;");
         document.getElementById("toggleButton").textContent="Editor";
+        setClassParam(".gameMode","display","");
+        setClassParam(".gameModeD","visibility","");
     }
 }
 
 /**
- * 
+ * Add a visual circle
  * @param {number} level 
  * @param {number} circlex 
  * @param {number} circley 
  * @param {number} radius 
  */
 function addCircle(level, circlex, circley, radius) {
-    makeHole([circlex, circley],radius,false)
+    makeHole([circlex, circley],radius,false);
 }
 
 
@@ -504,12 +531,12 @@ function clickCircle(level, circleID) {
         let newHole = document.getElementById(holes[circleID].toString());
         newHole.setAttribute("fill", "url(#Gradient2)");
         newHole.classList.add("winHole");
-        holes[circleID].push(true)
+        holes[circleID].push(true);
         newHole.setAttribute("id", holes[circleID].toString());
     } 
     else if (holes[circleID].length > 2) { // if circle already in green state delete
         document.getElementById(holes[circleID].toString()).remove();
-        holes.splice(circleID,1)
+        holes.splice(circleID,1);
     }
 }
 
@@ -525,7 +552,7 @@ function touch(mouseX,mouseY) {
             return i;
         }
     }
-    return false
+    return false;
 }
 
 /**
@@ -536,16 +563,15 @@ function boardClic(event) {
     let dims = document.getElementById("board").getBoundingClientRect();
     let clicx = (event.clientX - dims["x"])/(dims["x"]-dims["right"])*-140;
     let clicy = (event.clientY - dims["y"])/(dims["y"]-dims["height"])*-200;
-    let touched = touch(clicx,clicy)
+    let touched = touch(clicx,clicy);
     if (editionMode) {
         if (touched === false){
             let rad = prompt("diameter")/2
-            addCircle(actualLevel, Math.floor(clicx),Math.floor(clicy), rad)
+            addCircle(actualLevel, Math.floor(clicx),Math.floor(clicy), rad);
         }
         else {
-            clickCircle(actualLevel,touched)
+            clickCircle(actualLevel,touched);
         }
-
     }
 
 }
@@ -554,21 +580,23 @@ function boardClic(event) {
  * ask the user to import a level
  */
 function importLevel() {
-    levels.push(JSON.parse(prompt("level code:")))
-    const lvlTable = document.getElementById("LvlTable")
-    lvlTable.innerHTML = '';
-    makeLvlTable()
+    levels.push(JSON.parse(prompt("level code:")));
+    const lvlTable = document.getElementById("LvlTable");
+    lvlTable.innerHTML = ''; // delete old table
+    makeLvlTable();
 }
 
 
 document.getElementById("board").addEventListener("click", boardClic);
 
-makeLvlTable()
+makeLvlTable();
 
 
-makeLevel(actualLevel)
+makeLevel(actualLevel);
 
 actualize();
 actualize(); // preferable for accessibility: disable the first animation
 
 document.addEventListener("keypress", onKeyPress);
+
+//  code from https://github.com/Nan0b1/BKball
