@@ -263,6 +263,7 @@ levels.push(level0);
 levels.push(level1);
 levels.push(levelFinal);
 
+var officialLevels = levels.length
 
 if (actualLevel > levels.length-1){
     actualLevel = levels.length-1;
@@ -490,11 +491,20 @@ function setClassParam(style, param, value){
  */
 function toggleEdition(){
     if (editionMode == false){
+        if (actualLevel > officialLevels){
+            levels.push([]);
+            const lvlTable = document.getElementById("LvlTable");
+            lvlTable.innerHTML = ''; // delete old table
+            makeLvlTable();
+        }
+        
+
+
         tutoGame.setAttribute("style", "display:none;");
         tutoEditor.setAttribute("style", "");
         editionMode = true;
         document.getElementById("copyButton").setAttribute("style", "");
-        document.getElementById("toggleButton").textContent="Game";
+        document.getElementById("editButton").textContent="Game";
         setClassParam(".gameMode","display","none");
         setClassParam(".gameModeD","visibility","hidden");
     }
@@ -503,7 +513,7 @@ function toggleEdition(){
         tutoEditor.setAttribute("style", "display:none;");
         editionMode = false;
         document.getElementById("copyButton").setAttribute("style", "display:none;");
-        document.getElementById("toggleButton").textContent="Editor";
+        document.getElementById("editButton").textContent="Editor";
         setClassParam(".gameMode","display","");
         setClassParam(".gameModeD","visibility","");
     }
