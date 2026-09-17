@@ -486,25 +486,59 @@ function setClassParam(style, param, value){
     elementRules.style.setProperty(param, value);
 }
 
+function editMode (){
+    if (editionMode == false){
+        R = ropeDefault;
+        r = ropeDefault;
+        if (actualLevel < officialLevels){
+            levels.push(levels[actualLevel]);
+            const lvlTable = document.getElementById("LvlTable");
+            lvlTable.innerHTML = ''; // delete old table
+            makeLvlTable();
+            changeLevel(levels.length-1);
+        }
+        editModeUI();
+    }
+}
+
+function editNewMode(){
+    if (editionMode == false){
+        R = ropeDefault;
+        r = ropeDefault;
+        levels.push([]);
+        const lvlTable = document.getElementById("LvlTable");
+        lvlTable.innerHTML = ''; // delete old table
+        makeLvlTable();
+        changeLevel(levels.length-1);
+        
+        editModeUI();
+    }
+}
+
+function editModeUI(){
+    tutoGame.setAttribute("style", "display:none;");
+    tutoEditor.setAttribute("style", "");
+    editionMode = true;
+    document.getElementById("copyButton").setAttribute("style", "");
+    document.getElementById("gameButton").setAttribute("style", "");
+    document.getElementById("editButton").setAttribute("style", "display:none;");
+    document.getElementById("makeNewButton").setAttribute("style", "display:none;");
+    setClassParam(".gameMode","display","none");
+    setClassParam(".gameModeD","visibility","hidden");
+}
+
 /**
  * Toggle edition mode and visual changes
  */
 function toggleEdition(){
     if (editionMode == false){
-        if (actualLevel > officialLevels){
-            levels.push([]);
-            const lvlTable = document.getElementById("LvlTable");
-            lvlTable.innerHTML = ''; // delete old table
-            makeLvlTable();
-        }
-        
-
-
         tutoGame.setAttribute("style", "display:none;");
         tutoEditor.setAttribute("style", "");
         editionMode = true;
         document.getElementById("copyButton").setAttribute("style", "");
-        document.getElementById("editButton").textContent="Game";
+        document.getElementById("gameButton").setAttribute("style", "");
+        document.getElementById("editButton").setAttribute("style", "display:none;");
+        document.getElementById("makeNewButton").setAttribute("style", "display:none;");
         setClassParam(".gameMode","display","none");
         setClassParam(".gameModeD","visibility","hidden");
     }
@@ -513,7 +547,9 @@ function toggleEdition(){
         tutoEditor.setAttribute("style", "display:none;");
         editionMode = false;
         document.getElementById("copyButton").setAttribute("style", "display:none;");
-        document.getElementById("editButton").textContent="Editor";
+        document.getElementById("gameButton").setAttribute("style", "display:none;");
+        document.getElementById("editButton").setAttribute("style", "");
+        document.getElementById("makeNewButton").setAttribute("style", "");
         setClassParam(".gameMode","display","");
         setClassParam(".gameModeD","visibility","");
     }
@@ -542,11 +578,13 @@ function clickCircle(level, circleID) {
         newHole.setAttribute("fill", "url(#Gradient2)");
         newHole.classList.add("winHole");
         holes[circleID].push(true);
+        levels[actualLevel][circleID].push(true);
         newHole.setAttribute("id", holes[circleID].toString());
     } 
     else if (holes[circleID].length > 2) { // if circle already in green state delete
         document.getElementById(holes[circleID].toString()).remove();
         holes.splice(circleID,1);
+        levels[actualLevel].splice(circleID,1);
     }
 }
 
@@ -578,6 +616,9 @@ function boardClic(event) {
         if (touched === false){
             let rad = prompt("diameter")/2
             addCircle(actualLevel, Math.floor(clicx),Math.floor(clicy), rad);
+            console.log([Math.floor(clicx),Math.floor(clicy)], rad)
+            levels[actualLevel].push([[Math.floor(clicx), Math.floor(clicy)], rad]);
+            console.log(levels[actualLevel])
         }
         else {
             clickCircle(actualLevel,touched);

@@ -112,8 +112,9 @@
                 </table>
                 <div class="flex_parent_smol" style="padding-top: 10%;padding-bottom: 1.5%;">
                     
-                    <button id="editButton" class="flex_child" onclick="toggleEdition()">Edit</button> <!-- Don't trad this one plz :3 (js changes it - not traduced btw)-->
-                    <button id="toggleButton" class="flex_child" onclick="toggleEdition()">Make</button> <!-- Don't trad this one plz :3 (js changes it - not traduced btw)-->
+                    <button id="editButton" class="flex_child" onclick="editMode()">Edit</button> <!-- Don't trad this one plz :3 (js changes it - not traduced btw)-->
+                    <button id="makeNewButton" class="flex_child" onclick="editNewMode()">New</button> <!-- Don't trad this one plz :3 (js changes it - not traduced btw)-->
+                    <button id="gameButton" class="flex_child" onclick="toggleEdition()" style="display: none;">Game</button> <!-- Don't trad this one plz :3 (js changes it - not traduced btw)-->
                     <button id="copyButton" class="flex_child loc" data-loc="copyButton" onclick="navigator.clipboard.writeText(JSON.stringify(holes))" style="display: none;">copy</button> 
                     <button id="importButton" class="flex_child loc gameMode" data-loc="importButton" onclick="importLevel()">import</button>
                     <!-- <label class="flex_child" for="lang-select" class="loc" data-loc="lang-select">Languages selection</label> -->
