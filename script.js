@@ -17,7 +17,6 @@ var actualLevel = 0;
 if (typeof(Storage) !== "undefined") {
     if (localStorage.getItem("Level") !== null) {
         actualLevel = parseInt(localStorage.getItem("Level"));
-        
     }
 } else {
   console.log("Sorry, no Web storage so you'll be reset each time!");
@@ -264,6 +263,24 @@ levels.push(level1);
 levels.push(levelFinal);
 
 var officialLevels = levels.length
+
+if (typeof(Storage) !== "undefined") {
+    var customsIDs = []
+    for (var i = 0; i < localStorage.length; i++){
+        if (localStorage.key(i).startsWith("CL")){
+            customsIDs.push(localStorage.key(i).slice(2))
+        }
+    }
+    customsIDs.sort();
+    for (var i = 0; i < customsIDs.length; i++){
+        levels.push(JSON.parse(localStorage.getItem("CL" + customsIDs[i])))
+    }
+} else {
+  console.log("Sorry, no Web storage so you'll be reset each time!");
+}
+
+
+
 
 if (actualLevel > levels.length-1){
     actualLevel = levels.length-1;
@@ -552,6 +569,8 @@ function toggleEdition(){
         document.getElementById("makeNewButton").setAttribute("style", "");
         setClassParam(".gameMode","display","");
         setClassParam(".gameModeD","visibility","");
+
+        localStorage.setItem("CL"+actualLevel, JSON.stringify(levels[actualLevel])); // CL for Custom Level :3
     }
 }
 
@@ -635,6 +654,7 @@ function importLevel() {
     const lvlTable = document.getElementById("LvlTable");
     lvlTable.innerHTML = ''; // delete old table
     makeLvlTable();
+    toggleEdition()
 }
 
 

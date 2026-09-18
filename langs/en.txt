@@ -4,3 +4,6 @@ descGame~In this game you will have to make the ball go into the green circle by
 descEditor~To add a new circle: Click somewhere on he board and enter the diameter in the popup<n>To make a green circle click onto a gray circle<n>To delete a hole click one time on the green circle or 2 times on the gray circle !
 copyButton~Copy
 importButton~Import
+editButton~Edit
+makeNewButton~New
+gameButton~Save
