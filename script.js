@@ -355,6 +355,10 @@ function changeScene(levelTo) {
 async function changeLevel(levelTo) { //trust the async :) (it isn't engineered for that but no worries)
     if (levels.length > levelTo && levelTo >= 0) {
         await new Promise(r => setTimeout(r, 200));
+        try {
+            document.getElementsByClassName("selectedLevel")[0].classList.remove("selectedLevel")
+        } 
+        catch {}
         R = 185;
         r = 185;
         leftLoss = 0;
@@ -365,6 +369,7 @@ async function changeLevel(levelTo) { //trust the async :) (it isn't engineered 
         changeScene(actualLevel);
         winState = false;
         localStorage.setItem("Level", levelTo);
+        document.getElementById("lvlButton"+levelTo).classList.add("selectedLevel")
     }
 }
 
@@ -457,6 +462,7 @@ function makeLvlTable () {
             for (let j = 0; j < levels.length % 6 ; j++){
                 let button = document.createElement("button");
                 button.setAttribute("onclick", "changeLevel("+(6*i+j)+")");
+                button.setAttribute("id", "lvlButton"+(6*i+j));
                 let textnode = document.createTextNode(6*i+j+1);
                 button.appendChild(textnode);
                 node.appendChild(button);
@@ -650,11 +656,22 @@ function boardClic(event) {
  * ask the user to import a level
  */
 function importLevel() {
-    levels.push(JSON.parse(prompt("level code:")));
-    const lvlTable = document.getElementById("LvlTable");
-    lvlTable.innerHTML = ''; // delete old table
-    makeLvlTable();
-    toggleEdition()
+    let levelData = prompt("level code:");
+    try {
+        if (levelData == null || levelData == "") {
+            console.log("importation canceled");
+            return;
+        }
+        console.log("Importing following level:\n" + JSON.parse(levelData))
+        levels.push(JSON.parse(levelData));
+        const lvlTable = document.getElementById("LvlTable");
+        lvlTable.innerHTML = ''; // delete old table
+        makeLvlTable();
+        toggleEdition()
+    }
+    catch (error) {
+        console.log("level data incompatible :(")
+    }
 }
 
 
