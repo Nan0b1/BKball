@@ -120,3 +120,16 @@ svg {
 .gameModeD {
     
 }
+
+h1::selection {
+  background: #cc000000;
+  color: #000000;
+}
+h1::-moz-selection {
+  background: #cc000000;
+  color: #000000;
+}
+h1::-webkit-selection {
+  background: #cc000000;
+  color: #000000;
+}
