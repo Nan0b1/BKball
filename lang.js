@@ -4,6 +4,10 @@ const default_lang = "en"
 let lang = default_lang;
 const l_map = new Map();
 
+if (navigator.language == "fr-FR"){
+    lang = "fr"
+}
+
 if (typeof(Storage) !== "undefined") {
   if (localStorage.getItem("Lang") !== null) {
     lang = localStorage.getItem("Lang")
