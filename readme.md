@@ -30,12 +30,12 @@ I will be able to make modifications if needed but I don't plan to touch it real
 Total: 30 hours with more than the half dedicated to the script.js !
 
 ### functionalities:
+- A whole level editing software is inside it! It is genuinely hard to design levels by just tweaking arrays in some js
 - Main board where all the gameplay is situated! It uses A big *svg* element and everything is moved by the js changing some *animate* values :)
-- The project is fully vanilla html, js and css! You don't have to rely on anything but on these lines of code with custom physics made from scratch
-- Bug proof: Everything is controlled by small functions :)
-- No security issues: the server just sends the same index.html every time
 - Hand made translations, with lang.js
-- A whole level editing software inside it! It is genuinely hard to design levels by just tweaking arrays in some js
+- Bug proof: Everything is controlled by small functions :)
+- The project is fully vanilla html, js and css! You don't have to rely on anything but on these lines of code with custom physics made from scratch
+- No security issues: the server just sends the same index.html every time
 
 ### problems:
 **Google**, in 2 weeks, blacklisted my website 2 times for "phishing or malicious software". LOL this thing don't even send a single bite of what the entry() function get to the server TwT
@@ -43,7 +43,7 @@ I think the repeated changes to the website are flagged but each time it is reso
 
 ### Contributing?
 If you find some bugs or want to add things feel free to ask :)
-Thanks to Some Minecraft Modder who helped me at the beginning, and lang.js (+ the ; in the js)
+Thanks to Some Minecraft Modder who helped me to do choices at the beginning, and doing the basic lang.js (+ all the ; in the js)
 
 ### Things
 You can follow how it went over the time there: [Startance :D](https://stardance.hackclub.com/projects/55434)
