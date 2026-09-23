@@ -50,4 +50,4 @@ You can follow how it went over the time there: [Startance :D](https://stardance
 The project is the continuation of my other 20 hours project: [BKpad Github](https://github.com/Nan0b1/BKpad)
 The code is 100% french made, my code is not AI generated and I do not support vibe coding as a hobby, it can be worth for a fast app you want to make for you but not for sending that online on a github.
 
-This project is abestos-free :D
+This project is asbestos-free :D
