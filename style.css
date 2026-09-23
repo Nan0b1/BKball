@@ -11,6 +11,10 @@ body {
     display: flex;
 }
 
+.flex_parent_untouched { 
+    display: flex;
+}
+
 .flex_child {
     flex: 1;
     padding: auto;
