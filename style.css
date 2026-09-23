@@ -11,10 +11,6 @@ body {
     display: flex;
 }
 
-.flex_parent_smol {
-    display: flex;
-}
-
 .flex_child {
     flex: 1;
     padding: auto;
@@ -56,19 +52,12 @@ button:hover, select:hover{
     transition: background-color 0.1s ease-in-out;
 }
 select {
-  /* appearance: initial; */
   text-align: center;
   border-radius: var(--radius);
   background-color: transparent;
   border: none;
-  /* padding: 0 1em 0 0; */
-  /* margin: 0; */
-  /* width: 100%; */
-  /* font-family: inherit;
-  font-size: inherit; */
   cursor: inherit;
   padding: 0.15rem;
-  /* line-height: inherit; */
 }
 
 /* canvas */
@@ -78,7 +67,6 @@ svg {
 }
 
 .threed {
-    /* border: 0.5rem inset red; */
     stroke: #7a6d62;
     stroke-opacity: 0.7;
 }
@@ -102,14 +90,12 @@ svg {
 }
 .stop2 {
     stop-color: #594d3f;
-    /* stop-opacity: 0; */
 }
 .stopa {
     stop-color: #008351;
 }
 .stopb {
     stop-color: #005f3b;
-    /* stop-opacity: 0; */
 }
 
 /* game / editor mode */
@@ -118,7 +104,6 @@ svg {
 }
 
 .gameModeD {
-    
 }
 
 h1::selection {

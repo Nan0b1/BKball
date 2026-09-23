@@ -1,5 +1,9 @@
 "use strict";
 
+// Welcome there!
+// -- A french guy
+// Glory to free will
+
 var winState = false
 
 var holes = [];
@@ -152,16 +156,16 @@ function moveTouch(e) {
     } else {
         // sliding vertically
         let dims = document.getElementById("board").getBoundingClientRect();
-        let dist = Math.abs(diffY/(dims["y"]-dims["height"])*-200);
+        let dist = Math.abs(diffY/(dims["y"]-dims["height"])*-200); // 200 is the height of the canvas
         var force = 4;
         if (dist < 3) {
-            force = 4
+            force = 4;
         } else if (dist < 4.5) {
-            force = 8
+            force = 8;
         }else if (dist < 6) {
-            force = 12
+            force = 12;
         }else {
-            force = 16
+            force = 16;
         }
         console.log(force)
         if (diffY > 0) {
@@ -275,38 +279,36 @@ function updateSegment(name) {
 // levels hosts all the other levels
 var levels = [];
 var levelTuto = [[[50,50],15,true], [[80,70],10], [[105,70],10], [[130,70],10], [[80,95],10], [[80,120],10], [[100,90],10], [[115,105],10], [[130,120],10], [[145,135],10]];
-var level0 = [[[10,70],15],[[20,25],12,true],[[30,110],15],[[65,140],12],[[40,60],13],[[80,100],13],[[130,90],20],[[120,140],12],[[88,49],17]]
-var level1 = [[[120,51],11,true],[[20,51],11,true],[[26,127],24],[[70,90],22],[[114,127],24],[[70,150],11]]
-var level2 = [[[121+7,187],11],[[91+7,155],11],[[70+7,146],11],[[48+7,142],11],[[108+7,169],11],[[2,129+10],0],[[11,124+10],11],[[25,106+10],11],[[44,93+10],11],[[65,85+10],11],[[87,81+10],11],[[109,79+10],11],[[65,47],11,true]]
-var level3 = [[[50,50],15,true],[[80,70],10],[[100,90],10],[[130,120],10],[[84,109],0],[[56,116],9.5],[[33,141],9.5],[[10,165],9.5],[[56,77],9.5],[[82,43],9.5],[[29,73],9.5],[[19,47],9.5],[[34,25],9.5],[[61,24],9.5]]
-var level4 = [[[125,190],11,true],[[15,190],11,true],[[41,190],11],[[99,190],11],[[41,167],11],[[99,167],11],[[41,144],11],[[99,144],11],[[70,109],22],[[27,126],11],[[113,126],11],[[138,155],11],[[0,157],11]]
-var level5 = [[[14,156],11],[[126,156],11],[[34,130],11],[[106,130],11],[[70,100],22],[[70,150],14],[[31,71],14],[[109,71],14],[[70,36],11,true],[[129,44],11],[[11,44],11]]
-var level6 = [[[1,100],22,true],[[139,100],22,true],[[1,150],22],[[139,150],22],[[39,126],22],[[101,126],22],[[70,60],22],[[35,90],13],[[105,90],13],[[23,70],10],[[117,70],10]]
-var level7 = [[[66,119],33],[[118,164],22],[[28,144],11],[[12,173],11],[[21,65],22],[[100,89],11],[[128,77],11],[[85,158],11],[[11,103],11],[[129,131],11,true],[[67,73],11],[[86,53],11],[[111,42],11],[[106,128],0],[[123,110],11]]
-var level8 = [[[98,171],11],[[75,152],11],[[92,137],11],[[114,131],11],[[108,102],11],[[29,177],11],[[41,120],11],[[70,114],11],[[136,200],33],[[89,91],11],[[54,86],11],[[73,70],11],[[94,60],11],[[118,64],11],[[138,90],11],[[107,40],11],[[87,25],11],[[64,44],11,true],[[20,110],11],[[52,143],11],[[29,85],11],[[31,154],11],[[9,165],11],[[25,60],11],[[26,35],11]]
-var level9 = [[[50,50],15, true],[[90,50],15, true],[[15,110],11],[[27,131],11],[[51.5,133],11],[[69,118],11],[[87,132],11],[[111,131],11],[[125,111],11]]
-var levelFinal = [[[55-7,53],8],[[37-7,53],8],[[22-7,64],8],[[20-7,81],8],[[26-7,97],8],[[40-7,105],8],[[57-7,102],8],[[65-7,87],8],[[48-7,83],8], [[55+62,53],8],[[37+62,53],8],[[22+62,64],8],[[20+62,81],8],[[26+62,97],8],[[40+62,105],8],[[57+62,102],8],[[65+62,87],8],[[48+62,83],8],[[68,140],17]]
+var level0 = [[[10,70],15],[[20,25],12,true],[[30,110],15],[[65,140],12],[[40,60],13],[[80,100],13],[[130,90],20],[[120,140],12],[[88,49],17]];
+var level1 = [[[120,51],11,true],[[20,51],11,true],[[26,127],24],[[70,90],22],[[114,127],24],[[70,150],11]];
+var level2 = [[[121+7,187],11],[[91+7,155],11],[[70+7,146],11],[[48+7,142],11],[[108+7,169],11],[[2,129+10],0],[[11,124+10],11],[[25,106+10],11],[[44,93+10],11],[[65,85+10],11],[[87,81+10],11],[[109,79+10],11],[[65,47],11,true]];
+var level3 = [[[50,50],15,true],[[80,70],10],[[100,90],10],[[130,120],10],[[84,109],0],[[56,116],9.5],[[33,141],9.5],[[10,165],9.5],[[56,77],9.5],[[82,43],9.5],[[29,73],9.5],[[19,47],9.5],[[34,25],9.5],[[61,24],9.5]];
+var level4 = [[[125,190],11,true],[[15,190],11,true],[[41,190],11],[[99,190],11],[[41,167],11],[[99,167],11],[[41,144],11],[[99,144],11],[[70,109],22],[[27,126],11],[[113,126],11],[[138,155],11],[[0,157],11]];
+var level5 = [[[14,156],11],[[126,156],11],[[34,130],11],[[106,130],11],[[70,100],22],[[70,150],14],[[31,71],14],[[109,71],14],[[70,36],11,true],[[129,44],11],[[11,44],11]];
+var level6 = [[[1,100],22,true],[[139,100],22,true],[[1,150],22],[[139,150],22],[[39,126],22],[[101,126],22],[[70,60],22],[[35,90],13],[[105,90],13],[[23,70],10],[[117,70],10]];
+var level7 = [[[66,119],33],[[118,164],22],[[28,144],11],[[12,173],11],[[21,65],22],[[100,89],11],[[128,77],11],[[85,158],11],[[11,103],11],[[129,131],11,true],[[67,73],11],[[86,53],11],[[111,42],11],[[106,128],0],[[123,110],11]];
+var level8 = [[[98,171],11],[[75,152],11],[[92,137],11],[[114,131],11],[[108,102],11],[[29,177],11],[[41,120],11],[[70,114],11],[[136,200],33],[[89,91],11],[[54,86],11],[[73,70],11],[[94,60],11],[[118,64],11],[[138,90],11],[[107,40],11],[[87,25],11],[[64,44],11,true],[[20,110],11],[[52,143],11],[[29,85],11],[[31,154],11],[[9,165],11],[[25,60],11],[[26,35],11]];
+var level9 = [[[50,50],15, true],[[90,50],15, true],[[15,110],11],[[27,131],11],[[51.5,133],11],[[69,118],11],[[87,132],11],[[111,131],11],[[125,111],11]];
+var levelFinal = [[[55-7,53],8],[[37-7,53],8],[[22-7,64],8],[[20-7,81],8],[[26-7,97],8],[[40-7,105],8],[[57-7,102],8],[[65-7,87],8],[[48-7,83],8], [[55+62,53],8],[[37+62,53],8],[[22+62,64],8],[[20+62,81],8],[[26+62,97],8],[[40+62,105],8],[[57+62,102],8],[[65+62,87],8],[[48+62,83],8],[[68,140],17]];
 levels.push(levelTuto, level0, level1, level2, level3, level4, level5, level6, level7, level8, level9);
 levels.push(levelFinal);
 
-var officialLevels = levels.length
+var officialLevels = levels.length;
 
 if (typeof(Storage) !== "undefined") {
     var customsIDs = []
     for (var i = 0; i < localStorage.length; i++){
         if (localStorage.key(i).startsWith("CL")){
-            customsIDs.push(localStorage.key(i).slice(2))
+            customsIDs.push(localStorage.key(i).slice(2));
         }
     }
     customsIDs.sort();
     for (var i = 0; i < customsIDs.length; i++){
-        levels.push(JSON.parse(localStorage.getItem("CL" + customsIDs[i])))
+        levels.push(JSON.parse(localStorage.getItem("CL" + customsIDs[i])));
     }
 } else {
   console.log("Sorry, no Web storage so you'll be reset each time!");
 }
-
-
 
 
 if (actualLevel > levels.length-1){
@@ -361,7 +363,7 @@ function removeHoles(){
     for (let i = 0; i < holes.length; i++) {
         document.getElementById(holes[i].toString()).remove();
     }
-    holes.length = 0 // reset without breaking refs
+    holes.length = 0; // reset without breaking refs
 }
 
 /**
@@ -380,10 +382,13 @@ function changeScene(levelTo) {
  * @param {number} levelTo 
  */
 async function changeLevel(levelTo) { //trust the async :) (it isn't engineered for that but no worries)
+    if (actualLevel != levelTo && editionMode === true){
+        toggleEdition()
+    }
     if (levels.length > levelTo && levelTo >= 0) {
         await new Promise(r => setTimeout(r, 200));
         try {
-            document.getElementsByClassName("selectedLevel")[0].classList.remove("selectedLevel")
+            document.getElementsByClassName("selectedLevel")[0].classList.remove("selectedLevel");
         } 
         catch {}
         R = 185;
@@ -396,7 +401,9 @@ async function changeLevel(levelTo) { //trust the async :) (it isn't engineered 
         changeScene(actualLevel);
         winState = false;
         localStorage.setItem("Level", levelTo);
-        document.getElementById("lvlButton"+levelTo).classList.add("selectedLevel")
+        document.getElementById("lvlButton"+levelTo).classList.add("selectedLevel");
+    } else {
+        changeLevel(0)
     }
 }
 
@@ -542,13 +549,14 @@ function editMode (){
         R = ropeDefault;
         r = ropeDefault;
         if (actualLevel < officialLevels){
-            levels.push(levels[actualLevel]);
+            levels.push(structuredClone(levels[actualLevel]));  // structuredClone needed, else the 2 levels are linked and it breaks
+            actualLevel = levels.length-1;                      // set to the last level created
             const lvlTable = document.getElementById("LvlTable");
-            lvlTable.innerHTML = ''; // delete old table
+            lvlTable.innerHTML = '';                            // delete old table
             makeLvlTable();
-            changeLevel(levels.length-1);
+            changeLevel(actualLevel);
         }
-        editModeUI();
+        editModeUI();   // changes some UI elements
     }
 }
 
@@ -669,9 +677,9 @@ function boardClic(event) {
         if (touched === false){
             let rad = prompt("diameter")/2
             addCircle(actualLevel, Math.floor(clicx),Math.floor(clicy), rad);
-            console.log([Math.floor(clicx),Math.floor(clicy)], rad)
+            console.log([Math.floor(clicx),Math.floor(clicy)], rad);
             levels[actualLevel].push([[Math.floor(clicx), Math.floor(clicy)], rad]);
-            console.log(levels[actualLevel])
+            console.log(levels[actualLevel]);
         }
         else {
             clickCircle(actualLevel,touched);
@@ -690,15 +698,15 @@ function importLevel() {
             console.log("importation canceled");
             return;
         }
-        console.log("Importing following level:\n" + JSON.parse(levelData))
+        console.log("Importing following level:\n" + JSON.parse(levelData));
         levels.push(JSON.parse(levelData));
         const lvlTable = document.getElementById("LvlTable");
         lvlTable.innerHTML = ''; // delete old table
         makeLvlTable();
-        toggleEdition()
+        toggleEdition();
     }
     catch (error) {
-        console.log("level data incompatible :(")
+        console.log("level data incompatible :(");
     }
 }
 
@@ -706,7 +714,7 @@ function importLevel() {
 document.getElementById("board").addEventListener("click", boardClic);
 
 makeLvlTable();
-document.getElementById("lvlButton"+actualLevel).classList.add("selectedLevel")
+document.getElementById("lvlButton"+actualLevel).classList.add("selectedLevel");
 
 makeLevel(actualLevel);
 
@@ -714,5 +722,17 @@ actualize();
 actualize(); // preferable for accessibility: disable the first animation
 
 document.addEventListener("keypress", onKeyPress);
+
+if (navigator.userAgentData.mobile) {
+    document.getElementById("board").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+}
+
+window.onbeforeunload = function() {
+    console.log("goodbye?")
+    if (editionMode == true){
+        return "Save before leaving :(";
+    }
+};
+
 
 //  code from https://github.com/Nan0b1/BKball

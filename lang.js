@@ -1,16 +1,16 @@
 "use strict";
 
-const default_lang = "en"
+const default_lang = "en";
 let lang = default_lang;
 const l_map = new Map();
 
 if (navigator.language == "fr-FR"){
-    lang = "fr"
+    lang = "fr";
 }
 
 if (typeof(Storage) !== "undefined") {
   if (localStorage.getItem("Lang") !== null) {
-    lang = localStorage.getItem("Lang")
+    lang = localStorage.getItem("Lang");
   }
 } else {
   console.log("Sorry, no Web storage so you'll be reset each time!");
@@ -18,7 +18,7 @@ if (typeof(Storage) !== "undefined") {
 
 
 async function load_lang(lang) {
-    const response = await fetch(`/langs/${lang}.txt`)
+    const response = await fetch(`/langs/${lang}.txt`);
     const data = await response.text();
 
     const lines = data.split("\n");
@@ -42,7 +42,7 @@ function updateLoc() {
 function updateElLoc(el) {
     let loc = l_map.get(el.dataset.loc);
     if (loc == undefined) {
-        el.innerHTML = `Bkpad <3`
+        el.innerHTML = `Bkpad <3`;
         return;
     }
     loc = loc.replace("<n>", "\n<br />");
