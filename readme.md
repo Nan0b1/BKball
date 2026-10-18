@@ -9,7 +9,7 @@ The historical french game "boule montante" inspired this project, so you may al
 2. You can simply download the zipped project then open the index.html and it will work
 
 
-## controls
+## Controls
 
 The controls are very simple and independent of the keyboard you use :)
 |platform       |controls   |
@@ -24,12 +24,12 @@ The controls are very simple and independent of the keyboard you use :)
 This project only uses native html, css and javascript, so you can just download the files and open them on your localhost or just open the index.html :D
 
 
-## development state
+## Development state
 Actually pretty finished!
 I will be able to make modifications if needed but I don't plan to touch it really much in the future, even if the code is pretty "clean"!
 Total: 30 hours with more than the half dedicated to the script.js !
 
-### functionalities:
+### Functionalities:
 - A whole level editing software is inside it! It is genuinely hard to design levels by just tweaking arrays in some js
 - Main board where all the gameplay is situated! It uses A big *svg* element and everything is moved by the js changing some *animate* values :)
 - Hand made translations, with lang.js
@@ -37,7 +37,7 @@ Total: 30 hours with more than the half dedicated to the script.js !
 - The project is fully vanilla html, js and css! You don't have to rely on anything but on these lines of code with custom physics made from scratch
 - No security issues: the server just sends the same index.html every time
 
-### problems:
+### Problems:
 **Google**, in 2 weeks, blacklisted my website 2 times for "phishing or malicious software". LOL this thing don't even send a single bite of what the entry() function get to the server TwT
 I think the repeated changes to the website are flagged but each time it is resolved so no problems :D 
 
