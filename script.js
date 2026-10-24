@@ -1,6 +1,5 @@
 "use strict";
 
-// TODO: proper keyboards inputs
 
 // Welcome there!
 // -- A french guy
@@ -30,48 +29,7 @@ if (typeof(Storage) !== "undefined") {
 
 
 
-// ####################### key handling #######################
-/**
- * modify the left rope value safely
- * @param {number} nbr 
- */
-function pullLeft(nbr) {
-    if (nbr > 0) {
-        r = r + nbr;
-        if (r+R >= 387) {
-                R = R - Math.abs(nbr);
-            }
-    }
-    else{
-        if (r>4+nbr){
-            r = r + nbr;
-            if (r+R <= 130) {
-                R = R +Math.abs(nbr);
-            }
-        }
-    }
-}
-
-/**
- * modify the right rope value safely
- * @param {number} nbr 
- */
-function pullRight(nbr) {
-    if (nbr > 0) {
-        R = R + nbr;
-        if (r+R >= 387) {
-                r = r - Math.abs(nbr);
-            }
-    }
-    else{
-        if (R>4+nbr){
-            R = R + nbr;
-            if (r+R <= 130) {
-                r = r + Math.abs(nbr);
-            }
-        }
-    }
-}
+// ####################### Legacy/BKpad key handling #######################
 
 /**
  * Handle keyboards / BKpad inputs
@@ -104,6 +62,47 @@ function onKeyPress(evt) {
     }
     actualize();
 }
+
+// ####################### Modern key handling #######################
+
+var keysState = {
+    KeyA:false,
+    KeyS:false,
+    KeyK:false,
+    KeyL:false
+}
+var leftCheck = true
+
+document.addEventListener("keydown", logDown);
+function logDown(e) {
+  if (e.code in keysState){
+    keysState[e.code] = true
+  }
+}
+
+document.addEventListener("keyup", logUp);
+function logUp(e) {
+  if (e.code in keysState){
+    keysState[e.code] = false
+  }
+}
+
+function intervalIpnut() {
+    leftCheck = !leftCheck
+    if (leftCheck){
+        if      (keysState["KeyA"] && !keysState["KeyS"])   { pullRight(2);}
+        else if (!keysState["KeyA"] && keysState["KeyS"])   { pullRight(-2);}
+        else                                                {return;}
+    }
+    else {
+        if      (keysState["KeyK"] && !keysState["KeyL"])   { pullLeft(-2);} // pull values inverted to be axis symetrical
+        else if (!keysState["KeyK"] && keysState["KeyL"])   { pullLeft(2);}
+        else                                                {return;}
+    }
+    actualize();
+}
+
+setInterval(intervalIpnut,100)
 
 // ####################### gestures handling #######################
 // modified from kirupa.com/html5/detecting_touch_swipe_gestures.htm
@@ -157,8 +156,10 @@ function moveTouch(e) {
         // let dist = Math.abs(diffY/(dims["y"]-dims["height"])*-200); // 200 is the height of the canvas <- this line is just not logical lol
         let dist =  Math.abs(diffY / (dims["height"] - dims["y"])) // [0 < dist < 1] if you are in the canvas
         console.log(dist)
-        var force = 4;
-        if (dist < 0.2) {
+        var force = 2;
+        if (dist < 0.1) {
+            force = 2;
+        } else if (dist < 0.2) {
             force = 4;
         } else if (dist < 0.35) {
             force = 8;
@@ -196,7 +197,49 @@ function moveTouch(e) {
   actualize();
 };
 
-// ####################### physics detections #######################
+// ####################### physics #######################
+
+/**
+ * modify the left rope value safely
+ * @param {number} nbr 
+ */
+function pullLeft(nbr) {
+    if (nbr > 0) {
+        r = r + nbr;
+        if (r+R >= 387) {
+                R = R - Math.abs(nbr);
+            }
+    }
+    else{
+        if (r>4+nbr){
+            r = r + nbr;
+            if (r+R <= 130) {
+                R = R +Math.abs(nbr);
+            }
+        }
+    }
+}
+
+/**
+ * modify the right rope value safely
+ * @param {number} nbr 
+ */
+function pullRight(nbr) {
+    if (nbr > 0) {
+        R = R + nbr;
+        if (r+R >= 387) {
+                r = r - Math.abs(nbr);
+            }
+    }
+    else{
+        if (R>4+nbr){
+            R = R + nbr;
+            if (r+R <= 130) {
+                r = r + Math.abs(nbr);
+            }
+        }
+    }
+}
 
 /**
  * Check if the ball is in a hole, and if in a wining hole set winState to true
