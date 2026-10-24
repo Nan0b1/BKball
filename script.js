@@ -1,7 +1,7 @@
 "use strict";
 
-// TODO: fix death at [+1]
 // TODO: floppy rope when touchpad
+// TODO: proper keyboards inputs
 
 // Welcome there!
 // -- A french guy
@@ -103,10 +103,6 @@ function onKeyPress(evt) {
         default:
             return;
     }
-    if (checkHoles()){
-        disappear();
-        changeLevel(actualLevel+1*winState);
-    }
     actualize();
 }
 
@@ -190,10 +186,6 @@ function moveTouch(e) {
             else {
                 pullRight(-1*force);
             }
-        }
-        if (checkHoles()){
-        disappear()
-        changeLevel(actualLevel+1*winState)
         }
     }
   
@@ -488,6 +480,10 @@ function actualize() {
     bk.setAttribute("to", x/6.28319*Math.abs(rotationRatio) +" 0 13");
     bk.beginElement();
 
+    if (checkHoles()){
+        disappear();
+        changeLevel(actualLevel+1*winState);
+    }
 }
 
 /**
