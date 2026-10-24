@@ -405,6 +405,7 @@ async function changeLevel(levelTo) { //trust the async :) (it isn't engineered 
     } else {
         changeLevel(0)
     }
+    document.getElementById("actualLevel").innerHTML = actualLevel + 1 // actualize the level changer
 }
 
 
@@ -715,6 +716,7 @@ document.getElementById("board").addEventListener("click", boardClic);
 
 makeLvlTable();
 document.getElementById("lvlButton"+actualLevel).classList.add("selectedLevel");
+document.getElementById("actualLevel").innerHTML = actualLevel + 1
 
 makeLevel(actualLevel);
 

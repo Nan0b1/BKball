@@ -64,6 +64,17 @@ select {
   padding: 0.15rem;
 }
 
+.levelChanger{
+    padding: 0.3% 0 1% 0;
+    background-color: rgba(219, 191, 84, 0.25);
+    border-radius: var(--radius);   
+}
+
+.levelChangerContainer {
+    text-align: center;    
+}
+
+
 /* canvas */
 
 svg {

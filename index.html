@@ -19,7 +19,9 @@
                     In this game you will have to make the ball go into the green circle by pulling on the ropes :) <br>
                     There isn't ropes in your keyboard ? Use the next controls !
                 </span>
-                <img src="https://i.imgur.com/3hpesEu.png" alt="keyboard: press the corner keys of the keyboard" referrerpolicy="no-referrer" width="70%" style="margin-left: 15%;margin-right: 15%;">
+                <div class="loc" data-loc="imgKBD">
+                    <img src="images\kbd_qwerty.avif" alt="keyboard: press the corner keys of the keyboard" referrerpolicy="no-referrer" width="70%" style="margin-left: 15%;margin-right: 15%;">
+                </div>
                 <div style="padding-left: 10%;">
                     <img class="flex_child" src="https://i.imgur.com/XJYHihk.png" alt="keyboard: press the corner keys of the keyboard" referrerpolicy="no-referrer" width="45%" style="margin: auto;">
                     <img class="flex_child" src="https://i.imgur.com/gP9BRgI.png" alt="phone: swipe up and down!" referrerpolicy="no-referrer" width="40%" style="margin: auto;">
@@ -115,6 +117,7 @@
             <div class="smolBox">
                 <table id="LvlTable" class="smolBox" style="width: 80%;margin-left: 10%;margin-right: 10%;margin-top: 5%;margin-bottom: 5%;">
                 </table>
+                <div class="levelChangerContainer"><span class="levelChanger">&nbsp;<button onclick="changeLevel(actualLevel - 1)">←</button> &nbsp;&nbsp;<span id="actualLevel"></span> &nbsp;&nbsp;<button  onclick="changeLevel(actualLevel + 1)">→</button>&nbsp;</span></div>
                 <div class="flex_parent_untouched" style="padding-top: 10%;padding-bottom: 1.5%;">
                     
                     <button id="editButton" class="flex_child loc" data-loc="editButton" onclick="editMode()">Edit</button>
