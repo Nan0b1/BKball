@@ -1,5 +1,8 @@
 "use strict";
 
+// TODO: fix death at [+1]
+// TODO: floppy rope when touchpad
+
 // Welcome there!
 // -- A french guy
 // Glory to free will
@@ -112,7 +115,7 @@ function onKeyPress(evt) {
 
 let svgCanvas = document.getElementById("board");
 svgCanvas.addEventListener("touchstart", startTouch, false);
-svgCanvas.addEventListener("touchmove", moveTouch, false);
+svgCanvas.addEventListener("touchend", moveTouch, false); // touchmove sends the function even if swipe not finished
 
 
 var initialX = null;
@@ -136,8 +139,8 @@ function moveTouch(e) {
         return;
     }
     
-    var currentX = e.touches[0].clientX;
-    var currentY = e.touches[0].clientY;
+    var currentX = e.changedTouches[0].clientX;
+    var currentY = e.changedTouches[0].clientY;
     
     var diffX = initialX - currentX;
     var diffY = initialY - currentY;
@@ -156,13 +159,15 @@ function moveTouch(e) {
     } else {
         // sliding vertically
         let dims = document.getElementById("board").getBoundingClientRect();
-        let dist = Math.abs(diffY/(dims["y"]-dims["height"])*-200); // 200 is the height of the canvas
+        // let dist = Math.abs(diffY/(dims["y"]-dims["height"])*-200); // 200 is the height of the canvas <- this line is just not logical lol
+        let dist =  Math.abs(diffY / (dims["height"] - dims["y"])) // [0 < dist < 1] if you are in the canvas
+        console.log(dist)
         var force = 4;
-        if (dist < 3) {
+        if (dist < 0.2) {
             force = 4;
-        } else if (dist < 4.5) {
+        } else if (dist < 0.35) {
             force = 8;
-        }else if (dist < 6) {
+        }else if (dist < 0.5) {
             force = 12;
         }else {
             force = 16;
@@ -196,7 +201,7 @@ function moveTouch(e) {
   initialX = null;
   initialY = null;
    
-  e.preventDefault();
+//   e.preventDefault();
   actualize();
 };
 
