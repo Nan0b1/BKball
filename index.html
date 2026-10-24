@@ -109,6 +109,30 @@
                     dur=" 0.2s"
                     fill="freeze"/>
             </g>
+            <rect id="blackOut" x="140" y="0" width="140" height="0" fill="black">
+                <animate id="blackScreenH" attributeName="height" from="0" to="600" dur="0.5s"/>
+                <animate id="blackScreenY" attributeName="y" from="0" to="200" begin="0.3s" dur=" 0.2s"/>
+                <animate id="notThere" attributeName="x" from="140" to="0" begin="0.5s" dur="0.1s" fill="freeze"/>
+            </rect>
+            <g id="rainbow" transform="translate(120, 300)">
+                <circle cx="0" cy="0" r="30" fill="transparent" stroke="red" stroke-width="2" style="opacity: 0.7;"/>
+                <circle cx="0" cy="0" r="28" fill="transparent" stroke="orange" stroke-width="2" style="opacity: 0.8;"/>
+                <circle cx="0" cy="0" r="26" fill="transparent" stroke="yellow" stroke-width="2" style="opacity: 0.9;"/>
+                <circle cx="0" cy="0" r="24" fill="transparent" stroke="lime" stroke-width="2" style="opacity: 1;"/>
+                <circle cx="0" cy="0" r="22" fill="transparent" stroke="cyan" stroke-width="2" style="opacity: 0.9;"/>
+                <circle cx="0" cy="0" r="20" fill="transparent" stroke="blue" stroke-width="2" style="opacity: 0.8;"/>
+                <circle cx="0" cy="0" r="18" fill="transparent" stroke="purple" stroke-width="2" style="opacity: 0.7;"/>
+                <animateTransform 
+                    id="rainbowAnimation"
+                    attributeName="transform"
+                    additive="sum"
+                    type="scale" 
+                    from="0" 
+                    to="20"
+                    dur="0.6s"
+                    begin="none"
+                    fill="freeze"/>
+            </g>
         </svg>
         <!-- right wing -->
         <div class="flex_child">

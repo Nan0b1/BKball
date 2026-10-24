@@ -276,6 +276,19 @@ function collide (co1,co2,dist) {
 
 // ####################### animations #######################
 
+var blackScreenLock = false
+
+function blackScreenAnimation(){
+    if (!blackScreenLock){
+        blackScreenLock = true;
+        document.getElementById("blackScreenH").beginElement();
+        setTimeout(() => {
+            document.getElementById("blackScreenY").beginElement();
+            blackScreenLock = false;
+        }, 300);
+    }
+}
+
 /**
  * Make the falling animation for the ball
  */
@@ -286,7 +299,7 @@ function disappear () {
     rotationRatio = rotationRatio + 1110;
 
     bk.setAttribute("to", x/6.28319*Math.abs(rotationRatio) +" 0 13");
-    bk.beginElement();
+    bk.beginElement();    
 }
 
 const segmentsName = [ // rope segments
@@ -525,7 +538,17 @@ function actualize() {
 
     if (checkHoles()){
         disappear();
-        changeLevel(actualLevel+1*winState);
+        if (!winState){
+            blackScreenAnimation()
+            changeLevel(actualLevel);
+        } else {
+            document.getElementById("rainbowAnimation").beginElement()
+            setTimeout(() => {
+                changeLevel(actualLevel+1);
+            }, 100);
+            
+        }
+        
     }
 }
 
