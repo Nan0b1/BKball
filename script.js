@@ -1,6 +1,5 @@
 "use strict";
 
-// TODO: floppy rope when touchpad
 // TODO: proper keyboards inputs
 
 // Welcome there!
@@ -447,6 +446,8 @@ function ballTriangulation(){
     else {
         oldleftLoss = leftLoss;
         oldrightLoss = rightLoss;
+        leftLoss = 0;
+        rightLoss = 0;
     }
 }
 
