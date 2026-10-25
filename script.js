@@ -115,7 +115,11 @@ document.addEventListener("keyup", logUp);
  */
 function intervalIpnut() {
     leftCheck = !leftCheck
-    if (leftCheck){
+    if (keysState["KeyA"] && keysState["KeyL"]) { if(true){pullRight(1);pullLeft(1);} }
+    else if (keysState["KeyS"] && keysState["KeyK"]) { if(true){pullRight(-1);pullLeft(-1); }}
+    else if (keysState["KeyS"] && keysState["KeyL"]) { if(true){pullRight(-1);pullLeft(1); }}
+    else if (keysState["KeyA"] && keysState["KeyK"]) { if(true){pullRight(1);pullLeft(-1); }}
+    else if (leftCheck){
         if      (keysState["KeyA"] && !keysState["KeyS"])   { pullRight(2);}
         else if (!keysState["KeyA"] && keysState["KeyS"])   { pullRight(-2);}
         else                                                {return;}
