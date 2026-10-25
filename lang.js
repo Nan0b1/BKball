@@ -18,7 +18,7 @@ if (typeof(Storage) !== "undefined") {
 
 
 async function load_lang(lang) {
-    const response = await fetch(`/langs/${lang}.txt`);
+    const response = await fetch(`langs/${lang}.txt`);
     const data = await response.text();
 
     const lines = data.split("\n");
