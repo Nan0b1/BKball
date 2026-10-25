@@ -15,6 +15,22 @@ var oldrightLoss = 0;
 
 var editionMode = false;
 
+function choice(choices) {
+  var index = Math.floor(Math.random() * choices.length);
+  return choices[index];
+}
+
+// sounds from https://freesound.org/s/519262/ https://freesound.org/s/416386/
+var fall1 = new Audio('sounds/fall1.wav');
+var fall2 = new Audio('sounds/fall2.wav');
+var fall3 = new Audio('sounds/fall3.wav');
+var win = new Audio('sounds/win.wav');
+
+
+function fallSFX(){
+    choice([fall1,fall2,fall3]).play();
+}
+
 
 var actualLevel = 0;
 
@@ -543,10 +559,12 @@ function actualize() {
     if (checkHoles()){
         disappear();
         if (!winState){
-            blackScreenAnimation()
+            blackScreenAnimation();
             changeLevel(actualLevel);
+            fallSFX();
         } else {
-            document.getElementById("rainbowAnimation").beginElement()
+            win.play();
+            document.getElementById("rainbowAnimation").beginElement();
             setTimeout(() => {
                 changeLevel(actualLevel+1);
             }, 100);
