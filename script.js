@@ -31,7 +31,7 @@ if (typeof(Storage) !== "undefined") {
 // ####################### Legacy/BKpad key handling #######################
 
 /**
- * Handle keyboards / BKpad inputs
+ * BKpad handling / legacy keyboard input
  * @param {*} evt 
  */
 function onKeyPress(evt) {
@@ -63,7 +63,9 @@ function onKeyPress(evt) {
 }
 
 // ####################### Modern key handling #######################
-
+/**
+ * KeyX true if X key is pressed
+ */
 var keysState = {
     KeyA:false,
     KeyS:false,
@@ -72,20 +74,29 @@ var keysState = {
 }
 var leftCheck = true
 
-document.addEventListener("keydown", logDown);
+/**
+ * actualize keysState true states
+ */
 function logDown(e) {
-  if (e.code in keysState){
-    keysState[e.code] = true
-  }
+    if (e.code in keysState){
+        keysState[e.code] = true
+    }
 }
+document.addEventListener("keydown", logDown);
 
-document.addEventListener("keyup", logUp);
+/**
+ * actualize keysState false states
+ */
 function logUp(e) {
-  if (e.code in keysState){
-    keysState[e.code] = false
-  }
+    if (e.code in keysState){
+        keysState[e.code] = false
+    }
 }
+document.addEventListener("keyup", logUp);
 
+/**
+ * Modern keyboard handling: check every 100ms one side of the keyboard
+ */
 function intervalIpnut() {
     leftCheck = !leftCheck
     if (leftCheck){
@@ -100,11 +111,11 @@ function intervalIpnut() {
     }
     actualize();
 }
-
 setInterval(intervalIpnut,100)
 
+
 // ####################### gestures handling #######################
-// modified from kirupa.com/html5/detecting_touch_swipe_gestures.htm
+// heavily modified from kirupa.com/html5/detecting_touch_swipe_gestures.htm
 
 let svgCanvas = document.getElementById("board");
 svgCanvas.addEventListener("touchstart", startTouch, false);
@@ -138,17 +149,10 @@ function moveTouch(e) {
     var diffX = initialX - currentX;
     var diffY = initialY - currentY;
     
-    if (false) { // desactivated because of not beign great
-        // sliding horizontally
+    if (Math.abs(diffX) > Math.abs(4*diffY)) { // if user slides horizontally
 
-        if (diffX > 0) {
-            // swiped left
-            changeLevel(actualLevel+1)
-        } else {
-            // swiped right
-            changeLevel(actualLevel-1);
-        }  
-
+        document.getElementById("Larrow").beginElement()
+        document.getElementById("Rarrow").beginElement()
     } else {
         // sliding vertically
         let dims = document.getElementById("board").getBoundingClientRect();
