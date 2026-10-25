@@ -13,6 +13,9 @@ var oldleftLoss = 0;
 var rightLoss = 0;
 var oldrightLoss = 0;
 
+var pulledL = false;
+var pulledR = false;
+
 var editionMode = false;
 
 function choice(choices) {
@@ -90,12 +93,23 @@ var keysState = {
 }
 var leftCheck = true
 
+var skipL = false;
+var skipR = false;
+
 /**
  * actualize keysState true states
  */
 function logDown(e) {
     if (e.code in keysState){
-        keysState[e.code] = true
+        if (!keysState[e.code]){
+            keysState[e.code] = true;
+            if (e.code == "KeyA" && !pulledL)     { pullRight(2); skipR = true; }
+            else if (e.code == "KeyS" && !pulledL){ pullRight(-2); skipR = true; }
+            else if (e.code == "KeyK" && !pulledR){ pullLeft(-2); skipL = true; }
+            else if (e.code == "KeyL" && !pulledR){ pullLeft(2); skipL = true; }
+            else                                  { return;}
+            actualize();
+        }
     }
 }
 document.addEventListener("keydown", logDown);
@@ -114,7 +128,13 @@ document.addEventListener("keyup", logUp);
  * Modern keyboard handling: check every 100ms one side of the keyboard
  */
 function intervalIpnut() {
+    pulledL = false;
+    pulledR = false;
     leftCheck = !leftCheck
+    if ((skipL && leftCheck) || (skipR && !leftCheck)) { skipL = false; skipR = false; return; }
+    skipL = false; 
+    skipR = false;
+
     if (keysState["KeyA"] && keysState["KeyL"]) { if(true){pullRight(1);pullLeft(1);} }
     else if (keysState["KeyS"] && keysState["KeyK"]) { if(true){pullRight(-1);pullLeft(-1); }}
     else if (keysState["KeyS"] && keysState["KeyL"]) { if(true){pullRight(-1);pullLeft(1); }}
@@ -227,6 +247,7 @@ function moveTouch(e) {
  * @param {number} nbr 
  */
 function pullLeft(nbr) {
+    pulledL = true;
     if (nbr > 0) {
         r = r + nbr;
         if (r+R >= 387) {
@@ -248,6 +269,7 @@ function pullLeft(nbr) {
  * @param {number} nbr 
  */
 function pullRight(nbr) {
+    pulledR = true
     if (nbr > 0) {
         R = R + nbr;
         if (r+R >= 387) {
