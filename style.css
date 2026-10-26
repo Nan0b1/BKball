@@ -164,3 +164,7 @@ h1::-webkit-selection {
     height: 100%;
     }
 }
+
+a{
+    color: #005f3b;
+}
