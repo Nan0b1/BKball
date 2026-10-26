@@ -1,12 +1,18 @@
 "use strict";
 
-// TODO rainbow bug
+// edition mode rubalise
 
 // Welcome there!
 // -- A french guy
 // Glory to free will
 
 var winState = false
+
+var french = false;
+
+if (navigator.language == "fr-FR"){
+    french = true;
+}
 
 var holes = [];
 var ropeDefault = 185;
@@ -20,6 +26,9 @@ var pulledR = false;
 
 var editionMode = false;
 
+/**
+ * return one random object of the array given
+ */
 function choice(choices) {
   var index = Math.floor(Math.random() * choices.length);
   return choices[index];
@@ -31,9 +40,12 @@ var fall2 = new Audio('sounds/fall2.wav');
 var fall3 = new Audio('sounds/fall3.wav');
 var win = new Audio('sounds/win.wav');
 
-
 function fallSFX(){
     choice([fall1,fall2,fall3]).play();
+}
+
+function winSFX(){
+    win.play();
 }
 
 
@@ -481,8 +493,10 @@ function changeScene(levelTo) {
  * @param {number} levelTo 
  */
 async function changeLevel(levelTo) { //trust the async :) (it isn't engineered for that but no worries)
+    let wasInEdition = false;
     if (actualLevel != levelTo && editionMode === true){
-        toggleEdition()
+        wasInEdition = true;
+        toggleEdition();
     }
     if (levels.length > levelTo && levelTo >= 0) {
         await new Promise(r => setTimeout(r, 200));
@@ -505,6 +519,9 @@ async function changeLevel(levelTo) { //trust the async :) (it isn't engineered 
         changeLevel(0)
     }
     document.getElementById("actualLevel").innerHTML = actualLevel + 1 // actualize the level changer
+    if (wasInEdition){
+        editMode();
+    }
 }
 
 
@@ -596,10 +613,10 @@ function actualize() {
             // takes the animation stick
             rainbowPlaying = true;
             
-            win.play();
+            winSFX()
             document.getElementById("rainbowAnimation").beginElement();
             setTimeout(() => {
-                changeLevel(actualLevel+1);
+                changeLevel(actualLevel+1*!editionMode); // don't change level if in editor mode
             }, 100);
 
             // gives back the stick when animation finished (after 0.6s)
@@ -715,7 +732,7 @@ function editModeUI(){
 }
 
 /**
- * Toggle edition mode and visual changes
+ * Toggle edition mode and visual changes (only to shut off if I remember oops)
  */
 function toggleEdition(){
     if (editionMode == false){
@@ -741,6 +758,7 @@ function toggleEdition(){
         setClassParam(".gameModeD","visibility","");
 
         localStorage.setItem("CL"+actualLevel, JSON.stringify(levels[actualLevel])); // CL for Custom Level :3
+        changeLevel(actualLevel)
     }
 }
 
@@ -816,6 +834,13 @@ function boardClic(event) {
 
 }
 
+function copyToClip() {
+    navigator.clipboard.writeText(JSON.stringify(holes));
+    if (french) {
+        alert("Code de niveau copié dans votre presse papier");
+    } else { alert("Your level's code have been copied to the clipboard");}
+}
+
 /**
  * ask the user to import a level
  */
@@ -859,15 +884,10 @@ if (navigator.userAgentData.mobile) {
     setClassParam(".hiddenForPhones","display","");
 }
 
-
+// saves before leaving :D
 window.onbeforeunload = function() {
-    console.log("goodbye?")
-    if (editionMode == true){
-        return "Save before leaving :(";
-    }
+    toggleEdition()
 };
-
-// POPUP
 
 var tutoVisible = false;
 
