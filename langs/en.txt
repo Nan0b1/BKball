@@ -14,6 +14,10 @@ GGoal~What is the goal?
 GGoalExplan~In this game, you need to make the white ball go up the whole to make it touch the green round
 howBallUp~How does I make the ball go up?
 computa~On computer, you use your keys to pull or release the ropes, the central ones pull and the other ones release them.
+Q~<b>Q:</b> release the left rope
+W~<b>Z:</b> pull the left rope
+O~<b>K:</b> pull the right rope
+P~<b>L:</b> release the right rope
 A~<b>A:</b> release the left rope
 S~<b>S:</b> pull the left rope
 L~<b>K:</b> pull the right rope

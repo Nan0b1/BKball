@@ -262,18 +262,42 @@
             <div id="tutoPC" style="display: none;">
                 <span class="loc" data-loc="computa">On computer, you use your keys to pull or release the ropes, the central ones pull and the other ones release them.</span><br>
                 <div class="flex_parent_untouched">
-                    <div class="flex_child">
-                        <ul>
-                            <li class="loc" data-loc="A"> <b>A:</b> release the left rope</li>
-                            <li class="loc" data-loc="S"> <b>S:</b> pull the left rope</li>
-                        </ul>
+                    <div id="Modern" class="flex_child_big flex_parent_untouched">
+                        <div class="flex_child">
+                            <ul>
+                                <li class="loc" data-loc="A"> <b>A:</b> release the left rope</li>
+                                <li class="loc" data-loc="S"> <b>S:</b> pull the left rope</li>
+                            </ul>
+                        </div>
+                        <div class="flex_child">
+                            <ul>
+                                <li class="loc" data-loc="K"> <b>K:</b> pull the right rope</li>
+                                <li class="loc" data-loc="L"> <b>L:</b> release the right rope</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="flex_child">
-                        <ul>
-                            <li class="loc" data-loc="K"> <b>K:</b> pull the right rope</li>
-                            <li class="loc" data-loc="L"> <b>L:</b> release the right rope</li>
-                        </ul>
+                    <div id="Legacy"  class="flex_child_big flex_parent_untouched" style="display:none;">
+                        <div class="flex_child">
+                            <ul>
+                                <li class="loc" data-loc="Q"> <b>Q:</b> release the left rope</li>
+                                <li class="loc" data-loc="W"> <b>W:</b> pull the left rope</li>
+                            </ul>
+                        </div>
+                        <div class="flex_child">
+                            <ul>
+                                <li class="loc" data-loc="O"> <b>O:</b> pull the right rope</li>
+                                <li class="loc" data-loc="P"> <b>P:</b> release the right rope</li>
+                            </ul>
+                        </div>
                     </div>
+                    <ul class="flex_child flex">
+                        <li>
+                            <div class="hiddenForPhones"><button id="buttonTutoLegacy" onclick="document.getElementById('Legacy').style = 'display:none;';document.getElementById('Modern').style = '';">Modern</button></div>
+                        </li>
+                        <li>
+                            <div class="hiddenForPhones"><button id="buttonTutoModern" onclick="document.getElementById('Modern').style = 'display:none;';document.getElementById('Legacy').style = '';">Legacy</button></div>
+                        </li>
+                    </ul>
                 </div>
                 <h2 class="loc" data-loc="speControl">Special controls :o</h2>
                 <span class="loc" data-loc="speControls">Change level by clicking <b>Z</b> to go to the previous or <b>N</b> to go to the next</span>

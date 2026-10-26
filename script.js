@@ -211,7 +211,6 @@ function moveTouch(e) {
         let dims = document.getElementById("board").getBoundingClientRect();
         // let dist = Math.abs(diffY/(dims["y"]-dims["height"])*-200); // 200 is the height of the canvas <- this line is just not logical lol
         let dist =  Math.abs(diffY / (dims["height"] - dims["y"])) // [0 < dist < 1] if you are in the canvas
-        console.log(dist)
         var force = 2;
         if (dist < 0.1) {
             force = 2;
@@ -224,7 +223,6 @@ function moveTouch(e) {
         }else {
             force = 16;
         }
-        console.log(force)
         if (diffY > 0) {
             // swiped up
             if (initialX > window.screen.width/2) {
@@ -825,9 +823,7 @@ function boardClic(event) {
         if (touched === false){
             let rad = prompt("diameter")/2
             addCircle(actualLevel, Math.floor(clicx),Math.floor(clicy), rad);
-            console.log([Math.floor(clicx),Math.floor(clicy)], rad);
             levels[actualLevel].push([[Math.floor(clicx), Math.floor(clicy)], rad]);
-            console.log(levels[actualLevel]);
         }
         else {
             clickCircle(actualLevel,touched);

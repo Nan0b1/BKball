@@ -14,6 +14,10 @@ GGoal~Le but du jeu
 GGoalExplan~Dans ce jeu, vous devez faire monter la boule blanche jusqu'au rond vert en évitant de tomber dans les gris :)
 howBallUp~Comment je monte la boule?
 computa~Sur votre clavier, vos touches permettent de tirer ou relâcher les cordes. Les touches extérieures permettent de relâcher de la corde et celles du centre d'en tirer.
+Q~<b>A:</b> relâche le corde de gauche
+W~<b>Z:</b> tire la corde de gauche   
+O~<b>O:</b> tire la corde de droite   
+P~<b>P:</b> relâche le corde de droite
 A~<b>Q:</b> relâche le corde de gauche
 S~<b>S:</b> tire la corde de gauche
 K~<b>K:</b> tire la corde de droite
