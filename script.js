@@ -1,6 +1,5 @@
 "use strict";
 
-// edition mode rubalise
 
 // Welcome there!
 // -- A french guy
@@ -691,6 +690,7 @@ function setClassParam(style, param, value){
 
 function editMode (){
     if (editionMode == false){
+        document.getElementById('rubaliseDown').beginElement();
         R = ropeDefault;
         r = ropeDefault;
         if (actualLevel < officialLevels){
@@ -747,6 +747,7 @@ function toggleEdition(){
         setClassParam(".gameModeD","visibility","hidden");
     }
     else if (editionMode == true){
+        document.getElementById('rubaliseUp').beginElement();
         tutoGame.setAttribute("style", "");
         tutoEditor.setAttribute("style", "display:none;");
         editionMode = false;
