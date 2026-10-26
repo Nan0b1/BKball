@@ -1,6 +1,6 @@
 levels~Levels
 lang-select~Languages selection:
-descGame~In this game you will have to make the ball go into the green circle by pulling on the ropes :)<ul><b>Controls</b> (each side controls its rope)<li><b>Computer</b> - <b>AS | KL</b> <button onclick="showTuto('tutoPC');">?</button></li> <li><b>phone</b> - scroll in the left or right of the screen <button onclick="showTuto('tutoPhone');">?</button></li><li><b>BKpad</b>-  your potentiometers when on game mode (Your should be autumn themed) <button onclick="showTuto('tutoBK');">?</button></li>
+descGame~In this game you will have to make the ball go into the green circle by pulling on the ropes :)<ul><b>Controls</b> (each side controls its rope)<li><b>Computer</b> - <b>AS | KL</b> <button onclick="showTuto('tutoPC');">?</button></li> <li><b>phone</b> - scroll in the left or right of the screen <button onclick="showTuto('tutoPhone');">?</button></li><li class="hiddenForPhones"><b>BKpad</b>-  your potentiometers when on game mode (Your should be autumn themed) <button onclick="showTuto('tutoBK');">?</button></li>
 imgKBD~<img src="images\kbd_qwerty.avif" alt="keyboard: press AS KL" width="70%" style="margin-left: 15%;margin-right: 15%;">
 descEditor~To add a new circle: Click somewhere on he board and enter the diameter in the popup<n>To make a green circle click onto a gray circle<n>To delete a hole click one time on the green circle or 2 times on the gray circle !
 copyButton~Copy

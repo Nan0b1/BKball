@@ -854,7 +854,11 @@ document.addEventListener("keypress", onKeyPress);
 
 if (navigator.userAgentData.mobile) {
     document.getElementById("board").scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
+    setClassParam(".hiddenForPhones","display","none");
+} else {
+    setClassParam(".hiddenForPhones","display","");
 }
+
 
 window.onbeforeunload = function() {
     console.log("goodbye?")

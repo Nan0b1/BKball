@@ -1,6 +1,6 @@
 levels~Niveaux
 lang-select~Sélection de languages:
-descGame~Dans ce jeu, vous allez devoir mettre la balle la balle dans le trou vert en tirant sur les cordes :)<ul><b>Contrôles</b> (chaque côté controle sa corde)<li><b>Ordinateur</b> - <b>QS | KL</b> <button onclick="showTuto('tutoPC');">?</button></li> <li><b>Tactile</b> - scroll à gauche ou à droite de l'écran <button onclick="showTuto('tutoPhone');">?</button></li><li><b>BKpad</b>- Tournez les potentiomètres si vous êtes en mode jeu (le pad devrait être dans le thème automne) <button onclick="showTuto('tutoBK');">?</button></li>
+descGame~Dans ce jeu, vous allez devoir mettre la balle la balle dans le trou vert en tirant sur les cordes :)<ul><b>Contrôles</b> (chaque côté controle sa corde)<li><b>Ordinateur</b> - <b>QS | KL</b> <button onclick="showTuto('tutoPC');">?</button></li> <li><b>Tactile</b> - scroll à gauche ou à droite de l'écran <button onclick="showTuto('tutoPhone');">?</button></li><li class="hiddenForPhones"><b>BKpad</b>- Tournez les potentiomètres si vous êtes en mode jeu (le pad devrait être dans le thème automne) <button onclick="showTuto('tutoBK');">?</button></li>
 imgKBD~<img src="images\kbd_azerty.avif" alt="clavier: QS LM" width="70%" style="margin-left: 15%;margin-right: 15%;">
 descEditor~Pour ajouter un nouveau cercle cliquez sur le mur et entrez le diamètre :) <n>Pour créer un cercle vert cliquez sur un cercle gris!<n>Pour supprimer un cercle cliquez une fois sur un cercle vert ou deux sur un gris :D
 copyButton~Copier
