@@ -1,5 +1,7 @@
 "use strict";
 
+// TODO rainbow bug
+
 // Welcome there!
 // -- A french guy
 // Glory to free will
@@ -69,11 +71,11 @@ function onKeyPress(evt) {
         case "KeyW":
             pullRight(-2);
             break;
-        case "KeyN":
-            changeLevel(actualLevel+1);
-            return;
         case "KeyZ":
             changeLevel(actualLevel-1);
+            return;
+        case "KeyN":
+            changeLevel(actualLevel+1);
             return;
         default:
             return;
@@ -850,6 +852,48 @@ window.onbeforeunload = function() {
         return "Save before leaving :(";
     }
 };
+
+// POPUP
+
+var tutoVisible = false;
+
+const tutosNames = [
+    "tutoPC",
+    "tutoPhone",
+    "tutoBK"
+]
+
+function hideTuto(){
+    tutoVisible = false;
+    document.getElementById("tuto").style = "display: none;"
+}
+
+function showTuto(display){
+    if(display == null){
+        if (navigator.userAgentData.mobile){
+            changeTuto("tutoPhone")
+        } else {
+            changeTuto("tutoPC")
+        }
+    } else {
+        changeTuto(display)
+    }
+    tutoVisible = true;
+    document.getElementById("tuto").style = ""
+    if (navigator.userAgentData.mobile) {
+        setClassParam(".hiddenForPhones","display","none");
+    } else {
+        setClassParam(".hiddenForPhones","display","");
+    }
+}
+function changeTuto(display){
+    for (const tuto of tutosNames) {
+        if(document.getElementById("button"+tuto).classList.contains("selectedItem")){ document.getElementById("button"+tuto).classList.remove("selectedItem")}
+        document.getElementById(tuto).style = "display: none;"
+    }
+    document.getElementById(display).style = ""
+    document.getElementById("button"+display).classList.add("selectedItem")
+}
 
 
 //  code from https://github.com/Nan0b1/BKball

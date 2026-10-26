@@ -1,6 +1,6 @@
 levels~Niveaux
 lang-select~Sélection de languages:
-descGame~Dans ce jeu, vous allez devoir mettre la balle la balle dans le trou vert en tirant sur les cordes :)<ul><b>Contrôles</b> (chaque côté controle sa corde)<li><b>Ordinateur</b> - <b>QS | KL</b></li> <li><b>Tactile</b> - scroll à gauche ou à droite de l'écran</li><li><b>BKpad</b>- Tournez les potentiomètres si vous êtes en mode jeu (le pad devrait être dans le thème automne)</li>
+descGame~Dans ce jeu, vous allez devoir mettre la balle la balle dans le trou vert en tirant sur les cordes :)<ul><b>Contrôles</b> (chaque côté controle sa corde)<li><b>Ordinateur</b> - <b>QS | KL</b> <button onclick="showTuto('tutoPC');">?</button></li> <li><b>Tactile</b> - scroll à gauche ou à droite de l'écran <button onclick="showTuto('tutoPhone');">?</button></li><li><b>BKpad</b>- Tournez les potentiomètres si vous êtes en mode jeu (le pad devrait être dans le thème automne) <button onclick="showTuto('tutoPC');">?</button></li>
 imgKBD~<img src="images\kbd_azerty.avif" alt="clavier: QS LM" width="70%" style="margin-left: 15%;margin-right: 15%;">
 descEditor~Pour ajouter un nouveau cercle cliquez sur le mur et entrez le diamètre :) <n>Pour créer un cercle vert cliquez sur un cercle gris!<n>Pour supprimer un cercle cliquez une fois sur un cercle vert ou deux sur un gris :D
 copyButton~Copier
@@ -8,3 +8,28 @@ importButton~Importer
 editButton~Éditer
 makeNewButton~Nouveau
 gameButton~Sauvegarder
+GameTuto~Tutoriel
+Phone~Tactile
+GGoal~Le but du jeu
+GGoalExplan~Dans ce jeu, vous devez faire monter la boule blanche jusqu'au rond vert en évitant de tomber dans les gris :)
+howBallUp~Comment je monte la boule?
+computa~Sur votre clavier, vos touches permettent de tirer ou relâcher les cordes. Les touches extérieures permettent de relâcher de la corde et celles du centre d'en tirer.
+A~<b>Q:</b> relâche le corde de gauche
+S~<b>S:</b> tire la corde de gauche
+K~<b>K:</b> tire la corde de droite
+L~<b>L:</b> relâche le corde de droite
+speControl~Contrôles spéciaux :o
+speControls~Change de niveau en cliquant sur <b>W</b> pour aller au précédent et <b>N</b> pour aller au prochain
+phone~Sur téléphone, scrollez vers le bas dans le canvas de jeu pour tirer ou vers le haut relâcher les cordes<br>
+APhone~<b>Scroll vers le haut à gauche:</b>  relâche le corde de gauche
+SPhone~<b>Scroll vers le bas à gauche:</b> tire la corde de gauche
+LPhone~<b>Scroll vers le haut à droite:</b> tire la corde de droite
+KPhone~<b>Scroll vers le bas à droite:</b> relâche le corde de droite
+speControlPhone~Swipe sur la verticale !
+speControlsPhone~Swiper horizontalement ou en diagonale ne fait rien de spécial :3
+BKpad_~Sur votre BKpad, tournez les potentiomètres pour tirer ou relâcher les cordes. Pensez les à des roues!<br>
+ABK~<b>↻ à gauche:</b> relâche le corde de gauche
+SBK~<b>↺ à gauche:</b> tire la corde de gauche
+KBK~<b>↻ à droite:</b> tire le corde de droite
+LBK~<b>↺ à droite:</b> relâche la corde de droite
+speControlsBK~Vous pouvez changer de niveau en cliquant sur les boutons du bas de votre BKpad !

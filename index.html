@@ -16,8 +16,7 @@
             <h1 class="bigTitle">BKball</h1>
             <div id="tutoGame" class="smolBox">
                 <span class="loc" data-loc="descGame">
-                    In this game you will have to make the ball go into the green circle by pulling on the ropes :) <br>
-                    There isn't ropes in your keyboard ? Use the next controls !
+                    In this game you will have to make the ball go into the green circle by pulling on the ropes :)<ul><b>Controls</b> (each side controls its rope)<li><b>Computer</b> - <b>AS | KL</b> <button onclick="showTuto('tutoPC');">?</button></li> <li><b>phone</b> - scroll in the left or right of the screen</li><li><b>BKpad</b>-  your potentiometers when on game mode (Your should be autumn themed)</li></ul>
                 </span>
                 <div class="loc" data-loc="imgKBD">
                     <img src="images\kbd_qwerty.avif" alt="keyboard: press the corner keys of the keyboard" referrerpolicy="no-referrer" width="70%" style="margin-left: 15%;margin-right: 15%;">
@@ -171,7 +170,11 @@
             <div class="smolBox">
                 <table id="LvlTable" class="smolBox" style="width: 80%;margin-left: 10%;margin-right: 10%;margin-top: 5%;margin-bottom: 5%;">
                 </table>
-                <div class="levelChangerContainer"><span class="levelChanger">&nbsp;<button onclick="changeLevel(actualLevel - 1)">←</button> &nbsp;&nbsp;<span id="actualLevel"></span> &nbsp;&nbsp;<button  onclick="changeLevel(actualLevel + 1)">→</button>&nbsp;</span></div>
+                <div class="flex_parent_untouched">
+                    <div class="flex_child"></div>
+                    <div class="flex_child_big levelChangerContainer"><span class="levelChanger">&nbsp;<button onclick="changeLevel(actualLevel - 1)">←</button> &nbsp;&nbsp;<span id="actualLevel"></span> &nbsp;&nbsp;<button  onclick="changeLevel(actualLevel + 1)">→</button>&nbsp;</span></div>
+                    <div class="flex_child" style="text-align: center;"><button onclick="showTuto();">?</button></div>
+                </div>
                 <div class="flex_parent_untouched" style="padding-top: 10%;padding-bottom: 1.5%;">
                     
                     <button id="editButton" class="flex_child loc" data-loc="editButton" onclick="editMode()">Edit</button>
@@ -185,6 +188,78 @@
                         <option value="fr">Français</option>
                     </select>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div id="tuto" class="popup" style="display: none;">
+        <div style="padding: 1% 3%;">
+            <div class="flex_parent_untouched">
+                <h1 class="flex_child_big loc" data-loc="GameTuto">Game tutorial</h1>
+                <div class="flex_child hiddenForPhones"><button class="X" id="buttontutoPC" onclick="changeTuto('tutoPC');"><h1>PC</h1></button></div>
+                <div class="flex_child hiddenForPhones"><button class="X" id="buttontutoPhone" onclick="changeTuto('tutoPhone');"><h1 class="loc" data-loc="Phone">Phone</h1></button></div>
+                <div class="flex_child hiddenForPhones"><button class="X" id="buttontutoBK" onclick="changeTuto('tutoBK');"><h1>BKpad</h1></button></div>
+                <div class="flex_child" style="text-align: right;"><button class="X" onclick="hideTuto();" style="font-size: 2.8rem;">X</button></div>
+            </div>
+            <h2 class="loc" data-loc="GGoal">What is the goal?</h2>
+            <span class="loc" data-loc="GGoalExplan">In this game, you need to make the white ball go up the whole to make it touch the green round</span>
+
+            <h2 class="loc" data-loc="howBallUp">How does I make the ball go up?</h2>
+            <div id="tutoPC" style="display: none;">
+                <span class="loc" data-loc="computa">On computer, you use your keys to pull or release the ropes, the central ones pull and the other ones release them.</span><br>
+                <div class="flex_parent_untouched">
+                    <div class="flex_child">
+                        <ul>
+                            <li class="loc" data-loc="A"> <b>A:</b> release the left rope</li>
+                            <li class="loc" data-loc="S"> <b>S:</b> pull the left rope</li>
+                        </ul>
+                    </div>
+                    <div class="flex_child">
+                        <ul>
+                            <li class="loc" data-loc="K"> <b>K:</b> pull the right rope</li>
+                            <li class="loc" data-loc="L"> <b>L:</b> release the right rope</li>
+                        </ul>
+                    </div>
+                </div>
+                <h2 class="loc" data-loc="speControl">Special controls :o</h2>
+                <span class="loc" data-loc="speControls">Change level by clicking <b>Z</b> to go to the previous or <b>N</b> to go to the next</span>
+            </div>
+            <div id="tutoPhone" style="display: none;">
+                <span class="loc" data-loc="phone">On Phone, you scroll on the canvas to pull or release the ropes, scroll down to pull and up to release.<br></span>
+                <div class="flex_parent_untouched">
+                    <div class="flex_child">
+                        <ul>
+                            <li class="loc" data-loc="APhone"> <b>Scroll up at the left:</b> release the left rope</li>
+                            <li class="loc" data-loc="SPhone"> <b>Scroll down at the left:</b> pull the left rope</li>
+                        </ul>
+                    </div>
+                    <div class="flex_child">
+                        <ul>
+                            <li class="loc" data-loc="KPhone"> <b>Scroll up at the right:</b> pull the right rope</li>
+                            <li class="loc" data-loc="LPhone"> <b>Scroll down at the right:</b> release the right rope</li>
+                        </ul>
+                    </div>
+                </div>
+                <h2 class="loc" data-loc="speControlPhone">Swipe vertically !</h2>
+                <span class="loc" data-loc="speControlsPhone"> Swiping diagonally or horizontally do nothing :3</span>
+            </div>
+            <div id="tutoBK">
+                <span  class="loc" data-loc="BKpad_">On your BKpad, you turn the potentiometers to pull or release the ropes, think them as weel!<br></span>
+                <div class="flex_parent_untouched">
+                    <div class="flex_child">
+                        <ul>
+                            <li class="loc" data-loc="ABK"> <b>↻ at the left:</b> release the left rope</li>
+                            <li class="loc" data-loc="SBK"> <b>↺ at the left:</b> pull the left rope</li>
+                        </ul>
+                    </div>
+                    <div class="flex_child">
+                        <ul>
+                            <li class="loc" data-loc="KBK"> <b>↻ at the right:</b> pull the right rope</li>
+                            <li class="loc" data-loc="LBK"> <b>↺ at the right:</b> release the right rope</li>
+                        </ul>
+                    </div>
+                </div>
+                <h2 class="loc" data-loc="speControl">Special controls :o</h2>
+                <span class="loc" data-loc="speControlsBK">You can go to the previous or next level by clicking your 2 buttons under the potentiometers :D </span>
             </div>
         </div>
     </div>
