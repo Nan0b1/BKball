@@ -8,6 +8,8 @@ The historical french game "boule montante" inspired this project, so you may al
 1. You can go on [BKball's official website](https://bkball.rf.gd), it supports every modern solution: computers, phones, tablets, and even smart fridges (not tested).
 2. You can simply download the zipped project then open the index.html and it will work
 
+<img width="1920" height="934" alt="2026-10-26_11h48_39" src="https://github.com/user-attachments/assets/014bb24d-d00f-4f30-b783-f330e832ebef" />
+
 
 ## Controls
 
