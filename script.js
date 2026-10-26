@@ -556,6 +556,8 @@ function ballTriangulation(){
 
 // ####################### frames updates #######################
 
+var rainbowPlaying = false;
+
 /**
  * update the board visually
  */
@@ -590,12 +592,20 @@ function actualize() {
             blackScreenAnimation();
             changeLevel(actualLevel);
             fallSFX();
-        } else {
+        } else  if (!rainbowPlaying){
+            // takes the animation stick
+            rainbowPlaying = true;
+            
             win.play();
             document.getElementById("rainbowAnimation").beginElement();
             setTimeout(() => {
                 changeLevel(actualLevel+1);
             }, 100);
+
+            // gives back the stick when animation finished (after 0.6s)
+            setTimeout(() => {
+                rainbowPlaying = false;
+            }, 600);
             
         }
         
