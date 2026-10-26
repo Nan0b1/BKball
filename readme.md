@@ -1,12 +1,12 @@
 # BKball is a web game where you have to make a ball go up by pulling two ropes 
 
-This project is mainly designed to work with the BKpad, but you can play on every other platform :) <br>
+This project is firstly designed to work with the BKpad, but you can play on every other platform :) <br>
 The historical french game "boule montante" inspired this project, so you may already know the gameplay.
 
 ## How to play?
 
-1. You can go on [BKball's official website](https://bkball.rf.gd), it supports every modern solution: computers, phones, tablets, and even smart fridges (not tested).
-2. You can simply download the zipped project then open the index.html and it will work
+1. You can go on [BKball's official website](https://nan0b1.github.io/BKball/), it supports every modern solution: computers, phones, tablets, and even smart fridges (not tested).
+2. You can simply download the zipped project then open the index.html and it will work ! No php :)
 
 <img width="1920" height="934" alt="2026-10-26_11h48_39" src="https://github.com/user-attachments/assets/014bb24d-d00f-4f30-b783-f330e832ebef" />
 
@@ -16,40 +16,35 @@ The historical french game "boule montante" inspired this project, so you may al
 The controls are very simple and independent of the keyboard you use :)
 |platform       |controls   |
 |---------------|-----------|
-|computer|The 2 top left/right keys are there to push or pull the rope and the bottoms corners are to change levels|
-|phone/tablet | Swipe up and down the side you want to pull the rope and swipe right and left to change levels|
+|computer| AS / KL to push-pull the two ropes|
+|phone/tablet | Swipe up and down the side you want to pull the rope :D|
 | BKpad       | Turn the 2 potentiometers situated in the ears :3 |
-
-
-## Run it locally?
-
-This project only uses native html, css and javascript, so you can just download the files and open them on your localhost or just open the index.html :D
 
 
 ## Development state
 Actually pretty finished!
-I will be able to make modifications if needed but I don't plan to touch it really much in the future, even if the code is pretty "clean"!
-Total: 30 hours with more than the half dedicated to the script.js !
+The project may always be modified but not heavily.
+Total: 40 hours with more than the half dedicated to the script.js !
 
 ### Functionalities:
-- A whole level editing software is inside it! It is genuinely hard to design levels by just tweaking arrays in some js
 - Main board where all the gameplay is situated! It uses A big *svg* element and everything is moved by the js changing some *animate* values :)
+- A whole level editing software is inside it. You can then share your inventions with your friends!
 - Hand made translations, with lang.js
-- Bug proof: Everything is controlled by small functions :)
-- The project is fully vanilla html, js and css! You don't have to rely on anything but on these lines of code with custom physics made from scratch
-- No security issues: the server just sends the same index.html every time
+- The project is fully vanilla html, js and css! You don't have to rely on anything but on these lines of code with custom physics made from scratch, so it's bug-proof!
+- No security issues: the server just sends the same index.html every time (no php)
 
-### Problems:
-**Google**, in 2 weeks, blacklisted my website 2 times for "phishing or malicious software". LOL this thing don't even send a single bite of what the entry() function get to the server TwT
-I think the repeated changes to the website are flagged but each time it is resolved so no problems :D 
+### Problems I had:
+**Google**, every week, blacklists my website times for "phishing or malicious software". Even if the user ddon't sends anything special to the server :(
+The first link is https://bkball.rf.gd/ so I changed to https://nan0b1.github.io/BKball/
+I think that the rf.gd haves a bad reputation :/
 
 ### Contributing?
 If you find some bugs or want to add things feel free to ask :)
-Thanks to Some Minecraft Modder who helped me to do choices at the beginning, and doing the basic lang.js (+ all the ; in the js)
+Thanks to Some Minecraft Modder who helped me to do choices at the beginning, and doing the majority of the lang.js (+ all the ; in the js)
 
 ### Things
 You can follow how it went over the time there: [Startance :D](https://stardance.hackclub.com/projects/55434)
-The project is the continuation of my other 20 hours project: [BKpad Github](https://github.com/Nan0b1/BKpad)
+The project is the continuation of my other 40 hours project: [BKpad Github](https://github.com/Nan0b1/BKpad)
 The code is 100% french made, my code is not AI generated and I do not support vibe coding as a hobby, it can be worth for a fast app you want to make for you but not for sending that online on a github.
 
 This project is asbestos-free :D
